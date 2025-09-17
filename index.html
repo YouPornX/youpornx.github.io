@@ -10,6 +10,29 @@
   <title>YouPorn</title>
   <style>
 
+#tagFilters {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.tag-btn {
+  background-color: #1a1a1a;
+  color: #9b59b6;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.tag-btn:hover {
+  background-color: #9b59b6;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+}
+
 #searchInput {
   background-color: #1a1a1a;
   color: #eee;
@@ -222,6 +245,29 @@
       color: #b38aff;
       cursor: pointer;
     }
+#tagFilters {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.tag-btn {
+  background-color: #1a1a1a;
+  color: #9b59b6;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.tag-btn:hover {
+  background-color: #9b59b6;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+}
+
   </style>
 </head>
 <body>
@@ -238,14 +284,18 @@
 
 <input type="text" id="searchInput" placeholder="Buscar por título, categoría o duración..." onkeyup="filterCards()" />
 
+<div id="tagFilters"></div>
+<div id="filterCount" style="text-align:center; margin: 0.5rem 0; font-weight: bold; color: #eee;"></div>
+
   <div class="gallery">
+
     <!-- Tarjeta 1 -->
-    <div class="card" onclick="openModal1()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/SG0I9VL.png" alt="Miniatura del video">
-      <div class="card-title">Nudes</div>
-      <span class="duration-tag">0:22</span>
-    </div>
+    <div class="card" data-tags="Solo,Nudes,HD" onclick="openModal1()">
+  <span class="category-tag">Solo</span>
+  <img src="https://i.imgur.com/SG0I9VL.png" alt="Miniatura del video">
+  <div class="card-title">Nudes</div>
+  <span class="duration-tag">0:22</span>
+</div>
 
     <!-- Tarjeta 2 -->
     <div class="card" onclick="openModal2()">
@@ -307,7 +357,7 @@
 <div class="card" onclick="openModal9()">
   <span class="category-tag">Duo</span>
   <img src="https://i.imgur.com/offjHar.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation feets</div>
+  <div class="card-title">Masturbation</div>
   <span class="duration-tag">0:59</span>
 </div>
 <!-- Tarjeta 10 -->
@@ -354,7 +404,7 @@
 <div class="card" onclick="openModal15()">
   <span class="category-tag">Solo</span>
   <img src="https://i.imgur.com/HA4Q8yT.png" alt="Miniatura del video">
-  <div class="card-title">Sex Nude</div>
+  <div class="card-title">Nude</div>
   <span class="duration-tag">0:30</span>
 </div>
 
@@ -390,8 +440,95 @@
   <span class="duration-tag">0:16</span>
 </div>
 
-</section>
+<!-- Tarjeta 20 -->
+<div class="card" onclick="openModal20()">
+  <span class="category-tag">´Duo</span>
+  <img src="https://i.imgur.com/cQ7iozY.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">0:45</span>
+</div>
 
+<!-- Tarjeta 21 -->
+<div class="card" onclick="openModal21()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/AK22Hoj.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">0:34</span>
+</div>
+
+<!-- Tarjeta 22 -->
+<div class="card" onclick="openModal22()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/GQLAR2R.png" alt="Miniatura del video">
+  <div class="card-title">Masturbation</div>
+  <span class="duration-tag">3:34</span>
+</div>
+
+<!-- Tarjeta 23 -->
+<div class="card" onclick="openModal23()">
+  <span class="category-tag">Solo</span>
+  <img src="https://i.imgur.com/1QTZSuE.png" alt="Miniatura del video">
+  <div class="card-title">Culo</div>
+  <span class="duration-tag">0:15</span>
+</div>
+
+<!-- Tarjeta 24 -->
+<div class="card" onclick="openModal24()">
+  <span class="category-tag">Solo</span>
+  <img src="https://i.imgur.com/CuiFCLt.png" alt="Miniatura del video">
+  <div class="card-title">Tetas</div>
+  <span class="duration-tag">0:24</span>
+</div>
+
+<!-- Tarjeta 25 -->
+<div class="card" onclick="openModal25()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/73MrlEK.png" alt="Miniatura del video">
+  <div class="card-title">Lesbianas</div>
+  <span class="duration-tag">0:20</span>
+</div>
+
+<!-- Tarjeta 26 -->
+<div class="card" onclick="openModal26()">
+  <span class="category-tag">Solo</span>
+  <img src="https://i.imgur.com/jQvgVaD.png" alt="Miniatura del video">
+  <div class="card-title">Masturbation</div>
+  <span class="duration-tag">0:29</span>
+</div>
+
+<!-- Tarjeta 27 -->
+<div class="card" onclick="openModal27()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/7QkvPKd.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">1:38</span>
+</div>
+
+<!-- Tarjeta 28 -->
+<div class="card" onclick="openModal28()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/e1edsFy.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">0:21</span>
+</div>
+
+<!-- Tarjeta 29 -->
+<div class="card" onclick="openModal29()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/kX46VZl.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">1:44</span>
+</div>
+
+<!-- Tarjeta 30 -->
+<div class="card" onclick="openModal30()">
+  <span class="category-tag">Duo</span>
+  <img src="https://i.imgur.com/gdOK8ON.png" alt="Miniatura del video">
+  <div class="card-title">Sex</div>
+  <span class="duration-tag">1:47</span>
+</div>
+
+</section>
 
   <!-- Modal 1 -->
   <div class="modal" id="videoModal1">
@@ -545,6 +682,94 @@
   </div>
 </div>
 
+<!-- Modal 20 -->
+<div class="modal" id="videoModal20">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal20()">×</span>
+    <iframe src="https://files.catbox.moe/0c6e3d.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 21 -->
+<div class="modal" id="videoModal21">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal21()">×</span>
+    <iframe src="https://files.catbox.moe/gchtj3.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 22 -->
+<div class="modal" id="videoModal22">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal22()">×</span>
+    <iframe src="https://files.catbox.moe/egs75h.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 23 -->
+<div class="modal" id="videoModal23">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal23()">×</span>
+    <iframe src="https://files.catbox.moe/egs75h.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 24 -->
+<div class="modal" id="videoModal24">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal24()">×</span>
+    <iframe src="https://files.catbox.moe/t95rdy.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 25 -->
+<div class="modal" id="videoModal25">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal25()">×</span>
+    <iframe src="https://files.catbox.moe/rihpw7.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 26 -->
+<div class="modal" id="videoModal26">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal26()">×</span>
+    <iframe src="https://files.catbox.moe/fot9m8.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 27 -->
+<div class="modal" id="videoModal27">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal27()">×</span>
+    <iframe src="https://files.catbox.moe/b1001q.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 28 -->
+<div class="modal" id="videoModal28">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal28()">×</span>
+    <iframe src="https://files.catbox.moe/9r5s63.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 29 -->
+<div class="modal" id="videoModal29">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal29()">×</span>
+    <iframe src="https://files.catbox.moe/t5oigl.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Modal 30 -->
+<div class="modal" id="videoModal30">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal30()">×</span>
+    <iframe src="https://files.catbox.moe/wvauds.mp4" allowfullscreen></iframe>
+  </div>
+</div>
+
   <script>
     function openModal1() {
   document.getElementById("videoModal1").style.display = "flex";
@@ -694,13 +919,100 @@ function closeModal18() {
 
 function openModal19() {
   document.getElementById("videoModal19").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
 }
 
 function closeModal19() {
   document.getElementById("videoModal19").style.display = "none";
 }
 
+function openModal20() {
+  document.getElementById("videoModal20").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal20() {
+  document.getElementById("videoModal20").style.display = "none";
+}
 
+function openModal21() {
+  document.getElementById("videoModal21").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal21() {
+  document.getElementById("videoModal21").style.display = "none";
+}
+
+function openModal22() {
+  document.getElementById("videoModal22").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal22() {
+  document.getElementById("videoModal22").style.display = "none";
+}
+
+function openModal23() {
+  document.getElementById("videoModal23").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal23() {
+  document.getElementById("videoModal23").style.display = "none";
+}
+
+function openModal24() {
+  document.getElementById("videoModal24").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal24() {
+  document.getElementById("videoModal24").style.display = "none";
+}
+
+function openModal25() {
+  document.getElementById("videoModal25").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal25() {
+  document.getElementById("videoModal25").style.display = "none";
+}
+
+function openModal26() {
+  document.getElementById("videoModal26").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal26() {
+  document.getElementById("videoModal26").style.display = "none";
+}
+
+function openModal27() {
+  document.getElementById("videoModal27").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal27() {
+  document.getElementById("videoModal27").style.display = "none";
+}
+
+function openModal28() {
+  document.getElementById("videoModal28").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal28() {
+  document.getElementById("videoModal28").style.display = "none";
+}
+
+function openModal29() {
+  document.getElementById("videoModal29").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal29() {
+  document.getElementById("videoModal29").style.display = "none";
+}
+
+function openModal30() {
+  document.getElementById("videoModal30").style.display = "flex";
+  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
+}
+function closeModal30() {
+  document.getElementById("videoModal30").style.display = "none";
+}
   </script>
 
 <!-- Verificación de edad -->
@@ -750,6 +1062,85 @@ function closeModal19() {
       card.style.display = combinedText.includes(input) ? "block" : "none";
     });
   }
+</script>
+
+<script>
+function filterByTag(tag) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const tags = card.getAttribute('data-tags');
+    if (tag === 'Todos' || (tags && tags.includes(tag))) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tagSet = new Set();
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    const titleEl = card.querySelector('.card-title');
+    if (titleEl) {
+      const excludedWords = ['en', 'de', 'con', 'video', 'intenso', 'solo', 'hd', 'nudes'];
+      const titleWords = titleEl.textContent.split(/\s+/);
+      titleWords.forEach(word => {
+        const cleanWord = word.trim().replace(/[^\w]/g, '').toLowerCase();
+        if (cleanWord.length > 2 && !excludedWords.includes(cleanWord)) {
+          tagSet.add(cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1));
+        }
+      });
+    }
+  });
+
+  const filterContainer = document.getElementById('tagFilters');
+  [...tagSet].sort().forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag-btn';
+    btn.textContent = tag;
+    btn.onclick = () => filterByTag(tag);
+    filterContainer.appendChild(btn);
+  });
+
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tag-btn';
+  allBtn.textContent = 'Todos';
+  allBtn.onclick = () => filterByTag('Todos');
+  filterContainer.appendChild(allBtn);
+});
+
+function filterByTag(tag) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const title = card.querySelector('.card-title')?.textContent || '';
+    const match = tag === 'Todos' || title.includes(tag);
+    card.style.display = match ? 'block' : 'none';
+  });
+}
+</script>
+
+<script>
+function filterByTag(tag) {
+  const cards = document.querySelectorAll('.card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const title = card.querySelector('.card-title')?.textContent || '';
+    const match = tag === 'Todos' || title.includes(tag);
+    card.style.display = match ? 'block' : 'none';
+    if (match) visibleCount++;
+  });
+
+  const countText = tag === 'Todos'
+    ? `Mostrando todos los videos (${visibleCount})`
+    : `Videos que coinciden con "${tag}": ${visibleCount}`;
+
+  document.getElementById('filterCount').textContent = countText;
+}
 </script>
 
 </body>
