@@ -1193,6 +1193,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- Aviso de desarrollo -->
+<div id="devNotice" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 9999;
+">
+  <h2 style="margin-bottom: 1rem;">⚠️ Página en desarrollo</h2>
+  <p style="max-width: 500px; font-size: 0.95rem;">
+    Este sitio aún está en desarrollo por una persona. Si experimentas errores, lentitud al cargar videos o cierres inesperados, estamos trabajando activamente para solucionarlo y añadir más contenido. ¡Gracias por tu paciencia!
+  </p>
+  <button onclick="document.getElementById('devNotice').style.display='none'" style="
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #00c853;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  ">
+    Estoy de acuerdo
+  </button>
+</div>
+
 
 </body>
 </html>
