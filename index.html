@@ -10,6 +10,39 @@
   <title>YouPorn</title>
   <style>
 
+@media (max-width: 600px) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .card {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .card-title {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+  }
+
+  .category-tag,
+  .duration-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 10px;
+  }
+}
+
 #tagFilters {
   text-align: center;
   margin: 1rem auto;
@@ -1142,6 +1175,24 @@ function filterByTag(tag) {
   document.getElementById('filterCount').textContent = countText;
 }
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector('.gallery');
+  const cards = Array.from(gallery.children);
+
+  // Mezclar aleatoriamente las tarjetas
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  // Vaciar y volver a insertar en orden aleatorio
+  gallery.innerHTML = '';
+  cards.forEach(card => gallery.appendChild(card));
+});
+</script>
+
 
 </body>
 </html>
