@@ -1,1474 +1,415 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script type='text/javascript' src='//adjoinartistic.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
-
-  <meta charset="UTF-8">
-  <title>YouPorn</title>
+  <script type='text/javascript' src='//adjoinartistic.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería de Videos</title>
   <style>
-
-@media (max-width: 600px) {
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    padding: 0.5rem;
-  }
-
-  .card {
-    padding: 0.4rem;
-    font-size: 0.75rem;
-    border-radius: 6px;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-
-  .card-title {
-    font-size: 0.7rem;
-    margin-top: 0.3rem;
-  }
-
-  .category-tag,
-  .duration-tag {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.4rem;
-    border-radius: 10px;
-  }
-}
-
-#tagFilters {
-  text-align: center;
-  margin: 1rem auto;
-}
-
-.tag-btn {
-  background-color: #1a1a1a;
-  color: #9b59b6;
-  border: 1px solid #444;
-  border-radius: 20px;
-  padding: 0.4rem 1rem;
-  margin: 0.3rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.tag-btn:hover {
-  background-color: #9b59b6;
-  color: #fff;
-  box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
-}
-
-#searchInput {
-  background-color: #1a1a1a;
-  color: #eee;
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 0.6rem 1rem 0.6rem 2.5rem;
-  border: 1px solid #444;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  margin: 1rem auto;
-  display: block;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='gray' viewBox='0 0 24 24'%3E%3Cpath d='M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 20px;
-  transition: box-shadow 0.3s ease;
-}
-
-#searchInput::placeholder {
-  color: #aaa;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #666;
-  box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
-}
-
-.logo-container {
-  background-color: #000;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.logo {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #eee;
-}
-
-.logo .highlight {
-  color: #9b59b6;
-}
-
-.logo .highlight:hover {
-  text-shadow: 0 0 10px #9b59b6;
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-}
-
-    #searchInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.6rem 1rem;
-  margin: 1rem auto;
-  display: block;
-  font-size: 1rem;
-  font-family: inherit;
-  color: #fff; /* texto blanco */
-  background-color: #1a1a1a; /* fondo oscuro */
-  border: 1px solid #444; /* borde sutil */
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-}
-
-#searchInput::placeholder {
-  color: #aaa;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #666;
-  box-shadow: 0 0 8px rgba(255,255,255,0.2);
-}
-
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0b0b0b;
-      color: #eee;
+      font-family: 'Roboto', sans-serif;
+      background: #111;
+      color: #fff;
     }
 
-    header {
-      background-color: #121212;
-      padding: 40px 0;
+    .logo {
+      font-family: 'Playfair Display', serif;
       text-align: center;
-      border-bottom: 1px solid #222;
-    }
-
-    header h1 {
-      font-size: 3em;
-      color: #b38aff;
+      font-size: 3rem;
+      font-style: italic;
       margin: 0;
+      padding: 1.2rem;
+      background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+      color: white;
       letter-spacing: 1px;
+      border-bottom: 1px solid #333;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .logo span {
+      color: #b400ff;
+      text-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
     }
 
-    section {
-      padding: 60px 0;
-      text-align: center;
-    }
-
-    section h2 {
-      font-size: 2em;
-      color: #b38aff;
-      margin-bottom: 40px;
-    }
-
-    .gallery {
+    #suggestionButtons {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 30px;
-      padding: 0 40px;
+      gap: 0.5rem;
+      padding: 1rem;
+      justify-content: center;
+    }
+    #suggestionButtons button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+    #suggestionButtons button:hover {
+      background: #b400ff;
+    }
+
+    #resultCount {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    #cardContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
     }
 
     .card {
-      background-color: #1a1a1a;
-      border: 1px solid #2c2c2c;
+      background: linear-gradient(to bottom, #1a1a1a, #2c2c2c);
       border-radius: 12px;
       overflow: hidden;
-      width: 320px;
-      box-shadow: 0 0 12px rgba(179, 138, 255, 0.2);
-      transition: transform 0.3s ease;
-      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
     }
-
     .card:hover {
       transform: scale(1.03);
-      border-color: #b38aff;
+      box-shadow: 0 6px 18px rgba(180, 0, 255, 0.3);
     }
-
     .card img {
       width: 100%;
       display: block;
+      transition: transform 0.3s ease;
     }
-
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    .card-info {
+      padding: 0.7rem;
+      font-family: 'Roboto', sans-serif;
+    }
     .card-title {
-      padding: 12px;
-      text-align: center;
-      font-size: 1em;
-      color: #ccc;
-      background-color: #121212;
-    }
-
-    .duration-tag {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background-color: rgba(0,0,0,0.7);
+      font-size: 1rem;
+      font-weight: 500;
       color: #fff;
-      padding: 4px 8px;
-      font-size: 0.8em;
-      border-radius: 6px;
+      margin-bottom: 0.3rem;
     }
-
-    .category-tag {
+    .card-meta {
+      font-size: 0.75rem;
+      color: #ccc;
+    }
+    .card-category {
       position: absolute;
       top: 8px;
       left: 8px;
-      background-color: #b38aff;
-      color: #000;
-      padding: 4px 8px;
-      font-size: 0.75em;
-      font-weight: bold;
+      background: #b400ff;
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 12px;
+    }
+    .card-duration {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 6px;
       border-radius: 6px;
     }
 
-    .modal {
+    #videoPlayer {
       display: none;
       position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      z-index: 9999;
+    }
+    #videoPlayer video {
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
+      object-fit: contain;
     }
-
-    .modal-content {
-      max-width: 800px;
-      width: 90%;
-      background-color: #000;
-      border-radius: 10px;
-      padding: 20px;
-      position: relative;
-      text-align: center;
-    }
-
-    .modal iframe {
-      width: 100%;
-      height: 450px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    .close-btn {
+    #closeBtn {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      color: #b38aff;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
+      z-index: 10000;
+      transition: background 0.3s ease;
     }
-#tagFilters {
-  text-align: center;
-  margin: 1rem auto;
-}
+    #closeBtn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
 
-.tag-btn {
-  background-color: #1a1a1a;
-  color: #9b59b6;
-  border: 1px solid #444;
-  border-radius: 20px;
-  padding: 0.4rem 1rem;
-  margin: 0.3rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+    #paginationControls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
-
-.tag-btn:hover {
-  background-color: #9b59b6;
+#paginationControls button {
+  background: #222;
   color: #fff;
-  box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+}
+#paginationControls button.active {
+  background: #b400ff;
+}
+#paginationControls button:hover {
+  background: #444;
 }
 
   </style>
 </head>
 <body>
 
-  <header class="logo-container">
-  <div class="logo">
-    YOU<span class="highlight">PORN</span>
+  <h1 class="logo">You<span>Porn</span></h1>
+  <div id="suggestionButtons"></div>
+  <div id="resultCount"></div>
+  <div id="cardContainer"></div>
+<div id="paginationControls"></div>
+  <div id="videoPlayer">
+    <button id="closeBtn">✕</button>
+    <video id="activeVideo" controls autoplay></video>
   </div>
-</header>
-
-
-<section>
-  <h2>Videos</h2>
-
-<input type="text" id="searchInput" placeholder="Buscar por título, categoría o duración..." onkeyup="filterCards()" />
-
-<div id="tagFilters"></div>
-<div id="filterCount" style="text-align:center; margin: 0.5rem 0; font-weight: bold; color: #eee;"></div>
-
-  <div class="gallery">
-
-    <!-- Tarjeta 1 -->
-    <div class="card" data-tags="Solo,Nudes,HD" onclick="openModal1()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/SG0I9VL.png" alt="Miniatura del video">
-  <div class="card-title">Nudes</div>
-  <span class="duration-tag">0:22</span>
-</div>
-
-    <!-- Tarjeta 2 -->
-    <div class="card" onclick="openModal2()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/LClAbxL.png" alt="Miniatura del video">
-      <div class="card-title">Nudes</div>
-      <span class="duration-tag">1:32</span>
-    </div>
-
-    <!-- Tarjeta 3 -->
-    <div class="card" onclick="openModal3()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/xr3gdIb.png" alt="Miniatura del video">
-      <div class="card-title">Nudes</div>
-      <span class="duration-tag">0:37</span>
-    </div>
-
-    <!-- Tarjeta 4 -->
-    <div class="card" onclick="openModal4()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/MWBirqN.png" alt="Miniatura del video">
-      <div class="card-title">Tetas</div>
-      <span class="duration-tag">1:12</span>
-    </div>
-
-    <!-- Tarjeta 5 -->
-    <div class="card" onclick="openModal5()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/vvUImfu.png" alt="Miniatura del video">
-      <div class="card-title">Masturbation</div>
-      <span class="duration-tag">1:20</span>
-    </div>
-
-    <!-- Tarjeta 6 -->
-    <div class="card" onclick="openModal6()">
-      <span class="category-tag">Solo</span>
-      <img src="https://i.imgur.com/ArnJxsj.png" alt="Miniatura del video">
-      <div class="card-title">Tetas</div>
-      <span class="duration-tag">0:12</span>
-    </div>
-
-  <!-- Tarjeta 7 -->
-<div class="card" onclick="openModal7()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/3w5eUCV.png" alt="Miniatura del video">
-  <div class="card-title">Nudes</div>
-  <span class="duration-tag">0:59</span>
-</div>
-
-<!-- Tarjeta 8 -->
-<div class="card" onclick="openModal8()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/ZIKii5X.png" alt="Miniatura del video">
-  <div class="card-title">Nudes</div>
-  <span class="duration-tag">0:27</span>
-</div>
-
-<!-- Tarjeta 9 -->
-<div class="card" onclick="openModal9()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/offjHar.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">0:59</span>
-</div>
-<!-- Tarjeta 10 -->
-<div class="card" onclick="openModal10()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/3ikmvjO.png" alt="Miniatura del video">
-  <div class="card-title">Baile</div>
-  <span class="duration-tag">0:59</span>
-</div>
-
-<!-- Tarjeta 11 -->
-<div class="card" onclick="openModal11()">
-  <span class="category-tag">solo</span>
-  <img src="https://i.imgur.com/dpGYby0.png" alt="Miniatura del video">
-  <div class="card-title">Culo</div>
-  <span class="duration-tag">0:43</span>
-</div>
-
-<!-- Tarjeta 12 -->
-<div class="card" onclick="openModal12()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/5Hi0lnJ.png" alt="Miniatura del video">
-  <div class="card-title">Culo</div>
-  <span class="duration-tag">0:17</span>
-</div>
-
-<!-- Tarjeta 13 -->
-<div class="card" onclick="openModal13()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/6JbT6hH.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">1:00</span>
-</div>
-
-<!-- Tarjeta 14 -->
-<div class="card" onclick="openModal14()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/jbDHNFJ.png" alt="Miniatura del video">
-  <div class="card-title">Tetas</div>
-  <span class="duration-tag">0:38</span>
-</div>
-
-<!-- Tarjeta 15 -->
-<div class="card" onclick="openModal15()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/HA4Q8yT.png" alt="Miniatura del video">
-  <div class="card-title">Nude</div>
-  <span class="duration-tag">0:30</span>
-</div>
-
-<!-- Tarjeta 16 -->
-<div class="card" onclick="openModal16()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/YCzTv3I.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:00</span>
-</div>
-
-<!-- Tarjeta 17 -->
-<div class="card" onclick="openModal17()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/OXtMGi2.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:12</span>
-</div>
-
-<!-- Tarjeta 18 -->
-<div class="card" onclick="openModal18()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/0tK0nSH.png" alt="Miniatura del video">
-  <div class="card-title">Exhibitionism</div>
-  <span class="duration-tag">0:30</span>
-</div>
-
-<!-- Tarjeta 19 -->
-<div class="card" onclick="openModal19()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/z7bbWLm.png" alt="Miniatura del video">
-  <div class="card-title">Nudes</div>
-  <span class="duration-tag">0:16</span>
-</div>
-
-<!-- Tarjeta 20 -->
-<div class="card" onclick="openModal20()">
-  <span class="category-tag">´Duo</span>
-  <img src="https://i.imgur.com/cQ7iozY.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">0:45</span>
-</div>
-
-<!-- Tarjeta 21 -->
-<div class="card" onclick="openModal21()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/AK22Hoj.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">0:34</span>
-</div>
-
-<!-- Tarjeta 22 -->
-<div class="card" onclick="openModal22()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/GQLAR2R.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">3:34</span>
-</div>
-
-<!-- Tarjeta 23 -->
-<div class="card" onclick="openModal23()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/1QTZSuE.png" alt="Miniatura del video">
-  <div class="card-title">Culo</div>
-  <span class="duration-tag">0:15</span>
-</div>
-
-<!-- Tarjeta 24 -->
-<div class="card" onclick="openModal24()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/CuiFCLt.png" alt="Miniatura del video">
-  <div class="card-title">Tetas</div>
-  <span class="duration-tag">0:24</span>
-</div>
-
-<!-- Tarjeta 25 -->
-<div class="card" onclick="openModal25()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/73MrlEK.png" alt="Miniatura del video">
-  <div class="card-title">Lesbianas</div>
-  <span class="duration-tag">0:20</span>
-</div>
-
-<!-- Tarjeta 26 -->
-<div class="card" onclick="openModal26()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/jQvgVaD.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">0:29</span>
-</div>
-
-<!-- Tarjeta 27 -->
-<div class="card" onclick="openModal27()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/7QkvPKd.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:38</span>
-</div>
-
-<!-- Tarjeta 28 -->
-<div class="card" onclick="openModal28()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/e1edsFy.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">0:21</span>
-</div>
-
-<!-- Tarjeta 29 -->
-<div class="card" onclick="openModal29()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/kX46VZl.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:44</span>
-</div>
-
-<!-- Tarjeta 30 -->
-<div class="card" onclick="openModal30()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/gdOK8ON.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:47</span>
-</div>
-
-<!-- Tarjeta 31 -->
-<div class="card" onclick="openModal31()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/3JxF3sx.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:11</span>
-</div>
-
-<!-- Tarjeta 32 -->
-<div class="card" onclick="openModal32()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/g9WYTxA.png" alt="Miniatura del video">
-  <div class="card-title">Nudes</div>
-  <span class="duration-tag">0:25</span>
-</div>
-
-<!-- Tarjeta 33 -->
-<div class="card" onclick="openModal33()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/bLMaPn8.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">0:44</span>
-</div>
-
-<!-- Tarjeta 34 -->
-<div class="card" onclick="openModal34()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/oggMpZ5.png" alt="Miniatura del video">
-  <div class="card-title">Tetas</div>
-  <span class="duration-tag">0:07</span>
-</div>
-
-<!-- Tarjeta 35 -->
-<div class="card" onclick="openModal35()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/8yQNesJ.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">0:17</span>
-</div>
-
-<!-- Tarjeta 36 -->
-<div class="card" onclick="openModal36()">
-  <span class="category-tag">Duo</span>
-  <img src="https://i.imgur.com/IosdaAe.png" alt="Miniatura del video">
-  <div class="card-title">Sex</div>
-  <span class="duration-tag">1:01</span>
-</div>
-
-<!-- Tarjeta 37 -->
-<div class="card" onclick="openModal37()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/SBTFQ4n.png" alt="Miniatura del video">
-  <div class="card-title">Tetas</div>
-  <span class="duration-tag">0:09</span>
-</div>
-
-<!-- Tarjeta 38 -->
-<div class="card" onclick="openModal38()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/JYEqwSp.png" alt="Miniatura del video">
-  <div class="card-title">Tetas</div>
-  <span class="duration-tag">0:04</span>
-</div>
-
-<!-- Tarjeta 39 -->
-<div class="card" onclick="openModal39()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/CkkVyTt.png" alt="Miniatura del video">
-  <div class="card-title">Masturbation</div>
-  <span class="duration-tag">0:59</span>
-</div>
-
-<!-- Tarjeta 40 -->
-<div class="card" onclick="openModal40()">
-  <span class="category-tag">Solo</span>
-  <img src="https://i.imgur.com/alfODqT.png" alt="Miniatura del video">
-  <div class="card-title">Culo</div>
-  <span class="duration-tag">0:30</span>
-</div>
-
-  <!-- Modal 1 -->
-  <div class="modal" id="videoModal1">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal1()">×</span>
-      <iframe src="https://files.catbox.moe/u6qw7b.mp4" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Modal 2 -->
-  <div class="modal" id="videoModal2">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal2()">×</span>
-      <iframe src="https://files.catbox.moe/l4eze6.mp4" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Modal 3 -->
-  <div class="modal" id="videoModal3">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal3()">×</span>
-      <iframe src="https://files.catbox.moe/s28tos.mp4" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Modal 4 -->
-  <div class="modal" id="videoModal4">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal4()">×</span>
-      <iframe src="https://files.catbox.moe/yrnd74.mp4" allowfullscreen></iframe>
-    </div>
-  </div>
-
-<!-- Modal 5 -->
-<div class="modal" id="videoModal5">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal5()">×</span>
-    <iframe src="https://files.catbox.moe/7inaci.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 6 -->
-<div class="modal" id="videoModal6">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal6()">×</span>
-    <iframe src="https://files.catbox.moe/gsf0cr.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 7 -->
-<div class="modal" id="videoModal7">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal7()">×</span>
-    <iframe src="https://files.catbox.moe/066lya.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 8 -->
-<div class="modal" id="videoModal8">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal8()">×</span>
-    <iframe src="https://files.catbox.moe/vumydq.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 9 -->
-<div class="modal" id="videoModal9">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal9()">×</span>
-    <iframe src="https://files.catbox.moe/craa0p.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 10 -->
-<div class="modal" id="videoModal10">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal10()">×</span>
-    <iframe src="https://files.catbox.moe/8zs2xq.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 11 -->
-<div class="modal" id="videoModal11">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal11()">×</span>
-    <iframe src="https://files.catbox.moe/j1sl8w.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 12 -->
-<div class="modal" id="videoModal12">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal12()">×</span>
-    <iframe src="https://files.catbox.moe/c0h4ce.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 13 -->
-<div class="modal" id="videoModal13">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal13()">×</span>
-    <iframe src="https://files.catbox.moe/m2ntcy.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 14 -->
-<div class="modal" id="videoModal14">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal14()">×</span>
-    <iframe src="https://files.catbox.moe/c6hlv9.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 15 -->
-<div class="modal" id="videoModal15">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal15()">×</span>
-    <iframe src="https://files.catbox.moe/1k80s5.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 16 -->
-<div class="modal" id="videoModal16">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal16()">×</span>
-    <iframe src="https://files.catbox.moe/urx747.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 17 -->
-<div class="modal" id="videoModal17">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal17()">×</span>
-    <iframe src="https://files.catbox.moe/sw7e72.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 18 -->
-<div class="modal" id="videoModal18">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal18()">×</span>
-    <iframe src="https://files.catbox.moe/jzvttm.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 19 -->
-<div class="modal" id="videoModal19">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal19()">×</span>
-    <iframe src="https://files.catbox.moe/98hw8i.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 20 -->
-<div class="modal" id="videoModal20">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal20()">×</span>
-    <iframe src="https://files.catbox.moe/0c6e3d.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 21 -->
-<div class="modal" id="videoModal21">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal21()">×</span>
-    <iframe src="https://files.catbox.moe/gchtj3.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 22 -->
-<div class="modal" id="videoModal22">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal22()">×</span>
-    <iframe src="https://files.catbox.moe/egs75h.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 23 -->
-<div class="modal" id="videoModal23">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal23()">×</span>
-    <iframe src="https://files.catbox.moe/egs75h.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 24 -->
-<div class="modal" id="videoModal24">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal24()">×</span>
-    <iframe src="https://files.catbox.moe/t95rdy.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 25 -->
-<div class="modal" id="videoModal25">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal25()">×</span>
-    <iframe src="https://files.catbox.moe/rihpw7.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 26 -->
-<div class="modal" id="videoModal26">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal26()">×</span>
-    <iframe src="https://files.catbox.moe/fot9m8.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 27 -->
-<div class="modal" id="videoModal27">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal27()">×</span>
-    <iframe src="https://files.catbox.moe/b1001q.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 28 -->
-<div class="modal" id="videoModal28">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal28()">×</span>
-    <iframe src="https://files.catbox.moe/9r5s63.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 29 -->
-<div class="modal" id="videoModal29">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal29()">×</span>
-    <iframe src="https://files.catbox.moe/t5oigl.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 30 -->
-<div class="modal" id="videoModal30">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal30()">×</span>
-    <iframe src="https://files.catbox.moe/wvauds.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 31 -->
-<div class="modal" id="videoModal31">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal31()">×</span>
-    <iframe src="https://files.catbox.moe/wc2l8u.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 32 -->
-<div class="modal" id="videoModal32">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal32()">×</span>
-    <iframe src="https://files.catbox.moe/lad984.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 33 -->
-<div class="modal" id="videoModal33">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal33()">×</span>
-    <iframe src="https://files.catbox.moe/0rzmv3.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 34 -->
-<div class="modal" id="videoModal34">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal34()">×</span>
-    <iframe src="https://files.catbox.moe/huodgg.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 35 -->
-<div class="modal" id="videoModal35">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal35()">×</span>
-    <iframe src="https://files.catbox.moe/pfuv8u.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 36 -->
-<div class="modal" id="videoModal36">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal36()">×</span>
-    <iframe src="https://files.catbox.moe/75ssfg.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 37 -->
-<div class="modal" id="videoModal37">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal37()">×</span>
-    <iframe src="https://files.catbox.moe/zodz6c.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 38 -->
-<div class="modal" id="videoModal38">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal38()">×</span>
-    <iframe src="https://files.catbox.moe/4ehroa.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 39 -->
-<div class="modal" id="videoModal39">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal39()">×</span>
-    <iframe src="https://files.catbox.moe/ztv69c.mp4" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- Modal 40 -->
-<div class="modal" id="videoModal40">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal40()">×</span>
-    <iframe src="https://files.catbox.moe/1hbcho.mp4" allowfullscreen></iframe>
-  </div>
-</div>
 
   <script>
-    function openModal1() {
-  document.getElementById("videoModal1").style.display = "flex";
+    const rawVideos = [
+  // 1
+  ["Nudes", "0:22", "Solo", "SG0I9VL", "u6qw7b"],
+  // 2
+  ["Nudes", "1:32", "Solo", "LClAbxL", "l4eze6"],
+  // 3
+  ["Nudes", "0:37", "Solo", "xr3gdIb", "s28tos"],
+  // 4
+  ["Tetas", "1:12", "Solo", "MWBirqN", "yrnd74"],
+  // 6
+  ["Tetas", "0:12", "Solo", "ArnJxsj", "gsf0cr"],
+  // 7
+  ["Nudes", "0:59", "Solo", "3w5eUCV", "066lya"],
+  // 8
+  ["Nudes", "0:27", "Solo", "ZIKii5X", "vumydq"],
+  // 9
+  ["Masturbacion", "0:59", "Duo", "offjHar", "craa0p"],
+  // 10
+  ["Baile", "0:59", "Solo", "3ikmvjO", "8zs2xq"],
+  // 11
+  ["Culo", "0:43", "Solo", "dpGYby0", "j1sl8w"],
+  // 12
+  ["Culo", "0:17", "Solo", "5Hi0lnJ", "c0h4ce"],
+  // 13
+  ["Masturbacion", "1:00", "Duo", "6JbT6hH", "m2ntcy"],
+  // 14
+  ["Tetas", "0:38", "Solo", "jbDHNFJ", "c6hlv9"],
+  // 15
+["Nudes", "0:30", "Solo", "HA4Q8yT", "1k80s5"],
+// 16
+["Sex", "1:00", "Duo", "YCzTv3I", "urx747"],
+// 17
+["Sex", "1:12", "Duo", "OXtMGi2", "sw7e72"],
+// 18
+["Exhibisionismo", "0:30", "Solo", "0tK0nSH", "jzvttm"],
+// 19
+["Nudes", "0:16", "Solo", "z7bbWLm", "98hw8i"],
+// 20
+["Sex", "0:45", "Duo", "cQ7iozY", "0c6e3d"],
+// 21
+["Sex", "0:34", "Duo", "AK22Hoj", "gchtj3"],
+// 22
+["Masturbacion", "3:34", "Duo", "GQLAR2R", "hg6kxu"],
+// 23
+["Culo", "0:15", "Solo", "1QTZSuE", "egs75h"],
+// 24
+["Tetas", "0:24", "Solo", "CuiFCLt", "t95rdy"],
+// 25
+["Lesbianas", "0:20", "Duo", "73MrlEK", "rihpw7"],
+// 26
+["Masturbacion", "0:29", "Solo", "jQvgVaD", "fot9m8"],
+// 27
+["Sex", "1:38", "Duo", "7QkvPKd", "b1001q"],
+// 28
+["Sex", "0:21", "Duo", "e1edsFy", "9r5s63"],
+// 29
+["Sex", "1:44", "Duo", "kX46VZl", "t5oigl"],
+// 30
+["Sex", "1:47", "Duo", "gdOK8ON", "wvauds"],
+// 31
+["Sex", "1:11", "Duo", "3JxF3sx", "wc2l8u"],
+// 32
+["Nudes", "0:25", "Solo", "g9WYTxA", "lad984"],
+// 33
+["Masturbacion", "0:44", "Solo", "bLMaPn8", "0rzmv3"],
+// 34
+["Tetas", "0:07", "Solo", "oggMpZ5", "huodgg"],
+// 35
+["Exhibisionismo", "0:17", "Solo", "8yQNesJ", "pfuv8u"],
+// 36
+["Sex", "1:01", "Duo", "IosdaAe", "75ssfg"],
+// 37
+["Tetas", "0:09", "Solo", "SBTFQ4n", "zodz6c"],
+// 38
+["Nudes", "0:04", "Solo", "JYEqwSp", "4ehroa"],
+// 39
+["Masturbacion", "0:59", "Solo", "CkkVyTt", "ztv69c"],
+// 40
+["Culo", "0:30", "Solo", "alfODqT", "1hbcho"],
+// 41
+["Sex", "0:49", "Duo", "6mt9B5l", "22svay"],
+// 42
+["Nudes", "2:05", "Solo", "c1L5kFt", "sx5sh8"],
+// 43
+["Masturbacion", "0:44", "Solo", "fXjwckM", "43lg63"],
+// 44
+["Culo", "0:14", "Solo", "DAAcXlB", "e2yypp"],
+// 45
+["Sex", "0:23", "Duo", "lDL1711", "9tg0xs"],
+// 46
+["Sex", "3:23", "Duo", "Em8gsLg", "wgayrz"],
+// 47
+["Sex", "0:32", "Duo", "Pk64txg", "8g37j6"],
+// 48
+["Sex", "4:34", "Duo", "bIvQOlR", "6cvm2h"],
+// 49
+["Sex", "0:15", "Duo", "VxJkQdt", "z2egbt"],
+// 50
+["Nudes", "0:59", "Solo", "FMVJ0NB", "cz73nu"],
+];
+
+
+    let cardsData = rawVideos.map(([title, duration, category, imgCode, videoCode]) => ({
+      title,
+      duration,
+      category,
+      img: `https://i.imgur.com/${imgCode}.png`,
+      video: `https://files.catbox.moe/${videoCode}.mp4`
+    }));
+
+function shuffleArray(array) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+   let currentPage = 1;
+const itemsPerPage = 9;
+
+function renderCards(data = cardsData, label = "Todos") {
+  const container = document.getElementById("cardContainer");
+  const countDisplay = document.getElementById("resultCount");
+  const pagination = document.getElementById("paginationControls");
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageItems = data.slice(start, end);
+
+  container.innerHTML = "";
+  countDisplay.textContent = `Mostrando ${pageItems.length} de ${data.length} video${data.length !== 1 ? "s" : ""} para: "${label}"`;
+
+  pageItems.forEach(card => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <div class="card-category">${card.category}</div>
+      <img src="${card.img}" alt="${card.title}" />
+      <div class="card-duration">${card.duration}</div>
+      <div class="card-info">
+        <div class="card-title">${card.title}</div>
+        <div class="card-meta">${card.category}</div>
+      </div>
+    `;
+    div.onclick = () => playVideo(card.video);
+    container.appendChild(div);
+  });
+
+  // Render pagination buttons
+  pagination.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add("active");
+    btn.onclick = () => {
+      currentPage = i;
+      renderCards(data, label);
+    };
+    pagination.appendChild(btn);
+  }
+}
+
+
+    function renderSuggestionButtons() {
+      const container = document.getElementById("suggestionButtons");
+      container.innerHTML = "";
+
+      const titles = [...new Set(cardsData.map(card => card.title))];
+
+      titles.forEach(title => {
+        const btn = document.createElement("button");
+        btn.textContent = title;
+        btn.onclick = () => {
+          const filtered = cardsData.filter(card => card.title === title);
+          renderCards(filtered, title);
+        };
+        container.appendChild(btn);
+      });
+
+      const allBtn = document.createElement("button");
+      allBtn.textContent = "Todos";
+      allBtn.onclick = () => renderCards(cardsData, "Todos");
+      container.appendChild(allBtn);
+    }
+
+ function playVideo(src) {
+  // Abrir el anuncio en una nueva pestaña
   window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+
+  // Esperar 1 segundo antes de mostrar el video
+  setTimeout(() => {
+    const player = document.getElementById("videoPlayer");
+    const video = document.getElementById("activeVideo");
+    video.src = src;
+    player.style.display = "block";
+    video.play();
+  }, 1000);
 }
 
-function closeModal1() {
-  document.getElementById("videoModal1").style.display = "none";
-}
+    document.getElementById("closeBtn").onclick = () => {
+      const player = document.getElementById("videoPlayer");
+      const video = document.getElementById("activeVideo");
+      video.pause();
+      video.src = "";
+      player.style.display = "none";
+    };
 
-function openModal2() {
-  document.getElementById("videoModal2").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal2() {
-  document.getElementById("videoModal2").style.display = "none";
-}
-
-function openModal3() {
-  document.getElementById("videoModal3").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal3() {
-  document.getElementById("videoModal3").style.display = "none";
-}
-
-function openModal4() {
-  document.getElementById("videoModal4").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal4() {
-  document.getElementById("videoModal4").style.display = "none";
-}
-
-function openModal5() {
-  document.getElementById("videoModal5").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal5() {
-  document.getElementById("videoModal5").style.display = "none";
-}
-
-function openModal6() {
-  document.getElementById("videoModal6").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal6() {
-  document.getElementById("videoModal6").style.display = "none";
-}
-
-function openModal7() {
-  document.getElementById("videoModal7").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal7() {
-  document.getElementById("videoModal7").style.display = "none";
-}
-
-function openModal8() {
-  document.getElementById("videoModal8").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal8() {
-  document.getElementById("videoModal8").style.display = "none";
-}
-
-function openModal9() {
-  document.getElementById("videoModal9").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal9() {
-  document.getElementById("videoModal9").style.display = "none";
-}
-
-function openModal10() {
-  document.getElementById("videoModal10").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal10() {
-  document.getElementById("videoModal10").style.display = "none";
-}
-
-function openModal11() {
-  document.getElementById("videoModal11").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal11() {
-  document.getElementById("videoModal11").style.display = "none";
-}
-
-function openModal12() {
-  document.getElementById("videoModal12").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal12() {
-  document.getElementById("videoModal12").style.display = "none";
-}
-
-function openModal13() {
-  document.getElementById("videoModal13").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal13() {
-  document.getElementById("videoModal13").style.display = "none";
-}
-
-function openModal14() {
-  document.getElementById("videoModal14").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal14() {
-  document.getElementById("videoModal14").style.display = "none";
-}
-
-function openModal15() {
-  document.getElementById("videoModal15").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal15() {
-  document.getElementById("videoModal15").style.display = "none";
-}
-
-function openModal16() {
-  document.getElementById("videoModal16").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal16() {
-  document.getElementById("videoModal16").style.display = "none";
-}
-
-function openModal17() {
-  document.getElementById("videoModal17").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal17() {
-  document.getElementById("videoModal17").style.display = "none";
-}
-
-function openModal18() {
-  document.getElementById("videoModal18").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-}
-function closeModal18() {
-  document.getElementById("videoModal18").style.display = "none";
-}
-
-
-function openModal19() {
-  document.getElementById("videoModal19").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-
-function closeModal19() {
-  document.getElementById("videoModal19").style.display = "none";
-}
-
-function openModal20() {
-  document.getElementById("videoModal20").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal20() {
-  document.getElementById("videoModal20").style.display = "none";
-}
-
-function openModal21() {
-  document.getElementById("videoModal21").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal21() {
-  document.getElementById("videoModal21").style.display = "none";
-}
-
-function openModal22() {
-  document.getElementById("videoModal22").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal22() {
-  document.getElementById("videoModal22").style.display = "none";
-}
-
-function openModal23() {
-  document.getElementById("videoModal23").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal23() {
-  document.getElementById("videoModal23").style.display = "none";
-}
-
-function openModal24() {
-  document.getElementById("videoModal24").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal24() {
-  document.getElementById("videoModal24").style.display = "none";
-}
-
-function openModal25() {
-  document.getElementById("videoModal25").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal25() {
-  document.getElementById("videoModal25").style.display = "none";
-}
-
-function openModal26() {
-  document.getElementById("videoModal26").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal26() {
-  document.getElementById("videoModal26").style.display = "none";
-}
-
-function openModal27() {
-  document.getElementById("videoModal27").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal27() {
-  document.getElementById("videoModal27").style.display = "none";
-}
-
-function openModal28() {
-  document.getElementById("videoModal28").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal28() {
-  document.getElementById("videoModal28").style.display = "none";
-}
-
-function openModal29() {
-  document.getElementById("videoModal29").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal29() {
-  document.getElementById("videoModal29").style.display = "none";
-}
-
-function openModal30() {
-  document.getElementById("videoModal30").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal30() {
-  document.getElementById("videoModal30").style.display = "none";
-}
-
-function openModal31() {
-  document.getElementById("videoModal31").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal31() {
-  document.getElementById("videoModal31").style.display = "none";
-}
-
-function openModal32() {
-  document.getElementById("videoModal32").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal32() {
-  document.getElementById("videoModal32").style.display = "none";
-}
-
-function openModal33() {
-  document.getElementById("videoModal33").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal33() {
-  document.getElementById("videoModal33").style.display = "none";
-}
-
-function openModal34() {
-  document.getElementById("videoModal34").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal34() {
-  document.getElementById("videoModal34").style.display = "none";
-}
-
-function openModal35() {
-  document.getElementById("videoModal35").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal35() {
-  document.getElementById("videoModal35").style.display = "none";
-}
-
-function openModal36() {
-  document.getElementById("videoModal36").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal36() {
-  document.getElementById("videoModal36").style.display = "none";
-}
-
-function openModal37() {
-  document.getElementById("videoModal37").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal37() {
-  document.getElementById("videoModal37").style.display = "none";
-}
-
-function openModal38() {
-  document.getElementById("videoModal38").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal38() {
-  document.getElementById("videoModal38").style.display = "none";
-}
-
-function openModal39() {
-  document.getElementById("videoModal39").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal39() {
-  document.getElementById("videoModal39").style.display = "none";
-}
-
-function openModal40() {
-  document.getElementById("videoModal40").style.display = "flex";
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2");
-}
-function closeModal40() {
-  document.getElementById("videoModal40").style.display = "none";
-}
+    document.addEventListener("DOMContentLoaded", () => {
+  cardsData = shuffleArray(cardsData); // Mezcla aleatoria al cargar
+  renderCards();
+  renderSuggestionButtons();
+});
 
   </script>
-
-<!-- Verificación de edad -->
-<div id="age-verification" style="
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.95);
-  color: #eee;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-">
-  <h2 style="color: #b38aff; font-size: 2em; margin-bottom: 20px;">¿Eres mayor de edad?</h2>
-  <p style="max-width: 400px; margin-bottom: 30px;">Este sitio contiene contenido multimedia que puede no ser adecuado para menores. Por favor confirma que tienes al menos 18 años.</p>
-  <div>
-    <button onclick="enterSite()" style="background-color: #b38aff; color: #000; padding: 10px 20px; margin: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Sí, soy mayor</button>
-    <button onclick="exitSite()" style="background-color: #444; color: #fff; padding: 10px 20px; margin: 10px; border: none; border-radius: 6px; cursor: pointer;">No</button>
-  </div>
-</div>
-
-<script>
-  function enterSite() {
-    document.getElementById("age-verification").style.display = "none";
-  }
-
-  function exitSite() {
-    window.location.href = "https://youezx.github.io/YouScripts/"; // Cambia esta URL si lo deseas
-  }
-</script>
-
-<script>
-  function filterCards() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-      const title = card.querySelector(".card-title")?.textContent.toLowerCase() || "";
-      const category = card.querySelector(".category-tag")?.textContent.toLowerCase() || "";
-      const duration = card.querySelector(".duration-tag")?.textContent.toLowerCase() || "";
-
-      const combinedText = `${title} ${category} ${duration}`;
-      card.style.display = combinedText.includes(input) ? "block" : "none";
-    });
-  }
-</script>
-
-<script>
-function filterByTag(tag) {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    const tags = card.getAttribute('data-tags');
-    if (tag === 'Todos' || (tags && tags.includes(tag))) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const tagSet = new Set();
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    const titleEl = card.querySelector('.card-title');
-    if (titleEl) {
-      const excludedWords = ['en', 'de', 'con', 'video', 'intenso', 'solo', 'hd', 'nudes'];
-      const titleWords = titleEl.textContent.split(/\s+/);
-      titleWords.forEach(word => {
-        const cleanWord = word.trim().replace(/[^\w]/g, '').toLowerCase();
-        if (cleanWord.length > 2 && !excludedWords.includes(cleanWord)) {
-          tagSet.add(cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1));
-        }
-      });
-    }
-  });
-
-  const filterContainer = document.getElementById('tagFilters');
-  [...tagSet].sort().forEach(tag => {
-    const btn = document.createElement('button');
-    btn.className = 'tag-btn';
-    btn.textContent = tag;
-    btn.onclick = () => filterByTag(tag);
-    filterContainer.appendChild(btn);
-  });
-
-  const allBtn = document.createElement('button');
-  allBtn.className = 'tag-btn';
-  allBtn.textContent = 'Todos';
-  allBtn.onclick = () => filterByTag('Todos');
-  filterContainer.appendChild(allBtn);
-});
-
-function filterByTag(tag) {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    const title = card.querySelector('.card-title')?.textContent || '';
-    const match = tag === 'Todos' || title.includes(tag);
-    card.style.display = match ? 'block' : 'none';
-  });
-}
-</script>
-
-<script>
-function filterByTag(tag) {
-  const cards = document.querySelectorAll('.card');
-  let visibleCount = 0;
-
-  cards.forEach(card => {
-    const title = card.querySelector('.card-title')?.textContent || '';
-    const match = tag === 'Todos' || title.includes(tag);
-    card.style.display = match ? 'block' : 'none';
-    if (match) visibleCount++;
-  });
-
-  const countText = tag === 'Todos'
-    ? `Mostrando todos los videos (${visibleCount})`
-    : `Videos que coinciden con "${tag}": ${visibleCount}`;
-
-  document.getElementById('filterCount').textContent = countText;
-}
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector('.gallery');
-  const cards = Array.from(gallery.children);
-
-  // Mezclar aleatoriamente las tarjetas
-  for (let i = cards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [cards[i], cards[j]] = [cards[j], cards[i]];
-  }
-
-  // Vaciar y volver a insertar en orden aleatorio
-  gallery.innerHTML = '';
-  cards.forEach(card => gallery.appendChild(card));
-});
-</script>
-
-<!-- Aviso de desarrollo -->
-<div id="devNotice" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  text-align: left;
-  z-index: 9999;
-">
-  <div style="max-width: 500px;">
-    <h2 style="margin-bottom: 1rem;">⚠️ Página en desarrollo</h2>
-    <p style="font-size: 0.95rem;">
-      Este sitio aún está en desarrollo por una persona, nos ayudaria si compartes. Si experimentas errores, lentitud o cierres inesperados, estamos trabajando activamente para solucionarlo y añadir más contenido. ¡Gracias por tu paciencia!
-    </p>
-    <button onclick="document.getElementById('devNotice').style.display='none'" style="
-      margin-top: 2rem;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      background-color: #00c853;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    ">
-      Estoy de acuerdo
-    </button>
-  </div>
-</div>
-
 
 </body>
 </html>
