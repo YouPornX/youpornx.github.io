@@ -393,7 +393,7 @@
 // 60
 ["Sex", "0:57", "Cinco", "yZ4AuFd", "q9b8as"],
 // 61
-["Lesbian", "0:58", "Duo", "Jrw1U1V", "aob6bs"],
+["Lesbianas", "0:58", "Duo", "Jrw1U1V", "aob6bs"],
 // 62
 ["Sex", "0:51", "Duo", "KsoqcGa", "we4y84"],
 // 63
@@ -594,6 +594,20 @@ document.getElementById("exitBtn").onclick = () => {
 
 <script async="async" data-cfasync="false" src="//bailiffzealous.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
 <div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
+
+
+<div id="contador">👥 Visitas: <span id="visitas">0</span></div>
+
+<script>
+  // Reemplaza "tu-dominio.com" con algo único (puede ser tu nombre de usuario + nombre del repo)
+  const endpoint = 'https://api.countapi.xyz/hit/tu-usuario.github.io/mi-pagina';
+
+  fetch(endpoint)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('visitas').textContent = data.value;
+    });
+</script>
 
 </body>
 </html>
