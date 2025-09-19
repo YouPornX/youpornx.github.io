@@ -264,6 +264,36 @@
   background: #c82333;
 }
 
+.floating-twitter {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+
+.floating-twitter img {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 4px rgba(180, 0, 255, 0.5));
+}
+
+.floating-twitter img:hover {
+  transform: scale(1.1);
+}
+
+/* 📱 Responsive: en móvil lo acercamos un poco */
+@media (max-width: 480px) {
+  .floating-twitter {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .floating-twitter img {
+    width: 28px;
+    height: 28px;
+  }
+}
 
   </style>
 </head>
@@ -283,6 +313,10 @@
 
 
   <h1 class="logo">You<span>PornX</span></h1>
+  <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" class="floating-twitter" aria-label="Twitter">
+  <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="Twitter">
+</a>
+
   <div id="tabMenu" style="text-align:center; padding:1rem;">
   <button class="tabBtn active" data-tab="videos">Videos</button>
   <button class="tabBtn" data-tab="anime">Anime</button>
