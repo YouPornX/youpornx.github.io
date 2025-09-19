@@ -506,7 +506,6 @@ const animeVideos = [
       img: `https://i.imgur.com/${imgCode}.png`,
       video: `https://files.catbox.moe/${videoCode}.mp4`
     }));
-
     let animeCards = animeVideos.map(([title, duration, category, imgCode, videoCode]) => ({
   title,
   duration,
@@ -596,7 +595,7 @@ function renderCards(data = cardsData, label = "Todos") {
 
  function playVideo(src) {
   // Abrir el anuncio en una nueva pestaña
-  window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+
 
   // Esperar 1 segundo antes de mostrar el video
   setTimeout(() => {
@@ -605,7 +604,7 @@ function renderCards(data = cardsData, label = "Todos") {
     video.src = src;
     player.style.display = "block";
     video.play();
-  }, 1000);
+  }, 0);
 }
 
     document.getElementById("closeBtn").onclick = () => {
@@ -668,34 +667,7 @@ document.getElementById("exitBtn").onclick = () => {
     .then(data => {
       document.getElementById('visitas').textContent = data.value;
     });
-
-<script>
-  document.getElementById("hideAdsBtn").onclick = () => {
-    const adContainers = document.querySelectorAll('[id^="container-"], iframe, script[src*="ad"]');
-    adContainers.forEach(el => {
-      el.style.display = "none";
-    });
-    alert("Anuncios ocultos. ¡Disfruta sin distracciones!");
-  };
 </script>
-
-</script>
-
-<button id="hideAdsBtn" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #b400ff;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 9999;
-">
-  🔕 Desactivadas
-</button>
 
 </body>
 </html>
