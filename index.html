@@ -294,7 +294,7 @@
 <div id="paginationControls"></div>
   <div id="videoPlayer">
     <button id="closeBtn">✕</button>
-    <video id="activeVideo" controls autoplay></video>
+   <video id="activeVideo" controls muted playsinline></video>
   </div>
 
   <script>
@@ -594,18 +594,23 @@ function renderCards(data = cardsData, label = "Todos") {
 
 
  function playVideo(src) {
-  // Abrir el anuncio en una nueva pestaña
+  const player = document.getElementById("videoPlayer");
+  const video = document.getElementById("activeVideo");
 
+  player.style.display = "block";
+  video.src = src;
+  video.load();
 
-  // Esperar 1 segundo antes de mostrar el video
-  setTimeout(() => {
-    const player = document.getElementById("videoPlayer");
-    const video = document.getElementById("activeVideo");
-    video.src = src;
-    player.style.display = "block";
-    video.play();
-  }, 0);
+  video.play().then(() => {
+    setTimeout(() => {
+      window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+    }, 1000);
+  }).catch(err => {
+    console.warn("Reproducción bloqueada:", err);
+    alert("Toca el video para reproducirlo. Algunos navegadores móviles requieren interacción.");
+  });
 }
+
 
     document.getElementById("closeBtn").onclick = () => {
       const player = document.getElementById("videoPlayer");
