@@ -15,6 +15,26 @@
       color: #fff;
     }
 
+.tabBtn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 0 0.3rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.tabBtn.active {
+  background: #b400ff;
+}
+
+.tabBtn:hover {
+  background: #444;
+}
+
     .logo {
       font-family: 'Playfair Display', serif;
       text-align: center;
@@ -263,6 +283,11 @@
 
 
   <h1 class="logo">You<span>PornX</span></h1>
+  <div id="tabMenu" style="text-align:center; padding:1rem;">
+  <button class="tabBtn active" data-tab="videos">Videos</button>
+  <button class="tabBtn" data-tab="anime">Anime</button>
+</div>
+
   <div id="suggestionButtons"></div>
   <div id="resultCount"></div>
   <div id="cardContainer"></div>
@@ -466,6 +491,13 @@
 ["Sex", "1:08", "Duo", "q6BuEaJ", "s7wda2"],
 ];
 
+const animeVideos = [
+  ["Naruto AMV", "2:30", "Acción", "XyZ123A", "anime01"],
+  ["One Piece Moments", "1:45", "Aventura", "AbC456B", "anime02"],
+  ["Demon Slayer", "3:10", "Épico", "LmN789C", "anime03"],
+  ["Attack on Titan", "2:05", "Drama", "QrS321D", "anime04"],
+  ["Jujutsu Kaisen", "1:50", "Pelea", "TuV654E", "anime05"]
+];
 
     let cardsData = rawVideos.map(([title, duration, category, imgCode, videoCode]) => ({
       title,
@@ -474,6 +506,14 @@
       img: `https://i.imgur.com/${imgCode}.png`,
       video: `https://files.catbox.moe/${videoCode}.mp4`
     }));
+
+    let animeCards = animeVideos.map(([title, duration, category, imgCode, videoCode]) => ({
+  title,
+  duration,
+  category,
+  img: `https://i.imgur.com/${imgCode}.png`,
+  video: `https://files.catbox.moe/${videoCode}.mp4`
+}));
 
 function shuffleArray(array) {
   return array
@@ -531,27 +571,28 @@ function renderCards(data = cardsData, label = "Todos") {
 }
 
 
-    function renderSuggestionButtons() {
-      const container = document.getElementById("suggestionButtons");
-      container.innerHTML = "";
+ function renderSuggestionButtons(dataArray) {
+  const container = document.getElementById("suggestionButtons");
+  container.innerHTML = "";
 
-      const titles = [...new Set(cardsData.map(card => card.title))];
+  const titles = [...new Set(dataArray.map(card => card.title))];
 
-      titles.forEach(title => {
-        const btn = document.createElement("button");
-        btn.textContent = title;
-        btn.onclick = () => {
-          const filtered = cardsData.filter(card => card.title === title);
-          renderCards(filtered, title);
-        };
-        container.appendChild(btn);
-      });
+  titles.forEach(title => {
+    const btn = document.createElement("button");
+    btn.textContent = title;
+    btn.onclick = () => {
+      const filtered = dataArray.filter(card => card.title === title);
+      renderCards(filtered, title);
+    };
+    container.appendChild(btn);
+  });
 
-      const allBtn = document.createElement("button");
-      allBtn.textContent = "Todos";
-      allBtn.onclick = () => renderCards(cardsData, "Todos");
-      container.appendChild(allBtn);
-    }
+  const allBtn = document.createElement("button");
+  allBtn.textContent = "Todos";
+  allBtn.onclick = () => renderCards(dataArray, "Todos");
+  container.appendChild(allBtn);
+}
+
 
  function playVideo(src) {
   // Abrir el anuncio en una nueva pestaña
@@ -575,11 +616,31 @@ function renderCards(data = cardsData, label = "Todos") {
       player.style.display = "none";
     };
 
-    document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   cardsData = shuffleArray(cardsData); // Mezcla aleatoria al cargar
-  renderCards();
-  renderSuggestionButtons();
+  renderCards(cardsData, "Todos");
+  renderSuggestionButtons(cardsData);
+
+  // Activar pestañas
+  document.querySelectorAll(".tabBtn").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      currentPage = 1;
+      const tab = btn.dataset.tab;
+
+      if (tab === "videos") {
+        renderCards(cardsData, "Todos");
+        renderSuggestionButtons(cardsData);
+      } else if (tab === "anime") {
+        renderCards(animeCards, "Anime");
+        renderSuggestionButtons(animeCards);
+      }
+    };
+  });
 });
+ 
 
 document.getElementById("enterBtn").onclick = () => {
   document.getElementById("ageGate").style.display = "none";
@@ -607,7 +668,34 @@ document.getElementById("exitBtn").onclick = () => {
     .then(data => {
       document.getElementById('visitas').textContent = data.value;
     });
+
+<script>
+  document.getElementById("hideAdsBtn").onclick = () => {
+    const adContainers = document.querySelectorAll('[id^="container-"], iframe, script[src*="ad"]');
+    adContainers.forEach(el => {
+      el.style.display = "none";
+    });
+    alert("Anuncios ocultos. ¡Disfruta sin distracciones!");
+  };
 </script>
+
+</script>
+
+<button id="hideAdsBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #b400ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 9999;
+">
+  🔕 Desactivadas
+</button>
 
 </body>
 </html>
