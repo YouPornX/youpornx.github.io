@@ -523,14 +523,74 @@
 ["Masturbacion", "0:57", "Solo", "0uxSdBa", "usoj3h"],
 // 96
 ["Sex", "1:08", "Duo", "q6BuEaJ", "s7wda2"],
+// 97
+["Lesbianas", "0:10", "Duo", "19Yp9mW", "73ikgq"],
+// 98
+["Sex", "1:14", "Duo", "vTindIT", "s6reun"],
+// 99
+["Sex", "0:27", "Duo", "5fDKgVp", "q4ahwu"],
+// 100
+["Tetas", "0:14", "Solo", "TzD44wn", "6zi6uh"],
+// 101
+["Sex", "4:17", "Duo", "Mvz2RI8", "xrjkqj"],
+// 102
+["Sex", "2:02", "Solo", "EDcQDju", "kykr2r"],
+// 103
+["Tetas", "0:14", "Solo", "a5Bj9GY", "uzu42g"],
+// 104
+["Sex", "2:09", "Solo", "LcPVTOw", "3h3gbf"],
+// 105
+["Tetas", "0:11", "Solo", "MoqLuwN", "iefzjx"],
+// 106
+["Tetas", "0:35", "Solo", "iL1eO9u", "ft6nlt"],
+// 107
+["Sex", "1:59", "Solo", "7orguPu", "85mo9x"],
+// 108
+["Masturbacion", "0:10", "Solo", "SsSyRjQ", "htzmu0"],
+// 109
+["Tetas", "0:10", "Solo", "Ev2sKHP", "4zf71m"],
+// 110
+["Culo", "0:41", "Solo", "ysOnVsO", "0rylgw"],
+// 111
+["Culo", "0:12", "Solo", "SUJi9rW", "9kv3wc"],
+// 112
+["Sex", "0:19", "Duo", "GHJNZkP", "l1211x"],
+// 113
+["Sex", "0:38", "Trio", "OnfvEzm", "e6gs60"],
+// 114
+["Nudes", "1:01", "Solo", "XZ9q508", "t04ujn"],
+// 115
+["Culo", "0:22", "Solo", "cUxyo8e", "cp17qc"],
+// 116
+["Lesbianas", "1:36", "Duo", "nbDH1EP", "vx80e7"],
+// 117
+["Sex", "2:20", "Duo", "nlZFCsY", "v3msa0"],
+// 118
+["Sex", "0:59", "Duo", "CYufHnb", "mc9va8"],
+// 119
+["Culo", "0:08", "Solo", "oPc66j8", "mh8ynp"],
+// 120
+["Sex", "0:24", "Duo", "SEWRL4E", "9mw1sx"],
+// 121
+["Sex", "0:45", "Recopilacion", "LHFh7q0", "iscmlx"],
 ];
 
 const animeVideos = [
-  ["Naruto AMV", "2:30", "Acción", "XyZ123A", "anime01"],
-  ["One Piece Moments", "1:45", "Aventura", "AbC456B", "anime02"],
-  ["Demon Slayer", "3:10", "Épico", "LmN789C", "anime03"],
-  ["Attack on Titan", "2:05", "Drama", "QrS321D", "anime04"],
-  ["Jujutsu Kaisen", "1:50", "Pelea", "TuV654E", "anime05"]
+  ["Animación", "2:13", "Sex", "Hfoq173", "ykod8l"],
+  ["Animación", "1:45", "Sex", "BR6V1XI", "b7facn"],
+  ["Anime", "1:19", "Sex", "RQpaScc", "42u3bw"],
+  ["Anime", "2:17", "Sex", "G9sX27p", "q5xa43"],
+  ["Anime", "2:18", "Sex", "QGkFO8t", "9lq6im"],
+  ["Anime", "2:17", "Sex", "wI9eKFZ", "gvllf8"],
+  ["Animación", "1:45", "Sex", "VYB67Kc", "otkt0l"],
+  ["Animación", "1:30", "Sex", "QHImTw8", "3tf6o0"],
+  ["Animación", "1:34", "Sex", "jqFYlWT", "emmho0"],
+  ["Animación", "0:49", "Sex", "ecYC74y", "4xzs9e"],
+  ["Animación", "1:27", "Sex", "k936EZR", "w8wr2g"],
+  ["Animación", "0:36", "Sex", "8Ec6s2P", "vgcryz"],
+  ["Animación", "2:25", "Sex", "yo0zmVr", "2ek9y7"],
+  ["Animación", "0:26", "Sex", "AmfrLjc", "8z7f30"],
+  ["Animación", "0:07", "Sex", "Ex28Jdu", "jv7mhu"],
 ];
 
     let cardsData = rawVideos.map(([title, duration, category, imgCode, videoCode]) => ({
@@ -694,18 +754,38 @@ document.getElementById("exitBtn").onclick = () => {
 <div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
 
 
-<div id="contador">👥 You: <span id="visitas">0</span></div>
-
 <script>
-  // Reemplaza "tu-dominio.com" con algo único (puede ser tu nombre de usuario + nombre del repo)
-  const endpoint = 'https://api.countapi.xyz/hit/Youezx.youpornx';
+const binId = '68ce5bb6ae596e708ff4c7a9'; // Reemplaza con tu ID real
+const apiKey = '$2a$10$b4tDNL0bWvPPTfcIegqlAucKX14k8QwikSfSS7K1n0uqIAChABo4u'; // Reemplaza con tu API Key
 
-  fetch(endpoint)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('visitas').textContent = data.value;
-    });
+// Obtener visitas
+fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+  headers: {
+    'X-Master-Key': apiKey
+  }
+})
+.then(res => res.json())
+.then(data => {
+  const visitas = data.record.visitas + 1;
+  document.getElementById('visitas').textContent = visitas;
+
+  // Actualizar visitas
+  fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': apiKey
+    },
+    body: JSON.stringify({ visitas })
+  });
+})
+.catch(err => {
+  console.error("Error al obtener visitas:", err);
+  document.getElementById('visitas').textContent = "Error";
+});
 </script>
+
+<div id="contador">👥 You: <span id="visitas">0</span></div>
 
 </body>
 </html>
