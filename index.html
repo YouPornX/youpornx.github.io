@@ -295,9 +295,23 @@
   }
 }
 
+
+.ad-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
   </style>
 </head>
 <body>
+
+<div style="display:none">
+  Categorías: Sexo, Masturbación, Lesbianas, Culo, Tetas, Nudes
+</div>
 
 <!-- 🔞 Aviso de contenido para adultos -->
 <div id="ageGate" class="age-modal">
@@ -574,6 +588,36 @@
 ["Sex", "0:24", "Sex", "SEWRL4E", "9mw1sx"],
 // 121
 ["Sex", "0:45", "Recopilacion", "LHFh7q0", "iscmlx"],
+// 122
+["Sex", "3:33", "Sex", "ywmNd93", "atogm9"],
+// 123
+["Sex", "3:19", "Sex", "TcxIaPl", "y39g76"],
+// 124
+["Sex", "4:16", "Sex", "eDUDDoV", "gvdf6n"],
+// 125
+["Lesbianas", "4:59", "Lesbianas", "aaMJjDf", "yhrbr5"],
+// 126
+["Masturbacion", "4:57", "Masturbacion", "WimFfk5", "jac9nk"],
+// 127
+["Sex", "3:20", "Sex", "UdRIIgJ", "3wb83n"],
+// 128
+["Masturbacion", "3:36", "Masturbacion", "LlxMDVa", "hwxq6m"],
+// 129
+["BelleDelphine", "4:37", "Masturbacion", "BWIySy5", "vt1lgk"],
+// 130
+["Masturbacion", "4:06", "Masturbacion", "ijLqXN4", "db4vzi"],
+// 131
+["Sex", "3:35", "Sex", "ZxlqJrB", "31q087"],
+// 132
+["Sophie Rain", "6:10", "Nudes", "prtJB7n", "d4bf59"],
+// 133
+["Repartidora de pizza", "7:00", "Sex", "93TsQWM", "m4bm67"],
+// 134
+["Sex", "2:57", "Sex", "DJQddhU", "qxi4mt"],
+// 135
+["Sex", "3:41", "Sex", "JFuJTaB", "8pdg2p"],
+// 136
+["Sex", "4:11", "Sex", "1Twazfq", "mc1411"],
 ];
 
 const animeVideos = [
@@ -632,21 +676,49 @@ function renderCards(data = cardsData, label = "Todos") {
   container.innerHTML = "";
   countDisplay.textContent = `Mostrando ${pageItems.length} de ${data.length} video${data.length !== 1 ? "s" : ""} para: "${label}"`;
 
-  pageItems.forEach(card => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <div class="card-category">${card.category}</div>
-      <img src="${card.img}" alt="${card.title}" />
-      <div class="card-duration">${card.duration}</div>
-      <div class="card-info">
-        <div class="card-title">${card.title}</div>
-        <div class="card-meta">${card.category}</div>
-      </div>
-    `;
-    div.onclick = () => playVideo(card.video);
-    container.appendChild(div);
-  });
+pageItems.forEach((card, index) => {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <div class="card-category">${card.category}</div>
+    <img src="${card.img}" alt="${card.title}" />
+    <div class="card-duration">${card.duration}</div>
+    <div class="card-info">
+      <div class="card-title">${card.title}</div>
+      <div class="card-meta">${card.category}</div>
+    </div>
+  `;
+  div.onclick = () => playVideo(card.video);
+  container.appendChild(div);
+
+  // 🔁 Inserta anuncio cada 3 tarjetas
+  if ((index + 1) % 3 === 0) {
+    const adDiv = document.createElement("div");
+    adDiv.className = "card ad-card";
+const configScript = document.createElement("script");
+configScript.type = "text/javascript";
+configScript.innerHTML = `
+  atOptions = {
+    'key' : '0d9a0873af673bd6f59bd7407b098187',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+`;
+
+const invokeScript = document.createElement("script");
+invokeScript.type = "text/javascript";
+invokeScript.src = "//burglarycirculationintense.com/0d9a0873af673bd6f59bd7407b098187/invoke.js";
+
+adDiv.appendChild(configScript);
+adDiv.appendChild(invokeScript);
+
+    container.appendChild(adDiv);
+  }
+});
+
+
 
   // Render pagination buttons
   pagination.innerHTML = "";
@@ -752,16 +824,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "https://youezx.github.io/YouScripts/";
   };
 });
- 
-
-document.getElementById("enterBtn").onclick = () => {
-  document.getElementById("ageGate").style.display = "none";
-};
-
-document.getElementById("exitBtn").onclick = () => {
-  alert("Debes ser mayor de edad para acceder a este contenido.");
-  window.location.href = "https://youezx.github.io/YouScripts/";
-};
 
   </script>
 
