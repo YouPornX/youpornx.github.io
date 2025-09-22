@@ -724,16 +724,18 @@ pageItems.forEach((card, index) => {
   `;
   div.onclick = () => playVideo(card.video);
   container.appendChild(div);
-
 if (index === 2) {
   const adDiv = document.createElement("div");
   adDiv.className = "card ad-card";
 
-  const adScript = document.createElement("script");
-  adScript.type = "text/javascript";
-  adScript.src = "https://js.juicyads.com/js.php?zone=YOUR_ZONE_ID"; // ← pon tu ID aquí
+  adDiv.innerHTML = `
+    <iframe src="https://js.juicyads.com/js.php?zone=1101918"
+            width="300" height="250"
+            frameborder="0" scrolling="no"
+            style="border:none;overflow:hidden;">
+    </iframe>
+  `;
 
-  adDiv.appendChild(adScript);
   container.appendChild(adDiv);
 }
 
