@@ -724,20 +724,35 @@ pageItems.forEach((card, index) => {
   `;
   div.onclick = () => playVideo(card.video);
   container.appendChild(div);
+
 if (index === 2) {
   const adDiv = document.createElement("div");
   adDiv.className = "card ad-card";
 
-  adDiv.innerHTML = `
-    <iframe src="https://js.juicyads.com/js.php?zone=1101918"
-            width="300" height="250"
-            frameborder="0" scrolling="no"
-            style="border:none;overflow:hidden;">
-    </iframe>
-  `;
+  const ins = document.createElement("ins");
+  ins.id = "1101918";
+  ins.setAttribute("data-width", "300");
+  ins.setAttribute("data-height", "250");
+
+  const script1 = document.createElement("script");
+  script1.type = "text/javascript";
+  script1.setAttribute("data-cfasync", "false");
+  script1.async = true;
+  script1.src = "https://poweredby.jads.co/js/jads.js";
+
+  const script2 = document.createElement("script");
+  script2.type = "text/javascript";
+  script2.setAttribute("data-cfasync", "false");
+  script2.async = true;
+  script2.innerHTML = `(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1101918});`;
+
+  adDiv.appendChild(script1);
+  adDiv.appendChild(ins);
+  adDiv.appendChild(script2);
 
   container.appendChild(adDiv);
 }
+
 
 });
 
