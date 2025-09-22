@@ -278,6 +278,36 @@
   filter: drop-shadow(0 0 4px rgba(180, 0, 255, 0.5));
 }
 
+.floating-telegram {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+}
+
+.floating-telegram img {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 4px rgba(180, 0, 255, 0.5));
+}
+
+.floating-telegram img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .floating-telegram {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .floating-telegram img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 .floating-twitter img:hover {
   transform: scale(1.1);
 }
@@ -329,6 +359,9 @@
   <h1 class="logo">You<span>PornX</span></h1>
   <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" class="floating-twitter" aria-label="Twitter">
   <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="Twitter">
+</a>
+<a href="https://t.me/+z--_xKuncVE1MDIx" target="_blank" class="floating-telegram" aria-label="Telegram">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
 </a>
 
  <div id="tabMenu" style="text-align:center; padding:1rem;">
@@ -722,8 +755,6 @@ if (index === 2) {
 }
 
 });
-
-
 
   // Render pagination buttons
   pagination.innerHTML = "";
