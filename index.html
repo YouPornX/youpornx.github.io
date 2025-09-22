@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="/joakerwksonuvmm.php"></script>
   <script async src="https://cdn.plugrush.com/js/plugrush.js"></script>
   <script async src="//d.smopy.com/d/?resource=pubJS"></script>
   <meta name="juicyads-site-verification" content="d08995bd3a11f8bdc0ee3972af83267a">
@@ -737,6 +736,13 @@ if (index === 2) {
   plugrushAd.className = "_02a2ec3b8b28";
 
   adDiv.appendChild(plugrushAd);
+
+  // 🔁 Reinserta el script para que PlugRush lo detecte
+  const script = document.createElement("script");
+  script.src = "https://cdn.plugrush.com/js/plugrush.js";
+  script.async = true;
+  adDiv.appendChild(script);
+
   container.appendChild(adDiv);
 }
 
