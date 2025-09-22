@@ -729,29 +729,11 @@ if (index === 2) {
   const adDiv = document.createElement("div");
   adDiv.className = "card ad-card";
 
-  const adContainer = document.createElement("div");
-  adContainer.id = "ad-container-banner";
+  const adScript = document.createElement("script");
+  adScript.type = "text/javascript";
+  adScript.src = "https://js.juicyads.com/js.php?zone=YOUR_ZONE_ID"; // ← pon tu ID aquí
 
-  const configScript = document.createElement("script");
-  configScript.type = "text/javascript";
-  configScript.innerHTML = `
-    atOptions = {
-      'key' : '0d9a0873af673bd6f59bd7407b098187',
-      'format' : 'iframe',
-      'height' : 250,
-      'width' : 300,
-      'params' : {}
-    };
-  `;
-
-  const invokeScript = document.createElement("script");
-  invokeScript.type = "text/javascript";
-  invokeScript.src = "//burglarycirculationintense.com/0d9a0873af673bd6f59bd7407b098187/invoke.js";
-
-  adDiv.appendChild(adContainer);
-  adDiv.appendChild(configScript);
-  adDiv.appendChild(invokeScript);
-
+  adDiv.appendChild(adScript);
   container.appendChild(adDiv);
 }
 
