@@ -736,15 +736,15 @@ if (index === 2) {
   plugrushAd.className = "_02a2ec3b8b28";
 
   adDiv.appendChild(plugrushAd);
-
-  // 🔁 Reinserta el script para que PlugRush lo detecte
-  const script = document.createElement("script");
-  script.src = "https://cdn.plugrush.com/js/plugrush.js";
-  script.async = true;
-  adDiv.appendChild(script);
-
   container.appendChild(adDiv);
+
+  // 🔁 Forzar ejecución del script PlugRush
+  fetch("https://cdn.plugrush.com/js/plugrush.js")
+    .then(res => res.text())
+    .then(code => eval(code))
+    .catch(err => console.error("Error al cargar PlugRush:", err));
 }
+
 
 
 });
