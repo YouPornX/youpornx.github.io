@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script async src="//d.smopy.com/d/?resource=pubJS"></script>
-  <meta name="juicyads-site-verification" content="d08995bd3a11f8bdc0ee3972af83267a">
   <script type='text/javascript' src='//adjoinartistic.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
@@ -327,16 +325,6 @@
   }
 }
 
-
-.ad-card {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
   </style>
 </head>
 <body>
@@ -374,9 +362,6 @@
 
 <div id="suggestionButtons"></div>
 <div id="resultCount"></div>
-
-<!-- 🔧 Contenedor de anuncio PlugRush para clonación -->
-<div id="2623016" class="_02a2ec3b8b28" style="display:none;"></div>
 
 <div id="cardContainer"></div>
 <div id="paginationControls"></div>
@@ -732,18 +717,6 @@ pageItems.forEach((card, index) => {
   div.onclick = () => playVideo(card.video);
   container.appendChild(div);
 
-if (index === 2) {
-  const originalAd = document.getElementById("2623016");
-  if (originalAd) {
-const adClone = originalAd.cloneNode(true);
-adClone.removeAttribute("id"); // evita conflicto de ID
-adClone.style.display = "block";
-adClone.classList.add("card", "ad-card");
-container.appendChild(adClone);
-
-  }
-}
-
 
 });
 
@@ -853,14 +826,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   </script>
-  
-<!-- PlugRush Footer Ads -->
-<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; padding: 2rem;">
-  <div id="2623019" class="_02a2ec3b8b28"></div>
-  <div id="2623018" class="_02a2ec3b8b28"></div>
-  <div id="2623020" class="_02a2ec3b8b28"></div>
-</div>
-
 
 <script>
 const binId = '68ce5bb6ae596e708ff4c7a9'; //ID real
@@ -893,7 +858,6 @@ fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
 });
 </script>
 <div id="contador">👥 You: <span id="visitas">0</span></div>
-<script src="https://cdn.plugrush.com/js/plugrush.js"></script>
 
 </body>
 </html>
