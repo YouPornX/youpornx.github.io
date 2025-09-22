@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="/joakerwksonuvmm.php"></script>
   <script async src="https://cdn.plugrush.com/js/plugrush.js"></script>
   <script async src="//d.smopy.com/d/?resource=pubJS"></script>
   <meta name="juicyads-site-verification" content="d08995bd3a11f8bdc0ee3972af83267a">
@@ -737,12 +738,6 @@ if (index === 2) {
 
   adDiv.appendChild(plugrushAd);
   container.appendChild(adDiv);
-
-  // 🔁 Forzar ejecución del script PlugRush
-  fetch("https://cdn.plugrush.com/js/plugrush.js")
-    .then(res => res.text())
-    .then(code => eval(code))
-    .catch(err => console.error("Error al cargar PlugRush:", err));
 }
 
 
