@@ -780,7 +780,7 @@ function renderSuggestionButtons(dataArray) {
   container.appendChild(allBtn);
 }
 
-function playVideo(src) {
+ function playVideo(src) {
   const player = document.getElementById("videoPlayer");
   const video = document.getElementById("activeVideo");
 
@@ -790,18 +790,13 @@ function playVideo(src) {
 
   video.play().then(() => {
     setTimeout(() => {
-      var plugrush_popunder_zone_id = 2623016;
-      var s = document.createElement("script");
-      s.src = "https://cdn.plugrush.com/js/popunder.js";
-      s.async = true;
-      document.body.appendChild(s);
-    }, 2000);
+      window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+    }, 1000);
   }).catch(err => {
     console.warn("Reproducción bloqueada:", err);
     alert("Toca el video para reproducirlo. Algunos navegadores móviles requieren interacción.");
   });
 }
-
 
     document.getElementById("closeBtn").onclick = () => {
       const player = document.getElementById("videoPlayer");
@@ -853,19 +848,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   </script>
-
 <!-- PlugRush Footer Ads -->
 <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; padding: 2rem;">
-  <div id="2623019" class="_02a2ec3b8b28"></div>
-  <div id="2623018" class="_02a2ec3b8b28"></div>
-  <div id="2623020" class="_02a2ec3b8b28"></div>
+  <div id="2623016" class="_02a2ec3b8b28"></div>
+  <div id="2623033" class="_02a2ec3b8b28"></div>
+  <div id="2623034" class="_02a2ec3b8b28"></div>
 </div>
-
-<!-- PlugRush Popunder -->
-<script type="text/javascript">
-  var plugrush_popunder_zone_id = 2623013; // Reemplaza con tu Zone ID de tipo Popunder
-</script>
-<script async src="https://cdn.plugrush.com/js/popunder.js"></script>
 
 
 <script>
