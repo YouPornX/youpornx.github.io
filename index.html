@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script async src="https://cdn.plugrush.com/js/plugrush.js"></script>
   <script async src="//d.smopy.com/d/?resource=pubJS"></script>
   <meta name="juicyads-site-verification" content="d08995bd3a11f8bdc0ee3972af83267a">
   <script type='text/javascript' src='//adjoinartistic.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
@@ -736,9 +735,11 @@ pageItems.forEach((card, index) => {
 if (index === 2) {
   const originalAd = document.getElementById("2623016");
   if (originalAd) {
-originalAd.style.display = "block";
-originalAd.classList.add("card", "ad-card");
-container.appendChild(originalAd);
+const adClone = originalAd.cloneNode(true);
+adClone.removeAttribute("id"); // evita conflicto de ID
+adClone.style.display = "block";
+adClone.classList.add("card", "ad-card");
+container.appendChild(adClone);
 
   }
 }
@@ -892,6 +893,7 @@ fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
 });
 </script>
 <div id="contador">👥 You: <span id="visitas">0</span></div>
+<script src="https://cdn.plugrush.com/js/plugrush.js"></script>
 
 </body>
 </html>
