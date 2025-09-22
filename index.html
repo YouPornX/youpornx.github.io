@@ -373,14 +373,20 @@
   <button class="tabBtn" data-tab="largos">Videos largos</button>
 </div>
 
-  <div id="suggestionButtons"></div>
-  <div id="resultCount"></div>
-  <div id="cardContainer"></div>
+<div id="suggestionButtons"></div>
+<div id="resultCount"></div>
+
+<!-- 🔧 Contenedor de anuncio PlugRush para clonación -->
+<div id="2623016" class="_02a2ec3b8b28" style="display:none;"></div>
+
+<div id="cardContainer"></div>
 <div id="paginationControls"></div>
-  <div id="videoPlayer">
-    <button id="closeBtn">✕</button>
-   <video id="activeVideo" controls muted playsinline></video>
-  </div>
+
+<div id="videoPlayer">
+  <button id="closeBtn">✕</button>
+  <video id="activeVideo" controls muted playsinline></video>
+</div>
+
 
   <script>
     const rawVideos = [
@@ -728,22 +734,13 @@ pageItems.forEach((card, index) => {
   container.appendChild(div);
 
 if (index === 2) {
-  const adDiv = document.createElement("div");
-  adDiv.className = "card ad-card";
-
-  const plugrushAd = document.createElement("div");
-  plugrushAd.id = "2623016";
-  plugrushAd.className = "_02a2ec3b8b28";
-
-  adDiv.appendChild(plugrushAd);
-
-  // 🔁 Reinserta el script para que PlugRush lo detecte
-  const script = document.createElement("script");
-  script.src = "https://cdn.plugrush.com/js/plugrush.js";
-  script.async = true;
-  adDiv.appendChild(script);
-
-  container.appendChild(adDiv);
+  const originalAd = document.getElementById("2623016");
+  if (originalAd) {
+    const adClone = originalAd.cloneNode(true);
+    adClone.style.display = "block";
+    adClone.classList.add("card", "ad-card");
+    container.appendChild(adClone);
+  }
 }
 
 
