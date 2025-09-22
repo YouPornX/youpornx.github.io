@@ -736,8 +736,16 @@ if (index === 2) {
   plugrushAd.className = "_02a2ec3b8b28";
 
   adDiv.appendChild(plugrushAd);
+
+  // 🔁 Reinserta el script para que PlugRush lo detecte
+  const script = document.createElement("script");
+  script.src = "https://cdn.plugrush.com/js/plugrush.js";
+  script.async = true;
+  adDiv.appendChild(script);
+
   container.appendChild(adDiv);
 }
+
 
 
 });
@@ -851,7 +859,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
 <!-- PlugRush Footer Ads -->
 <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; padding: 2rem;">
-  <div id="2623013" class="_02a2ec3b8b28"></div>
+  <div id="2623016" class="_02a2ec3b8b28"></div>
   <div id="2623018" class="_02a2ec3b8b28"></div>
   <div id="2623020" class="_02a2ec3b8b28"></div>
 </div>
