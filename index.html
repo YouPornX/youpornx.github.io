@@ -911,74 +911,29 @@ fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
 <a href="https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=611790&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/8780/000110F_JRKM_18_ALL_EN_64_L.gif" width="300" height="100" border="0" /></a>
 <div id="contador">👥 You: <span id="visitas">0</span></div>
 
-<script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
-<script>
-var crakPopInParamsIframe = {
-  url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0016',
-  decryptUrl: false,
-  contentUrl: 'https://t.mbslr2.com/1/6068?source=testoffer&aff_id=1&transaction_id=postitial',
-  decryptContentUrl: false,
-  contentType: 'iframe',
-  width: '85%',
-  height: '85%',
-  timeout: false,
-  delayClose: 0,
-  clickStart: false,
-  closeIntent: false,
-  postitialBehavior: true,
-  closeButtonColor: '#000',
-  closeCrossColor: '#fff',
-  shadow: true,
-  shadowColor: '#000',
-  shadowOpacity: '.5',
-  shadeColor: '#111',
-  shadeOpacity: '0',
-  border: '1px',
-  borderColor: '#000',
-  borderRadius: '0px',
-  leadOut: true,
-  animation: 'slide',
-  direction: 'up',
-  verticalPosition: 'center',
-  horizontalPosition: 'center',
-  expireDays: 0.01
-};
-</script>
-
-<script type="text/javascript" src="//static.scptp9.com/mnpw3.js"></script>
-<script>
-  mnpw.add('https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0005&pud=scptp9', {
-    newTab: true,
-    cookieExpires: 86401
-  });
-
-  <script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
-<script>
-var crakPopInParamsOverlay = {
-url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
-decryptUrl: false,
-contentType: 'overlay',
-coverOverlay: true, 
-expireDays: 0.01
-};
-</script>
-</script>
-
 <!-- 🔥 Postitial tipo overlay para botón Live Cam -->
 <script>
-var crakPopInParamsOverlay = {
-  url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
-  decryptUrl: false,
-  contentType: 'overlay',
-  coverOverlay: true, 
-  expireDays: 0.01
-};
+document.addEventListener("DOMContentLoaded", () => {
+  var crakPopInParamsOverlay = {
+    url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+    decryptUrl: false,
+    contentType: 'overlay',
+    coverOverlay: true, 
+    expireDays: 0.01
+  };
 
-document.getElementById("liveCamBtn").addEventListener("click", () => {
-  if (typeof crakPopIn === "function") {
-    crakPopIn(crakPopInParamsOverlay);
+  const liveCamBtn = document.getElementById("liveCamBtn");
+  if (liveCamBtn) {
+    liveCamBtn.addEventListener("click", () => {
+      if (typeof crakPopIn === "function") {
+        crakPopIn(crakPopInParamsOverlay);
+      } else {
+        console.warn("crakPopIn no está disponible");
+      }
+    });
   }
 });
+</script>
 
 <!-- 🔥 Popunder automático -->
 <script type="text/javascript" src="//static.scptp9.com/mnpw3.js"></script>
@@ -989,6 +944,15 @@ document.getElementById("liveCamBtn").addEventListener("click", () => {
   });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const liveCamBtn = document.getElementById("liveCamBtn");
+  if (liveCamBtn) {
+    liveCamBtn.addEventListener("click", () => {
+      window.location.href = "https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019";
+    });
+  }
+});
 </script>
 
 </body>
