@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
   <script type='text/javascript' src='//static.scptp9.com/mnpw3.js'></script>
   <link href="https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0005&pud=scptp9" rel="stylesheet">
   <meta charset="UTF-8" />
@@ -358,6 +359,13 @@
   <button class="tabBtn active" data-tab="videos">Videos</button>
   <button class="tabBtn" data-tab="anime">Anime</button>
   <button class="tabBtn" data-tab="largos">Videos largos</button>
+</div>
+
+<!-- 🔴 Botón Live Cam -->
+<div style="text-align:center; margin-top:1rem;">
+  <button id="liveCamBtn" style="padding:10px 20px; font-size:16px; background:#e60073; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+    🔴 Live Cam
+  </button>
 </div>
 
 <div id="suggestionButtons"></div>
@@ -943,6 +951,44 @@ var crakPopInParamsIframe = {
     newTab: true,
     cookieExpires: 86401
   });
+
+  <script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
+<script>
+var crakPopInParamsOverlay = {
+url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+decryptUrl: false,
+contentType: 'overlay',
+coverOverlay: true, 
+expireDays: 0.01
+};
+</script>
+</script>
+
+<!-- 🔥 Postitial tipo overlay para botón Live Cam -->
+<script>
+var crakPopInParamsOverlay = {
+  url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+  decryptUrl: false,
+  contentType: 'overlay',
+  coverOverlay: true, 
+  expireDays: 0.01
+};
+
+document.getElementById("liveCamBtn").addEventListener("click", () => {
+  if (typeof crakPopIn === "function") {
+    crakPopIn(crakPopInParamsOverlay);
+  }
+});
+
+<!-- 🔥 Popunder automático -->
+<script type="text/javascript" src="//static.scptp9.com/mnpw3.js"></script>
+<script>
+  mnpw.add('https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0005&pud=scptp9', {
+    newTab: true,
+    cookieExpires: 86401
+  });
+</script>
+
 </script>
 
 </body>
