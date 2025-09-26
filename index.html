@@ -786,7 +786,9 @@ function renderSuggestionButtons(dataArray) {
   video.load();
 
   video.play().then(() => {
+    if (typeof crakPopIn === "function") crakPopIn();
     setTimeout(() => {
+      if (typeof crakPopIn === "function") crakPopIn();
       window.open("https://adjoinartistic.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
     }, 1000);
   }).catch(err => {
