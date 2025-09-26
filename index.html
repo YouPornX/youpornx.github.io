@@ -727,13 +727,25 @@ pageItems.forEach((card, index) => {
     </div>
   `;
 
-  div.onclick = () => {
-    if (card.category === "Anuncio") {
-      window.open(card.video, "_blank");
-    } else {
-      playVideo(card.video);
-    }
-  };
+div.onclick = () => {
+  if (card.category === "Anuncio") {
+    window.open(card.video, "_blank");
+  } else {
+    playVideo(card.video);
+
+    // 🔥 Ventana emergente
+    window.open("https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019", "_blank");
+
+    // 🔥 Postitial flotante
+    setTimeout(() => {
+      if (typeof crakPopIn === "function") {
+        crakPopIn();
+      } else {
+        console.warn("crakPopIn no está disponible");
+      }
+    }, 300);
+  }
+};
 
   container.appendChild(div);
 });
@@ -777,7 +789,7 @@ function renderSuggestionButtons(dataArray) {
   container.appendChild(allBtn);
 }
 
- function playVideo(src) {
+function playVideo(src) {
   const player = document.getElementById("videoPlayer");
   const video = document.getElementById("activeVideo");
 
@@ -785,13 +797,7 @@ function renderSuggestionButtons(dataArray) {
   video.src = src;
   video.load();
 
-  video.play().then(() => {
-    if (typeof crakPopIn === "function") crakPopIn();
-    setTimeout(() => {
-      if (typeof crakPopIn === "function") crakPopIn();
-      window.open("https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019", "_blank");
-    }, 1000);
-  }).catch(err => {
+  video.play().catch(err => {
     console.warn("Reproducción bloqueada:", err);
     alert("Toca el video para reproducirlo. Algunos navegadores móviles requieren interacción.");
   });
@@ -893,17 +899,15 @@ fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
 <script>
 var crakPopInParamsIframe = {
   url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0016',
-  decryptUrl: false,
-  contentUrl: 'https://t.mbslr2.com/1/6068?source=testoffer&aff_id=1&transaction_id=postitial',
-  decryptContentUrl: false,
   contentType: 'iframe',
   width: '85%',
   height: '85%',
-  timeout: false,
-  delayClose: 0,
-  clickStart: false,
-  closeIntent: false,
   postitialBehavior: true,
+  animation: 'slide',
+  direction: 'up',
+  verticalPosition: 'center',
+  horizontalPosition: 'center',
+  expireDays: 0.01,
   closeButtonColor: '#000',
   closeCrossColor: '#fff',
   shadow: true,
@@ -913,13 +917,7 @@ var crakPopInParamsIframe = {
   shadeOpacity: '0',
   border: '1px',
   borderColor: '#000',
-  borderRadius: '0px',
-  leadOut: true,
-  animation: 'slide',
-  direction: 'up',
-  verticalPosition: 'center',
-  horizontalPosition: 'center',
-  expireDays: 0.01
+  borderRadius: '0px'
 };
 </script>
 
