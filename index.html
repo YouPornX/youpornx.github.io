@@ -689,6 +689,18 @@ function shuffleArray(array) {
    let currentPage = 1;
 const itemsPerPage = 9;
 
+
+function insertAdsEvery(dataArray, adCard, interval = 3) {
+  const result = [];
+  for (let i = 0; i < dataArray.length; i++) {
+    result.push(dataArray[i]);
+    if ((i + 1) % interval === 0) {
+      result.push(adCard);
+    }
+  }
+  return result;
+}
+
 function renderCards(data = cardsData, label = "Todos") {
   const container = document.getElementById("cardContainer");
   const countDisplay = document.getElementById("resultCount");
@@ -714,11 +726,18 @@ pageItems.forEach((card, index) => {
       <div class="card-meta">${card.category}</div>
     </div>
   `;
-  div.onclick = () => playVideo(card.video);
+
+  div.onclick = () => {
+    if (card.category === "Anuncio") {
+      window.open(card.video, "_blank");
+    } else {
+      playVideo(card.video);
+    }
+  };
+
   container.appendChild(div);
-
-
 });
+
 
   // Render pagination buttons
   pagination.innerHTML = "";
@@ -785,9 +804,18 @@ function renderSuggestionButtons(dataArray) {
     };
 
 document.addEventListener("DOMContentLoaded", () => {
-  cardsData = shuffleArray(cardsData);
+  const adCard = {
+    title: "Video exclusivo para adultos",
+    duration: "0:45",
+    category: "Anuncio",
+    img: "https://via.placeholder.com/300x170.jpg?text=🔥+Video+Privado",
+    video: "https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN"
+  };
+
+  cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 3);
   renderCards(cardsData, "Todos");
   renderSuggestionButtons(cardsData);
+
 
   document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.onclick = () => {
