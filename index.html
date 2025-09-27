@@ -751,12 +751,20 @@ div.onclick = () => {
     playVideo(card.video);
 
     // 🔥 Espera 1 segundo antes de abrir el anuncio
-    setTimeout(() => {
-      window.open("https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019", "_blank");
+setTimeout(() => {
+  if (typeof crakPopIn === "function") {
+    crakPopIn({
+      url: 'https://t.acrsmartcam.com/389817/3664/0?bo=2779,2C2778,2C2777,2C2776,2C2775&target=domainredirects&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+      decryptUrl: false,
+      contentType: 'overlay',
+      coverOverlay: true, 
+      expireDays: 0.01
+    });
+  } else {
+    window.open('https://t.acrsmartcam.com/389817/3664/0?bo=2779,2C2778,2C2777,2C2776,2C2775&target=domainredirects&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019', '_blank');
+  }
+}, 2000);
 
-      // 🔥 También activa el postitial flotante
-      if (typeof crakPopIn === "function") crakPopIn();
-    }, 2000);
   }
 };
 
@@ -827,12 +835,13 @@ function playVideo(src) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const adCard = {
-    title: "Interactua con chicas en vivo",
-    duration: "Exclusivo",
-    category: "Anuncio",
-    img: "https://i.imgur.com/jYCZis9.png",
-    video: "https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN"
-  };
+  title: "Interactua con chicas en vivo",
+  duration: "Exclusivo",
+  category: "Anuncio",
+  img: "https://i.imgur.com/jYCZis9.png",
+  video: "https://t.acrsmartcam.com/389817/7348?bo=2779,2C2778,2C2777,2C2776,2C2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019"
+};
+
 
   cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 3);
   renderCards(cardsData, "Todos");
@@ -909,22 +918,18 @@ fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
 </script>
 
 <!-- 🔥 Banner afiliado -->
-<div style="text-align:center; margin:2rem 0;">
-  <a href="https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-    <img src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif" width="300" height="100" border="0" />
-  </a>
-</div>
+<a href="https://t.acrsmartcam.com/389817/7348?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/2934/002753A_BONG_18_ALL_EN_71_E.gif" width="300" height="250" border="0" /></a>
 
-<a href="https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=659758&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/8780/JM-645_DESIGN-22633_BANN5_RANDOMHOTTIES_DAINTYWILDER_TXT_300250.gif" width="300" height="250" border="0" /></a>
+<a href="https://t.acrsmartcam.com/389817/7348?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/2934/002748A_BONG_18_ALL_EN_71_E.gif" width="300" height="250" border="0" /></a>
 
-<a href="https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=611790&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/8780/000110F_JRKM_18_ALL_EN_64_L.gif" width="300" height="100" border="0" /></a>
-<div id="contador">👥 You: <span id="visitas">0</span></div>
+<a href="https://t.acrsmartcam.com/389817/7348?bo=2779,2778,2777,2776,2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank"><img src="https://www.imglnkx.com/2934/002747A_BONG_18_ALL_EN_71_E.gif" width="300" height="250" border="0" /></a>
+
 
 <!-- 🔥 Postitial tipo overlay para botón Live Cam -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   var crakPopInParamsOverlay = {
-    url: 'https://t.mbslr2.com/389817/8780/32495?bo=2779,2C2778,2C2777,2C2776,2C2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+    url: 'https://t.acrsmartcam.com/389817/7348?bo=2779,2C2778,2C2777,2C2776,2C2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
     decryptUrl: false,
     contentType: 'overlay',
     coverOverlay: true, 
@@ -937,7 +942,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof crakPopIn === "function") {
         crakPopIn(crakPopInParamsOverlay);
       } else {
-        console.warn("crakPopIn no está disponible");
+        window.open(crakPopInParamsOverlay.url, "_blank");
       }
     });
   }
@@ -953,18 +958,61 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
+<script defer src="https://crxcr1.com/cams-widget-ext/im_jerky?&lang=en&mode=prerecorded&outlinkUrl=https://t.acrsmartcam.com/389817/3664/0?bo=2779%2C2778%2C2777%2C2776%2C2775&target=domainredirects&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0018"></script>
+
+<script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
 <script>
+var crakPopInParamsIframe = {
+  url: 'https://t.acrsmartcam.com/389817/2934/optimized?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0016&aff_id=1&transaction_id=postitial',
+  decryptUrl: false,
+  contentUrl: 'https://t.acrsmartcam.com/389817/2934/optimized?bo=2779,2778,2777,2776,2775&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0016&aff_id=1&transaction_id=postitial',
+  decryptContentUrl: false,
+  contentType: 'iframe',
+  width: '85%',
+  height: '85%',
+  timeout: false,
+  delayClose: 0,
+  clickStart: false,
+  closeIntent: false,
+  postitialBehavior: true,
+  closeButtonColor: '#000',
+  closeCrossColor: '#fff',
+  shadow: true,
+  shadowColor: '#000',
+  shadowOpacity: '.5',
+  shadeColor: '#111',
+  shadeOpacity: '0',
+  border: '1px',
+  borderColor: '#000',
+  borderRadius: '0px',
+  leadOut: true,
+  animation: 'slide',
+  direction: 'up',
+  verticalPosition: 'center',
+  horizontalPosition: 'center',
+  expireDays: 0.01
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  const liveCamBtn = document.getElementById("liveCamBtn");
-  if (liveCamBtn) {
-    liveCamBtn.addEventListener("click", () => {
-      window.location.href = "https://t.mbslr2.com/389817/8780/32495?bo=2779,2778,2777,2776,2775&file_id=616542&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019";
-    });
+  if (typeof crakPopIn === "function") {
+    crakPopIn(crakPopInParamsIframe);
+  } else {
+    console.warn("crakPopIn no está disponible");
   }
 });
 </script>
 
-<script defer src="https://crxcr1.com/cams-widget-ext/im_jerky?&lang=en&mode=prerecorded&outlinkUrl=https://t.mbsrv2.com/389817/3785/0?bo=2753%2C2754%2C2755%2C2756&target=domainredirects&po=6456&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0018"></script>
+<script src="https://crxcr1.com/popin/latest/popin-min.js"></script>
+<script>
+var crakPopInParamsOverlay = {
+  url: 'https://t.acrsmartcam.com/389817/7348?bo=2779,2C2778,2C2777,2C2776,2C2775&popUnder=true&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0019',
+  decryptUrl: false,
+  contentType: 'overlay',
+  coverOverlay: true, 
+  expireDays: 0.01
+};
+
+</script>
 
 </body>
 </html>
