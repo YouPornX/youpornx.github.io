@@ -340,6 +340,30 @@ body::before {
   pointer-events: none;
 }
 
+#searchBar input {
+  background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 30px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(180, 0, 255, 0.2);
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  outline: none;
+}
+
+#searchBar input::placeholder {
+  color: #aaa;
+}
+
+#searchBar input:focus {
+  border-color: #b400ff;
+  box-shadow: 0 0 12px rgba(180, 0, 255, 0.4);
+}
+
+
   </style>
   <!-- Adsterra Popunder -->
 <script type='text/javascript' src='//crushedshakechasing.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
@@ -381,6 +405,10 @@ body::before {
   <button class="tabBtn active" data-tab="videos">Videos</button>
   <button class="tabBtn" data-tab="anime">Anime</button>
   <button class="tabBtn" data-tab="largos">Videos largos</button>
+</div>
+
+<div id="searchBar" style="text-align:center; margin-top:1rem;">
+  <input type="text" id="searchInput" placeholder="🔍 Buscar videos..." />
 </div>
 
 <div id="suggestionButtons"></div>
@@ -867,6 +895,19 @@ const adCard = {
   renderCards(cardsData, "Todos");
   renderSuggestionButtons(cardsData);
 
+    document.getElementById("searchInput").addEventListener("input", e => {
+  const query = e.target.value.toLowerCase();
+  const filtered = cardsData.filter(card => card.title.toLowerCase().includes(query));
+  renderCards(filtered, query ? `Resultados para "${query}"` : "Todos");
+});
+
+const searchInput = document.getElementById("searchInput");
+const suggestions = ["Sophie Rain", "Belle Delphine", "Hannaowo"];
+
+searchInput.addEventListener("focus", () => {
+  const random = suggestions[Math.floor(Math.random() * suggestions.length)];
+  searchInput.placeholder = `🔍 Buscar: ${random}`;
+});
 
   document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.onclick = () => {
@@ -892,6 +933,7 @@ const adCard = {
       }
     };
   });
+});
 
   // ✅ Reactivar botón de edad
   document.getElementById("enterBtn").onclick = () => {
@@ -902,7 +944,6 @@ const adCard = {
     alert("Debes ser mayor de edad para acceder a este contenido.");
     window.location.href = "https://youezx.github.io/YouScripts/";
   };
-});
 
   </script>
 
