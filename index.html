@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="6a97888e-site-verification" content="82c8b32f79c48a2f0aadca0e85a3050a">
   <meta property="og:image" content="https://i.imgur.com/HaVTHeY.jpeg" />
 <meta name="twitter:image" content="https://i.imgur.com/HaVTHeY.jpeg" />
@@ -363,6 +363,10 @@ body::before {
   box-shadow: 0 0 12px rgba(180, 0, 255, 0.4);
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 
   </style>
   <!-- Adsterra Popunder -->
@@ -413,6 +417,11 @@ body::before {
 
 <div id="suggestionButtons"></div>
 <div id="resultCount"></div>
+
+<div id="exoAdContainer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999;">
+  <iframe id="exoAdFrame" width="100%" height="100%" frameborder="0" allow="autoplay"></iframe>
+  <button id="skipAdBtn" style="position:absolute; bottom:20px; right:20px; background:#b400ff; color:#fff; border:none; padding:10px 16px; border-radius:6px; font-size:1rem; cursor:pointer; display:none; z-index:10000;">Saltar anuncio</button>
+</div>
 
 <div id="cardContainer"></div>
 <div id="paginationControls"></div>
@@ -893,22 +902,54 @@ function renderSuggestionButtons(dataArray) {
 }
 
 function playVideo(src) {
-  const player = document.getElementById("videoPlayer");
-  const video = document.getElementById("activeVideo");
+  const adContainer = document.getElementById('exoAdContainer');
+  const adFrame = document.getElementById('exoAdFrame');
+  const skipBtn = document.getElementById('skipAdBtn');
+  const player = document.getElementById('videoPlayer');
+  const video = document.getElementById('activeVideo');
 
-  player.style.display = "block";
+  // Mostrar anuncio
+  adContainer.style.display = 'block';
+  adFrame.src = 'https://s.magsrv.com/v1/vast.php?idzone=5738960';
+
+  // Mostrar botón "Saltar anuncio" después de 5 segundos
+  setTimeout(() => {
+    skipBtn.style.display = 'block';
+  }, 5000);
+
+skipBtn.onclick = () => {
+  adFrame.src = '';
+  adContainer.style.display = 'none';
+  skipBtn.style.display = 'none';
+
+  player.style.display = 'block';
   video.src = src;
   video.load();
 
-  video.play().catch(err => {
-    console.warn("Reproducción bloqueada:", err);
-    alert("Toca el video para reproducirlo. Algunos navegadores móviles requieren interacción.");
-  });
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(err => {
+      console.warn("Autoplay bloqueado:", err);
+      // No mostramos nada, el usuario puede tocar el video si lo desea
+    });
+  }
 
-  // 🕒 Abrir Smartlink 2 segundos después
   setTimeout(() => {
     window.open("https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
   }, 3000);
+
+    // 🕒 Abrir Smartlink 3 segundos después
+    setTimeout(() => {
+      window.open("https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+    }, 3000);
+  };
+
+  // Cierre automático del anuncio después de 15 segundos si no se salta
+  setTimeout(() => {
+    if (adContainer.style.display === 'block') {
+      skipBtn.click();
+    }
+  }, 15000);
 }
 
     document.getElementById("closeBtn").onclick = () => {
