@@ -362,6 +362,38 @@ body::before {
   box-shadow: 0 0 12px rgba(180, 0, 255, 0.4);
 }
 
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.03);
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#tabMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tabBtn {
+  flex: 1 1 auto;
+  max-width: 160px;
+  text-align: center;
+}
 
   </style>
   <!-- Adsterra Popunder -->
@@ -404,6 +436,7 @@ body::before {
   <button class="tabBtn active" data-tab="videos">Videos</button>
   <button class="tabBtn" data-tab="anime">Anime</button>
   <button class="tabBtn" data-tab="largos">Videos largos</button>
+  <button class="tabBtn" data-tab="venta">Venta de contenido</button>
 </div>
 
 <div id="searchBar" style="text-align:center; margin-top:1rem;">
@@ -794,6 +827,31 @@ const animeVideos = [
   video: `https://files.catbox.moe/${videoCode}.mp4`
 }));
 
+const ventaCards = [
+  {
+    title: "Pack de prueba hannaowo(no venta)",
+    media: [
+      { type: "img", src: "https://i.imgur.com/snwroAa.jpeg" },
+      { type: "video", src: "https://files.catbox.moe/1tva3r.mp4" },
+      { type: "img", src: "https://i.imgur.com/elpVw2h.jpeg" }
+    ],
+    price: "$3.99",
+    description: "Incluye 4 fotos y 2 video exclusivo",
+    telegram: "https://t.me/+z--_xKuncVE1MDIx"
+  },
+  {
+    title: "Prueba de Hannapunzel(no venta)",
+    media: [
+      { type: "img", src: "https://i.imgur.com/7BXfcrJ.jpeg" },
+      { type: "video", src: "https://files.catbox.moe/fi9k4v.mp4" },
+      { type: "img", src: "https://i.imgur.com/O8dnzh4.jpeg" }
+    ],
+    price: "$1.99",
+    description: "2 videos sin censura",
+    telegram: "https://t.me/+z--_xKuncVE1MDIx"
+  }
+];
+
 function shuffleArray(array) {
   return array
     .map(value => ({ value, sort: Math.random() }))
@@ -869,6 +927,31 @@ pageItems.forEach((card, index) => {
   }
 }
 
+function renderVentaCards(data) {
+  const container = document.getElementById("cardContainer");
+  const countDisplay = document.getElementById("resultCount");
+  const pagination = document.getElementById("paginationControls");
+
+  container.innerHTML = `<h2 style="text-align:center; color:#b400ff; margin-bottom:1rem;">🎁 Packs exclusivos</h2>`;
+  countDisplay.textContent = `Mostrando ${data.length} paquetes disponibles`;
+  pagination.innerHTML = "";
+
+  data.forEach((card, index) => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${card.media[0].src}" alt="Miniatura" style="width:100%; height:290px; object-fit:cover; border-radius:8px 8px 0 0;" />
+      <div class="card-info" style="padding:0.6rem;">
+        <div class="card-title">${card.title}</div>
+        <div class="card-meta">${card.description}</div>
+        <div style="font-weight:bold; color:#b400ff;">${card.price}</div>
+      </div>
+    `;
+    div.onclick = () => openVentaModal(card);
+    container.appendChild(div);
+  });
+}
+
 function renderSuggestionButtons(dataArray) {
   const container = document.getElementById("suggestionButtons");
   container.innerHTML = "";
@@ -918,6 +1001,54 @@ function playVideo(src) {
       player.style.display = "none";
     };
 
+function openVentaModal(card) {
+  const modal = document.getElementById("ventaModal");
+  const content = document.getElementById("ventaContent");
+  content.innerHTML = `
+    <h2 style="text-align:center; color:#b400ff;">${card.title}</h2>
+    <p style="text-align:center; margin-bottom:1rem;">${card.description}</p>
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      ${card.media.map(item => {
+        if (item.type === "img") {
+          return `<img src="${item.src}" style="width:100%; border-radius:8px;" />`;
+        } else if (item.type === "video") {
+          return `<video src="${item.src}" controls muted playsinline style="width:100%; border-radius:8px;"></video>`;
+        }
+      }).join("")}
+    </div>
+    <div style="text-align:center; margin-top:1rem;">
+      <button onclick="window.open('${card.telegram}', '_blank')" style="
+        padding:0.6rem 1.2rem;
+        background:#0088cc;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size:1rem;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+      ">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" style="width:20px; height:20px;" />
+        Ir al Telegram
+      </button>
+    </div>
+  `;
+  modal.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closeVentaModal() {
+  document.getElementById("ventaModal").style.display = "none";
+}
+function mostrarAvisoVenta() {
+  document.getElementById("ventaAviso").style.display = "flex";
+}
+
+function cerrarAvisoVenta() {
+  document.getElementById("ventaAviso").style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 const adCard = {
   title: "🔥 Chicas en vivo ahora",
@@ -945,7 +1076,7 @@ searchInput.addEventListener("focus", () => {
   searchInput.placeholder = `🔍 Buscar: ${random}`;
 });
 
-  document.querySelectorAll(".tabBtn").forEach(btn => {
+ document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
@@ -959,18 +1090,25 @@ searchInput.addEventListener("focus", () => {
       } else if (tab === "anime") {
         renderCards(animeCards, "Anime");
         renderSuggestionButtons(animeCards);
-      } else if (tab === "largos") {
-        const largos = cardsData.filter(card => {
-          const [min, sec] = card.duration.split(":").map(Number);
-          return min >= 2;
-        });
-        renderCards(largos, "Videos largos");
-        renderSuggestionButtons(largos);
-      }
+} else if (tab === "largos") {
+  const largos = cardsData.filter(card => {
+    const [min, sec] = card.duration.split(":").map(Number);
+    return min >= 2;
+  });
+  renderCards(largos, "Videos largos");
+  renderSuggestionButtons(largos);
+} else if (tab === "venta") {
+  mostrarAvisoVenta(); // ✅ Muestra el aviso al entrar
+  renderVentaCards(ventaCards);
+  document.getElementById("suggestionButtons").innerHTML = "";
+  document.getElementById("searchInput").value = "";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
     };
   });
 });
-
+ 
   // ✅ Reactivar botón de edad
   document.getElementById("enterBtn").onclick = () => {
     document.getElementById("ageGate").style.display = "none";
@@ -1044,6 +1182,47 @@ var crakPopInParamsOverlay = {
   }, 3000); // espera 3 segundos
 </script>
 
+<div id="ventaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999; overflow:auto;">
+  <div id="ventaContent" style="max-width:600px; margin:4rem auto; background:#1a1a1a; padding:1rem; border-radius:12px; box-shadow:0 0 20px rgba(180,0,255,0.3); color:white;"></div>
+  <button onclick="closeVentaModal()" style="position:fixed; top:20px; right:20px; background:#b400ff; color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">✕</button>
+</div>
+
+<div id="ventaAviso" style="
+  display:none; /* ✅ Oculto al inicio */
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+">
+
+  <div style="
+    background:#1a1a1a;
+    padding:2rem;
+    border-radius:12px;
+    max-width:400px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(180,0,255,0.3);
+    color:white;
+    font-size:0.95rem;
+    line-height:1.5;
+  ">
+    <h3 style="color:#b400ff; margin-bottom:1rem;">📢 Aviso importante</h3>
+    <p>Este sitio solo muestra el servicio ofrecido. Todos los pagos, entregas y ajustes se realizan directamente con la chica solicitada vía Telegram. Esta plataforma actúa únicamente como intermediario visual. Fase de prueba</p>
+    <button onclick="cerrarAvisoVenta()" style="
+      margin-top:1.5rem;
+      padding:0.6rem 1.2rem;
+      background:#b400ff;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:1rem;
+    ">Entiendo</button>
+  </div>
+</div>
 
 </body>
 </html>
