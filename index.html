@@ -396,8 +396,6 @@ html, body {
 }
 
   </style>
-  <!-- Adsterra Popunder -->
-<script type='text/javascript' src='//crushedshakechasing.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js'></script>
 </head>
 <body>
 
@@ -1003,7 +1001,7 @@ function playVideo(src) {
   // 🕒 Abrir Smartlink 2 segundos después
   setTimeout(() => {
     window.open("https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-  }, 3000);
+  }, 2000);
 }
 
     document.getElementById("closeBtn").onclick = () => {
@@ -1091,6 +1089,10 @@ searchInput.addEventListener("focus", () => {
 
  document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.onclick = () => {
+
+      const ageGate = document.getElementById("ageGate");
+if (ageGate && ageGate.style.display !== "none") return;
+
       document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
