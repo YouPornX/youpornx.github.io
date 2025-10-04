@@ -1061,37 +1061,42 @@ function cerrarAvisoVenta() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-const adCard = {
-  title: "🔥 Chicas en vivo ahora",
-  duration: "Click para entrar",
-  category: "Anuncio",
-  img: "https://i.imgur.com/jYCZis9.png", // Puedes cambiar esta imagen
-  video: "https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2"
-};
+  // ✅ PASO 2: Verificar si ya confirmó edad
+  const confirmed = localStorage.getItem("ageConfirmed");
+  if (confirmed === "true") {
+    document.getElementById("ageGate").style.display = "none";
+  }
+
+  const adCard = {
+    title: "🔥 Chicas en vivo ahora",
+    duration: "Click para entrar",
+    category: "Anuncio",
+    img: "https://i.imgur.com/jYCZis9.png", // Puedes cambiar esta imagen
+    video: "https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2"
+  };
 
   cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 3);
   renderCards(cardsData, "Todos");
   renderSuggestionButtons(cardsData);
 
-    document.getElementById("searchInput").addEventListener("input", e => {
-  const query = e.target.value.toLowerCase();
-  const filtered = cardsData.filter(card => card.title.toLowerCase().includes(query));
-  renderCards(filtered, query ? `Resultados para "${query}"` : "Todos");
-});
+  document.getElementById("searchInput").addEventListener("input", e => {
+    const query = e.target.value.toLowerCase();
+    const filtered = cardsData.filter(card => card.title.toLowerCase().includes(query));
+    renderCards(filtered, query ? `Resultados para "${query}"` : "Todos");
+  });
 
-const searchInput = document.getElementById("searchInput");
-const suggestions = ["Sophie Rain", "Belle Delphine", "Hannaowo", "Jameliz"];
+  const searchInput = document.getElementById("searchInput");
+  const suggestions = ["Sophie Rain", "Belle Delphine", "Hannaowo", "Jameliz"];
 
-searchInput.addEventListener("focus", () => {
-  const random = suggestions[Math.floor(Math.random() * suggestions.length)];
-  searchInput.placeholder = `🔍 Buscar: ${random}`;
-});
+  searchInput.addEventListener("focus", () => {
+    const random = suggestions[Math.floor(Math.random() * suggestions.length)];
+    searchInput.placeholder = `🔍 Buscar: ${random}`;
+  });
 
- document.querySelectorAll(".tabBtn").forEach(btn => {
+  document.querySelectorAll(".tabBtn").forEach(btn => {
     btn.onclick = () => {
-
       const ageGate = document.getElementById("ageGate");
-if (ageGate && ageGate.style.display !== "none") return;
+      if (ageGate && ageGate.style.display !== "none") return;
 
       document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
@@ -1105,29 +1110,29 @@ if (ageGate && ageGate.style.display !== "none") return;
       } else if (tab === "anime") {
         renderCards(animeCards, "Anime");
         renderSuggestionButtons(animeCards);
-} else if (tab === "largos") {
-  const largos = cardsData.filter(card => {
-    const [min, sec] = card.duration.split(":").map(Number);
-    return min >= 2;
-  });
-  renderCards(largos, "Videos largos");
-  renderSuggestionButtons(largos);
-} else if (tab === "venta") {
-  mostrarAvisoVenta(); // ✅ Muestra el aviso al entrar
-  renderVentaCards(ventaCards);
-  document.getElementById("suggestionButtons").innerHTML = "";
-  document.getElementById("searchInput").value = "";
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
+      } else if (tab === "largos") {
+        const largos = cardsData.filter(card => {
+          const [min, sec] = card.duration.split(":").map(Number);
+          return min >= 2;
+        });
+        renderCards(largos, "Videos largos");
+        renderSuggestionButtons(largos);
+      } else if (tab === "venta") {
+        mostrarAvisoVenta(); // ✅ Muestra el aviso al entrar
+        renderVentaCards(ventaCards);
+        document.getElementById("suggestionButtons").innerHTML = "";
+        document.getElementById("searchInput").value = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     };
   });
 });
  
   // ✅ Reactivar botón de edad
-  document.getElementById("enterBtn").onclick = () => {
-    document.getElementById("ageGate").style.display = "none";
-  };
+document.getElementById("enterBtn").onclick = () => {
+  localStorage.setItem("ageConfirmed", "true"); // ✅ Guardamos que ya confirmó
+  document.getElementById("ageGate").style.display = "none";
+};
 
   document.getElementById("exitBtn").onclick = () => {
     alert("Debes ser mayor de edad para acceder a este contenido.");
