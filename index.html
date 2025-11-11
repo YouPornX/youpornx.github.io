@@ -460,7 +460,6 @@ html, body {
   <button class="tabBtn active" data-tab="videos">Videos</button>
   <button class="tabBtn" data-tab="anime">Anime</button>
   <button class="tabBtn" data-tab="largos">Videos largos</button>
-  <button class="tabBtn" data-tab="venta">Venta de contenido</button>
 </div>
 
 <div id="searchBar" style="text-align:center; margin-top:1rem;">
@@ -1001,7 +1000,7 @@ pageItems.forEach((card, index) => {
   div.className = "card";
   div.innerHTML = `
     <div class="card-category">${card.category}</div>
-    <img src="${card.img}" alt="${card.title}" />
+    <img src="${card.img}" alt="${card.title}" loading="lazy" />
     <div class="card-duration">${card.duration}</div>
     <div class="card-info">
       <div class="card-title">${card.title}</div>
@@ -1146,17 +1145,6 @@ function openVentaModal(card) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function closeVentaModal() {
-  document.getElementById("ventaModal").style.display = "none";
-}
-function mostrarAvisoVenta() {
-  document.getElementById("ventaAviso").style.display = "flex";
-}
-
-function cerrarAvisoVenta() {
-  document.getElementById("ventaAviso").style.display = "none";
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   // ✅ PASO 2: Verificar si ya confirmó edad
   const confirmed = localStorage.getItem("ageConfirmed");
@@ -1214,12 +1202,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         renderCards(largos, "Videos largos");
         renderSuggestionButtons(largos);
-      } else if (tab === "venta") {
-        mostrarAvisoVenta(); // ✅ Muestra el aviso al entrar
-        renderVentaCards(ventaCards);
-        document.getElementById("suggestionButtons").innerHTML = "";
-        document.getElementById("searchInput").value = "";
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
   });
@@ -1298,48 +1280,6 @@ var crakPopInParamsOverlay = {
     document.body.appendChild(bannerDiv);
   }, 3000); // espera 3 segundos
 </script>
-
-<div id="ventaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999; overflow:auto;">
-  <div id="ventaContent" style="max-width:600px; margin:4rem auto; background:#1a1a1a; padding:1rem; border-radius:12px; box-shadow:0 0 20px rgba(180,0,255,0.3); color:white;"></div>
-  <button onclick="closeVentaModal()" style="position:fixed; top:20px; right:20px; background:#b400ff; color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">✕</button>
-</div>
-
-<div id="ventaAviso" style="
-  display:none; /* ✅ Oculto al inicio */
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.85);
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-">
-
-  <div style="
-    background:#1a1a1a;
-    padding:2rem;
-    border-radius:12px;
-    max-width:400px;
-    text-align:center;
-    box-shadow:0 0 20px rgba(180,0,255,0.3);
-    color:white;
-    font-size:0.95rem;
-    line-height:1.5;
-  ">
-    <h3 style="color:#b400ff; margin-bottom:1rem;">📢 Aviso importante</h3>
-    <p>Este sitio solo muestra el servicio ofrecido. Todos los pagos, entregas y ajustes se realizan directamente con la chica solicitada vía Telegram. Esta plataforma actúa únicamente como intermediario visual. Fase de prueba</p>
-    <button onclick="cerrarAvisoVenta()" style="
-      margin-top:1.5rem;
-      padding:0.6rem 1.2rem;
-      background:#b400ff;
-      color:white;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:1rem;
-    ">Entiendo</button>
-  </div>
-</div>
 
 <p style="text-align:center; font-size:0.9rem; color:#aaa; margin-top:1rem;">
   Galería con packs exclusivos, nudes artísticos y más. Navegación interactiva y contenido premium para adultos. Diseñada por YouDev.
