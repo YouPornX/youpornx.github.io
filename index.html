@@ -451,6 +451,13 @@ html, body {
   </div>
 </div>
 
+<!-- Mensaje oculto por defecto -->
+<div id="telegramNotice" style="display:none; text-align:center; font-size:14px; background:#262626; padding:12px; border-radius:8px; margin:20px auto; line-height:1.5; color:#fff; max-width:500px;">
+  ⚠️ El grupo de <strong>Telegram</strong> fue deshabilitado y la cuenta del admin congelada.<br>
+  Puedes unirte a nuestra comunidad en <strong>X</strong> donde se pondran las proximas actualizaciones. Próximamente abriremos un grupo en <strong>Discord</strong>.
+</div>
+
+
   <h1 class="logo">You<span>PornX</span></h1>
   <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" class="floating-twitter" aria-label="Twitter">
   <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="Twitter">
@@ -1008,13 +1015,10 @@ html, body {
 ["Chica tetona se abre y masturba a la camara", "7:17", "Masturbacion", "jATpb6k", "urgmpw"],
 ["Recopilacion de chica metiendose cosas por la vagina hasta chorrear", "2:14", "Masturbacion", "aZiaBjY", "e231n8"],
 ["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
-
 ["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
-
 ["Rubia en traje de coneja da sentones a pene de goma", "7:01", "Masturbacion", "UvoHToB", "1q3ru7"],
 ["RedWitch en cosplay de elastigirl chupande verga y cojiendo", "10:09", "Sex", "mfCZfbh", "m9qofd"],
 ["Orgia de lesbianas masturbandose y teniendo sexo", "10:23", "Lesbianas", "CBKE06I", "a9642o"],
-
 ["Hermosa chica masturbandose y metiendose cosas por el culo", "9:06", "Masturbacion", "ntz5gzU", "4l93dm"],
 
 ];
@@ -1301,14 +1305,21 @@ document.addEventListener("DOMContentLoaded", () => {
  
   // Reactivar botón de edad
 document.getElementById("enterBtn").onclick = () => {
-  localStorage.setItem("ageConfirmed", "true"); // ✅ Guardamos que ya confirmó
+  localStorage.setItem("ageConfirmed", "true");
   document.getElementById("ageGate").style.display = "none";
+  document.getElementById("telegramNotice").style.display = "block"; // 👈 Mostrar aviso
 };
 
-  document.getElementById("exitBtn").onclick = () => {
-    alert("Debes ser mayor de edad para acceder a este contenido.");
-    window.location.href = "https://youezx.github.io/YouScripts/";
-  };
+document.getElementById("exitBtn").onclick = () => {
+  alert("Debes ser mayor de edad para acceder a este contenido.");
+  window.location.href = "https://youezx.github.io/YouScripts/";
+};
+
+// Si ya había confirmado antes, ocultamos modal y mostramos aviso directamente
+if (localStorage.getItem("ageConfirmed") === "true") {
+  document.getElementById("ageGate").style.display = "none";
+  document.getElementById("telegramNotice").style.display = "block";
+}
 
   </script>
 
