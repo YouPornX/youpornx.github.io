@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title id="pageTitle">Video</title>
+  <meta name="description" id="pageDesc" content="Reproductor de video">
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #f5f5f5;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    video {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      margin: 2rem auto 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .info {
+      width: 100%;
+      max-width: 900px;
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .info img {
+      width: 180px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    .details {
+      flex: 1;
+    }
+
+    .details h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.6rem;
+      color: #b400ff;
+    }
+
+    .details p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    a.back-btn {
+      margin: 2rem 0;
+      padding: 0.8rem 1.5rem;
+      background: #b400ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    a.back-btn:hover {
+      background: #ff0080;
+    }
+
+    /* 📱 Ajustes para móviles */
+    @media (max-width: 600px) {
+      .info {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .info img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+      }
+
+      .details h1 {
+        font-size: 1.3rem;
+      }
+
+      .details p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video id="videoPlayer" controls autoplay></video>
+
+  <div class="info">
+    <img id="videoThumb" alt="Miniatura">
+    <div class="details">
+      <h1 id="videoTitle">Sin título</h1>
+      <p><strong>Categoría:</strong> <span id="videoDesc">Sin descripción</span></p>
+      <p><strong>Duración:</strong> <span id="videoDuration">--:--</span></p>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">⬅ Volver al inicio</a>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    // Valores por defecto si no hay parámetros
+    const src = params.get("src") || "https://files.catbox.moe/u6qw7b.mp4";
+    const title = params.get("title") || "Nudes";
+    const desc = params.get("desc") || "Video de nudes en HD";
+    const duration = params.get("duration") || "0:22";
+    const thumb = params.get("thumb") || "https://i.imgur.com/SG0I9VL.jpg";
+
+    document.getElementById("videoPlayer").src = src;
+    document.getElementById("videoTitle").textContent = title;
+    document.getElementById("videoDesc").textContent = desc;
+    document.getElementById("videoDuration").textContent = duration;
+    document.getElementById("videoThumb").src = thumb;
+
+    document.title = title + " | YouDev";
+    document.querySelector("meta[name='description']").setAttribute("content", desc);
+  </script>
+</body>
+</html>
