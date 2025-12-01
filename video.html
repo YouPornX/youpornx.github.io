@@ -55,25 +55,21 @@
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
-    .details {
-      flex: 1;
+    .details { flex: 1; }
+
+    .details h1 {
+      margin: 0 0 1rem;
+      font-size: 3.5rem;
+      color: #b400ff;
+      font-weight: bold;
     }
 
-.details h1 {
-  margin: 0 0 1rem;
-  font-size: 3.5rem;   
-  color: #b400ff;
-  font-weight: bold;
-}
-
-.details p {
-  margin: 1rem 0;
-  font-size: 1.8rem;   
-  color: #f5f5f5;      
-  line-height: 2;     
-}
-
-
+    .details p {
+      margin: 1rem 0;
+      font-size: 1.8rem;
+      color: #f5f5f5;
+      line-height: 2;
+    }
 
     a.back-btn {
       margin: 2rem 0;
@@ -86,67 +82,71 @@
       transition: background 0.3s ease;
     }
 
-    a.back-btn:hover {
-      background: #ff0080;
-    }
+    a.back-btn:hover { background: #ff0080; }
 
     /* 📱 Ajustes para móviles */
     @media (max-width: 600px) {
-      .info {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .info img {
-        width: 100%;
-        max-width: 300px;
-        margin-bottom: 1rem;
-      }
-
-      .details h1 {
-        font-size: 1.3rem;
-      }
-
-      .details p {
-        font-size: 0.95rem;
-      }
+      .info { flex-direction: column; text-align: center; }
+      .info img { width: 100%; max-width: 300px; margin-bottom: 1rem; }
+      .details h1 { font-size: 1.6rem; }
+      .details p { font-size: 1.1rem; }
     }
 
-    .ad-popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 9999;
-}
-.ad-content {
-  background: #fff;
-  color: #000;
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 300px;
-}
-.ad-content button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #b400ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.ad-content button:hover {
-  background: #ff0080;
-}
+    /* Recomendaciones */
+    .recommendations {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
 
+    .recommendations h2 {
+      color: #ff0080;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .recommendation-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .recommendation-item {
+      background: #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .recommendation-item img { width: 100%; display: block; }
+
+    .recommendation-item .meta {
+      padding: 0.6rem 0.8rem 0.9rem;
+    }
+
+    .recommendation-item h3 {
+      margin: 0 0 0.3rem;
+      font-size: 1.05rem;
+      color: #f5f5f5;
+      line-height: 1.3;
+    }
+
+    .recommendation-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
   <header>YOUPORNX</header>
 
-  <video id="videoPlayer" controls autoplay></video>
+  <video id="videoPlayer" controls muted></video>
 
   <div class="info">
     <img id="videoThumb" alt="Miniatura">
@@ -159,16 +159,25 @@
 
   <a href="index.html" class="back-btn">⬅ Volver al inicio</a>
 
-  <script>
+  <!-- Recomendaciones -->
+  <div class="recommendations">
+    <h2>Videos recomendados</h2>
+    <div id="recommendationList" class="recommendation-list"></div>
+  </div>
 
+<script>
+  const VIDEO_BASE = "https://files.catbox.moe/";
+  const VIDEO_EXT = ".mp4";
+  const THUMB_BASE = "https://i.imgur.com/";
+  const THUMB_EXT = ".jpg";
+
+  // Cargar el video actual desde parámetros
   const params = new URLSearchParams(window.location.search);
-
-  // Valores por defecto si no hay parámetros
-  const src = params.get("src") || "https://files.catbox.moe/u6qw7b.mp4";
+  const src = params.get("src") || VIDEO_BASE + "u6qw7b" + VIDEO_EXT;
   const title = params.get("title") || "Nudes";
   const desc = params.get("desc") || "Video de nudes en HD";
   const duration = params.get("duration") || "0:22";
-  const thumb = params.get("thumb") || "https://i.imgur.com/SG0I9VL.jpg";
+  const thumb = params.get("thumb") || THUMB_BASE + "SG0I9VL" + THUMB_EXT;
 
   document.getElementById("videoPlayer").src = src;
   document.getElementById("videoTitle").textContent = title;
@@ -179,29 +188,71 @@
   document.title = title + " | YouDev";
   document.querySelector("meta[name='description']").setAttribute("content", desc);
 
-  // ✅ Anuncios automáticos<script>
-const video = document.getElementById("videoPlayer");
+  // ✅ Anuncios automáticos
+  const video = document.getElementById("videoPlayer");
+  video.addEventListener("play", () => {
+    setTimeout(() => {
+      if (!video.paused) {
+        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+      }
+    }, 3000);
+    const intervalo = setInterval(() => {
+      if (!video.paused) {
+        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+      } else {
+        clearInterval(intervalo);
+      }
+    }, 120000);
+  });
 
-video.addEventListener("play", () => {
-  // Primer anuncio a los 3 segundos
-  setTimeout(() => {
-    if (!video.paused) {
-      window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-    }
-  }, 3000); // 3000 ms = 3 segundos
+  // 📌 Lista de videos recomendados
+  // Orden: ["Título", "Duración", "Categoría", "ID de Imgur", "ID de Catbox"]
+  const videos = [
+["RedWitch en cosplay de elastigirl chupande verga y cojiendo", "10:09", "Sex", "mfCZfbh", "m9qofd"],
+["Orgia de lesbianas masturbandose y teniendo sexo", "10:23", "Lesbianas", "CBKE06I", "a9642o"],
+["Hermosa chica masturbandose y metiendose cosas por el culo", "9:06", "Masturbacion", "ntz5gzU", "4l93dm"],
+["Lesbiana se dirviente en coche", "14:51", "Lesbianas", "o9qntYJ", "t8cglq"],
+["Chica dando sentones a pene de goma", "5:18", "Masturbacion", "0iBVHXH", "sqo5iz"],
+["Chica tetona se abre y masturba a la camara", "7:17", "Masturbacion", "jATpb6k", "urgmpw"],
+["Recopilacion de chica metiendose cosas por la vagina hasta chorrear", "2:14", "Masturbacion", "aZiaBjY", "e231n8"],
+["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
+["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
+["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
+["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
+["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
+["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
+["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
+["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
+["Lesbianas juegan y se exhiben en tienda", "19:20", "Lesbianas", "pCCiquz", "nmfude"],
 
-  // Luego, cada 2 minutos adicionales (120000 ms)
-  const intervalo = setInterval(() => {
-    if (!video.paused) {
-      window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-    } else {
-      clearInterval(intervalo); // detener si el video se pausa
-    }
-  }, 120000); // 120000 ms = 2 minutos
-});
+
+  ];
+
+  function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
+
+  const recommendationList = document.getElementById("recommendationList");
+  shuffle(videos).slice(0, 12).forEach(v => {
+    const [t, d, c, imgurId, catboxId] = v; // ⚡ ahora la lógica respeta tu orden
+    const videoUrl = VIDEO_BASE + catboxId + VIDEO_EXT;
+    const thumbUrl = THUMB_BASE + imgurId + THUMB_EXT;
+    const href = `video.html?src=${encodeURIComponent(videoUrl)}&title=${encodeURIComponent(t)}&desc=${encodeURIComponent(c)}&duration=${encodeURIComponent(d)}&thumb=${encodeURIComponent(thumbUrl)}`;
+
+    const item = document.createElement("div");
+    item.className = "recommendation-item";
+    item.innerHTML = `
+      <a href="${href}">
+        <img src="${thumbUrl}" alt="${t}">
+        <div class="meta">
+          <h3>${t}</h3>
+          <p>${c} • ${d}</p>
+        </div>
+      </a>
+    `;
+    recommendationList.appendChild(item);
+  });
 </script>
 
 
-  </script>
+
 </body>
 </html>
