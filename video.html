@@ -141,10 +141,37 @@
       font-size: 0.95rem;
       color: #ccc;
     }
+
+    .logo {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 3rem;
+  font-style: italic;
+  margin: 0;
+  padding: 1.2rem;
+  background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+  color: white;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #333;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+.logo span {
+  color: #b400ff;
+  text-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
+}
+header {
+  width: 100%;
+}
+
   </style>
 </head>
 <body>
-  <header>YOUPORNX</header>
+
+  <header>
+  <h1 class="logo">You<span>PornX</span></h1>
+</header>
+
 
   <video id="videoPlayer" controls muted></video>
 
