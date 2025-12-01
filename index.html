@@ -1104,13 +1104,15 @@ pageItems.forEach((card, index) => {
     </div>
   `;
 
-  div.onclick = () => {
-    if (card.category === "Promo") {
-      window.open(card.video, "_blank");
-    } else {
-      playVideo(card.video);
-    }
-  };
+div.onclick = () => {
+  if (card.category === "Promo") {
+    window.open(card.video, "_blank");
+  } else {
+    const url = `video.html?src=${encodeURIComponent(card.video)}&title=${encodeURIComponent(card.title)}&desc=${encodeURIComponent(card.category)}&duration=${encodeURIComponent(card.duration)}&thumb=${encodeURIComponent(card.img)}`;
+    window.location.href = url;
+  }
+};
+
 
   container.appendChild(div);
 });
