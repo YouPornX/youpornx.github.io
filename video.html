@@ -174,7 +174,14 @@ header {
 </header>
 
 
-  <video id="videoPlayer" controls muted playsinline></video>
+  <video 
+  id="videoPlayer" 
+  controls 
+  preload="metadata" 
+  poster="" 
+  playsinline>
+</video>
+
 
   <div class="info">
     <img id="videoThumb" alt="Miniatura">
@@ -206,6 +213,9 @@ header {
   const desc = params.get("desc") || "Video de nudes en HD";
   const duration = params.get("duration") || "0:22";
   const thumb = params.get("thumb") || THUMB_BASE + "SG0I9VL" + THUMB_EXT;
+  const video = document.getElementById("videoPlayer");
+video.src = src;
+video.poster = thumb;   // 👉 aquí se usa la miniatura como poster
 
   document.getElementById("videoPlayer").src = src;
   document.getElementById("videoTitle").textContent = title;
