@@ -1368,18 +1368,22 @@ var crakPopInParamsOverlay = {
 };
 </script>
 
-<script>
-  setTimeout(() => {
-    const bannerScript = document.createElement("script");
-    bannerScript.src = "//discretioningratitudeadvisedly.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js";
-    bannerScript.async = true;
-    bannerScript.setAttribute("data-cfasync", "false");
-    document.body.appendChild(bannerScript);
+<!-- ... resto de tu código del index ... -->
 
-    const bannerDiv = document.createElement("div");
-    bannerDiv.id = "container-c01ba5080815fe1b8a5a76522b469b2f";
-    document.body.appendChild(bannerDiv);
-  }, 3000); // espera 3 segundos
+<script>
+  window.addEventListener("load", () => {
+    if (!sessionStorage.getItem("popunderShown")) {
+      // Espera 10 segundos antes de cargar el script del popunder
+      setTimeout(() => {
+        const s = document.createElement("script");
+        s.src = "//sillinessshoplifting.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js";
+        s.type = "text/javascript";
+        document.body.appendChild(s);
+        // Marca como mostrado en esta sesión
+        sessionStorage.setItem("popunderShown", "true");
+      }, 10000);
+    }
+  });
 </script>
 
 <script type="text/javascript" src="//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js"></script>
