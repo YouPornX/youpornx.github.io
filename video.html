@@ -109,11 +109,12 @@
       font-size: 2rem;
     }
 
-    .recommendation-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-    }
+.recommendation-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ ahora son 3 columnas */
+  gap: 1rem;
+}
+
 
     .recommendation-item {
       background: #2a2a2a;
