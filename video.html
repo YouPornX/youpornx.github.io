@@ -59,17 +59,21 @@
       flex: 1;
     }
 
-    .details h1 {
-      margin: 0 0 0.5rem;
-      font-size: 1.6rem;
-      color: #b400ff;
-    }
+.details h1 {
+  margin: 0 0 1rem;
+  font-size: 3.5rem;   
+  color: #b400ff;
+  font-weight: bold;
+}
 
-    .details p {
-      margin: 0.3rem 0;
-      font-size: 1rem;
-      color: #ccc;
-    }
+.details p {
+  margin: 1rem 0;
+  font-size: 1.8rem;   
+  color: #f5f5f5;      
+  line-height: 2;     
+}
+
+
 
     a.back-btn {
       margin: 2rem 0;
@@ -156,7 +160,7 @@
   <a href="index.html" class="back-btn">⬅ Volver al inicio</a>
 
   <script>
-    
+
   const params = new URLSearchParams(window.location.search);
 
   // Valores por defecto si no hay parámetros
@@ -175,24 +179,28 @@
   document.title = title + " | YouDev";
   document.querySelector("meta[name='description']").setAttribute("content", desc);
 
-  // ✅ Anuncios automáticos
-  const video = document.getElementById("videoPlayer");
+  // ✅ Anuncios automáticos<script>
+const video = document.getElementById("videoPlayer");
 
-  video.addEventListener("play", () => {
-    // Primer anuncio a los 3 segundos
-    setTimeout(() => {
+video.addEventListener("play", () => {
+  // Primer anuncio a los 3 segundos
+  setTimeout(() => {
+    if (!video.paused) {
       window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-    }, 3000);
+    }
+  }, 3000); // 3000 ms = 3 segundos
 
-    // Segundo anuncio a los 2 minutos (120000 ms)
-    setTimeout(() => {
-      // Solo abrir si el video sigue reproduciéndose
-      if (!video.paused) {
-        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-      }
-    }, 120000);
-  });
+  // Luego, cada 2 minutos adicionales (120000 ms)
+  const intervalo = setInterval(() => {
+    if (!video.paused) {
+      window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+    } else {
+      clearInterval(intervalo); // detener si el video se pausa
+    }
+  }, 120000); // 120000 ms = 2 minutos
+});
 </script>
+
 
   </script>
 </body>
