@@ -1281,7 +1281,7 @@ document.addEventListener("DOMContentLoaded", () => {
     video: "https://crushedshakechasing.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2"
   };
 
-  cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 14);
+  cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 3);
   renderCards(cardsData, "Todos");
   renderSuggestionButtons(cardsData);
 
@@ -1319,7 +1319,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (tab === "largos") {
         const largos = cardsData.filter(card => {
           const [min, sec] = card.duration.split(":").map(Number);
-          return min >= 2;
+          return min >= 3;
         });
         renderCards(largos, "Videos largos");
         renderSuggestionButtons(largos);
@@ -1393,24 +1393,6 @@ var crakPopInParamsOverlay = {
   coverOverlay: true,
   expireDays: 0.01
 };
-</script>
-
-<!-- ... resto de tu código del index ... -->
-
-<script>
-  window.addEventListener("load", () => {
-    if (!sessionStorage.getItem("popunderShown")) {
-      // Espera 10 segundos antes de cargar el script del popunder
-      setTimeout(() => {
-        const s = document.createElement("script");
-        s.src = "//sillinessshoplifting.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js";
-        s.type = "text/javascript";
-        document.body.appendChild(s);
-        // Marca como mostrado en esta sesión
-        sessionStorage.setItem("popunderShown", "true");
-      }, 10000);
-    }
-  });
 </script>
 
 <script type="text/javascript" src="//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js"></script>
