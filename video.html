@@ -111,7 +111,7 @@
 
 .recommendation-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ✅ ahora son 3 columnas */
+  grid-template-columns: repeat(2, 1fr); /* ✅ ahora son 2 columnas */
   gap: 1rem;
 }
 
@@ -216,22 +216,18 @@ header {
   document.title = title + " | YouDev";
   document.querySelector("meta[name='description']").setAttribute("content", desc);
 
-  // ✅ Anuncios automáticos
-  const video = document.getElementById("videoPlayer");
-  video.addEventListener("play", () => {
-    setTimeout(() => {
-      if (!video.paused) {
-        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-      }
-    }, 3000);
-    const intervalo = setInterval(() => {
-      if (!video.paused) {
-        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-      } else {
-        clearInterval(intervalo);
-      }
-    }, 120000);
-  });
+// ✅ Anuncios automáticos basados en tiempo de página
+window.addEventListener("load", () => {
+  // Primer anuncio a los 10 segundos
+  setTimeout(() => {
+    window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+  }, 10000);
+
+  // Luego cada 2 minutos (120000 ms)
+  setInterval(() => {
+    window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+  }, 120000);
+});
 
   // 📌 Lista de videos recomendados
   // Orden: ["Título", "Duración", "Categoría", "ID de Imgur", "ID de Catbox"]
@@ -246,13 +242,26 @@ header {
 ["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
 ["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
 ["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
-["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
 ["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
 ["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
 ["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
 ["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
 ["Lesbianas juegan y se exhiben en tienda", "19:20", "Lesbianas", "pCCiquz", "nmfude"],
-
+["Colegiala se desnuda y masturba", "8:19", "Masturbacion", "tM2OYxW", "xs793j"],
+["Chica camina desnuda en las calles de noche", "4:36", "Exhibicionismo", "Yd13NNn", "s7g8ou"],
+["Chica tetona tocandose", "4:18", "Nudes", "AlpG7jg", "4l36ck"],
+["Chica en traje se spiderman se masturba mientras charla", "22:01", "Masturbacion", "1Gz3Z1p", "oeu622"],
+["Chica en cosplay de mavis se toca", "4:18", "Nudes", "qywf1sI", "lbd3vk"],
+["Chica tetona se toca los pechos y juega con ellos", "2:15", "Tetas", "XFXhNdT", "38w2wm"],
+["Rubia se mete los dedos en el vestidor", "4:49", "Masturbacion", "QeHRYlp", "no56vp"],
+["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
+["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
+["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
+["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
+["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
+["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
+["Chica de hermoso cuerpo juega con dildo mientras se toca en stream pt2", "7:44", "Nudes", "tPlrkVS", "r3sy0l"],
+["Chica en stream prueba a meterse dildo por la vagina", "6:14", "Masturbacion", "5KlKL3f", "nzgaep"],
 
   ];
 
