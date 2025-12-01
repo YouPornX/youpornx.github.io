@@ -17,6 +17,17 @@
       min-height: 100vh;
     }
 
+    header {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, #b400ff, #ff0080);
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 2px;
+    }
+
     video {
       width: 100%;
       max-width: 900px;
@@ -96,9 +107,41 @@
         font-size: 0.95rem;
       }
     }
+
+    .ad-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+.ad-content {
+  background: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+}
+.ad-content button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #b400ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.ad-content button:hover {
+  background: #ff0080;
+}
+
   </style>
 </head>
 <body>
+  <header>YOUPORNX</header>
+
   <video id="videoPlayer" controls autoplay></video>
 
   <div class="info">
@@ -113,23 +156,44 @@
   <a href="index.html" class="back-btn">⬅ Volver al inicio</a>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
+    
+  const params = new URLSearchParams(window.location.search);
 
-    // Valores por defecto si no hay parámetros
-    const src = params.get("src") || "https://files.catbox.moe/u6qw7b.mp4";
-    const title = params.get("title") || "Nudes";
-    const desc = params.get("desc") || "Video de nudes en HD";
-    const duration = params.get("duration") || "0:22";
-    const thumb = params.get("thumb") || "https://i.imgur.com/SG0I9VL.jpg";
+  // Valores por defecto si no hay parámetros
+  const src = params.get("src") || "https://files.catbox.moe/u6qw7b.mp4";
+  const title = params.get("title") || "Nudes";
+  const desc = params.get("desc") || "Video de nudes en HD";
+  const duration = params.get("duration") || "0:22";
+  const thumb = params.get("thumb") || "https://i.imgur.com/SG0I9VL.jpg";
 
-    document.getElementById("videoPlayer").src = src;
-    document.getElementById("videoTitle").textContent = title;
-    document.getElementById("videoDesc").textContent = desc;
-    document.getElementById("videoDuration").textContent = duration;
-    document.getElementById("videoThumb").src = thumb;
+  document.getElementById("videoPlayer").src = src;
+  document.getElementById("videoTitle").textContent = title;
+  document.getElementById("videoDesc").textContent = desc;
+  document.getElementById("videoDuration").textContent = duration;
+  document.getElementById("videoThumb").src = thumb;
 
-    document.title = title + " | YouDev";
-    document.querySelector("meta[name='description']").setAttribute("content", desc);
+  document.title = title + " | YouDev";
+  document.querySelector("meta[name='description']").setAttribute("content", desc);
+
+  // ✅ Anuncios automáticos
+  const video = document.getElementById("videoPlayer");
+
+  video.addEventListener("play", () => {
+    // Primer anuncio a los 3 segundos
+    setTimeout(() => {
+      window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+    }, 3000);
+
+    // Segundo anuncio a los 2 minutos (120000 ms)
+    setTimeout(() => {
+      // Solo abrir si el video sigue reproduciéndose
+      if (!video.paused) {
+        window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
+      }
+    }, 120000);
+  });
+</script>
+
   </script>
 </body>
 </html>
