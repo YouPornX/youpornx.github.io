@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title id="pageTitle">Video</title>
   <meta name="description" id="pageDesc" content="Reproductor de video">
-  <style>
+<style>
+    /* ===== BLOQUEO DE ZOOM EN MÓVILES ===== */
     body {
       background: #0f0f0f;
       color: #f5f5f5;
@@ -15,17 +16,34 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      /* Bloquear zoom en móviles */
+      touch-action: pan-y pinch-zoom; /* Permite scroll vertical pero bloquea el zoom con pellizco */
+    }
+
+    /* Header igual al otro CSS */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      font-size: 3rem;
+      font-style: italic;
+      margin: 0;
+      padding: 1.2rem;
+      background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+      color: white;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #b400ff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .logo span {
+      color: #b400ff;
+      text-shadow: 0 0 15px #b400ff, 0 0 30px rgba(180, 0, 255, 0.5);
     }
 
     header {
       width: 100%;
-      padding: 1rem;
-      background: linear-gradient(90deg, #b400ff, #ff0080);
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-      letter-spacing: 2px;
     }
 
     video {
@@ -33,7 +51,14 @@
       max-width: 900px;
       border-radius: 12px;
       margin: 2rem auto 1rem;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      box-shadow: 0 0 20px rgba(180, 0, 255, 0.3);
+      border: 2px solid rgba(180, 0, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    video:hover {
+      box-shadow: 0 0 30px rgba(180, 0, 255, 0.5);
+      border-color: #b400ff;
     }
 
     .info {
@@ -42,17 +67,32 @@
       background: #1a1a1a;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      box-shadow: 0 0 15px rgba(180, 0, 255, 0.2);
       display: flex;
       flex-direction: row;
       gap: 1.5rem;
       align-items: center;
+      border: 1px solid rgba(180, 0, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .info:hover {
+      box-shadow: 0 0 25px rgba(180, 0, 255, 0.3);
+      border-color: #b400ff;
     }
 
     .info img {
       width: 180px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      box-shadow: 0 0 15px rgba(180, 0, 255, 0.3);
+      border: 2px solid rgba(180, 0, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .info img:hover {
+      transform: scale(1.02);
+      border-color: #b400ff;
+      box-shadow: 0 0 25px #b400ff;
     }
 
     .details { flex: 1; }
@@ -62,6 +102,8 @@
       font-size: 3.5rem;
       color: #b400ff;
       font-weight: bold;
+      text-shadow: 0 0 20px rgba(180, 0, 255, 0.5);
+      letter-spacing: 2px;
     }
 
     .details p {
@@ -69,30 +111,60 @@
       font-size: 1.8rem;
       color: #f5f5f5;
       line-height: 2;
+      border-left: 4px solid #b400ff;
+      padding-left: 1rem;
+      background: rgba(180, 0, 255, 0.05);
+      border-radius: 0 8px 8px 0;
     }
 
+    /* Botón de volver mejorado */
     a.back-btn {
       margin: 2rem 0;
-      padding: 0.8rem 1.5rem;
-      background: #b400ff;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, #b400ff, #ff0080);
       color: white;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 50px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(180, 0, 255, 0.4);
+      border: 2px solid rgba(255,255,255,0.2);
+      display: inline-block;
     }
 
-    a.back-btn:hover { background: #ff0080; }
+    a.back-btn:hover { 
+      background: linear-gradient(135deg, #ff0080, #b400ff);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(180, 0, 255, 0.6);
+      border-color: rgba(255,255,255,0.4);
+    }
 
-    /* 📱 Ajustes para móviles */
+    a.back-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Ajustes para móviles */
     @media (max-width: 600px) {
       .info { flex-direction: column; text-align: center; }
       .info img { width: 100%; max-width: 300px; margin-bottom: 1rem; }
-      .details h1 { font-size: 1.6rem; }
-      .details p { font-size: 1.1rem; }
+      .details h1 { font-size: 2.2rem; }
+      .details p { 
+        font-size: 1.2rem; 
+        border-left: none;
+        border-top: 4px solid #b400ff;
+        padding-left: 0;
+        padding-top: 1rem;
+      }
+      
+      .logo {
+        font-size: 2.2rem;
+        padding: 1rem;
+      }
     }
 
-    /* Recomendaciones */
+    /* Recomendaciones mejoradas */
     .recommendations {
       width: 100%;
       max-width: 900px;
@@ -100,72 +172,144 @@
       background: #1a1a1a;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(180, 0, 255, 0.2);
+      border: 1px solid rgba(180, 0, 255, 0.2);
     }
 
     .recommendations h2 {
       color: #ff0080;
       margin-bottom: 1rem;
       font-size: 2rem;
+      text-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
     }
 
-.recommendation-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ✅ ahora son 2 columnas */
-  gap: 1rem;
-}
+    .recommendations h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #b400ff, #ff0080);
+      border-radius: 3px;
+    }
 
+    .recommendation-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
 
+    /* Items de recomendación mejorados */
     .recommendation-item {
       background: #2a2a2a;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       text-align: left;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(180, 0, 255, 0.2);
+      cursor: pointer;
+      position: relative;
     }
 
-    .recommendation-item img { width: 100%; display: block; }
+    .recommendation-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(180, 0, 255, 0.4);
+      border-color: #b400ff;
+    }
+
+    .recommendation-item:active {
+      transform: translateY(0);
+    }
+
+    .recommendation-item img { 
+      width: 100%; 
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .recommendation-item:hover img {
+      transform: scale(1.05);
+    }
 
     .recommendation-item .meta {
-      padding: 0.6rem 0.8rem 0.9rem;
+      padding: 0.8rem;
+      background: linear-gradient(to top, #2a2a2a, #333);
     }
 
     .recommendation-item h3 {
       margin: 0 0 0.3rem;
-      font-size: 1.05rem;
-      color: #f5f5f5;
-      line-height: 1.3;
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .recommendation-item:hover h3 {
+      color: #b400ff;
     }
 
     .recommendation-item p {
       margin: 0;
-      font-size: 0.95rem;
-      color: #ccc;
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
-    .logo {
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  font-size: 3rem;
-  font-style: italic;
-  margin: 0;
-  padding: 1.2rem;
-  background: linear-gradient(to right, #1a1a1a, #2c2c2c);
-  color: white;
-  letter-spacing: 1px;
-  border-bottom: 1px solid #333;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-}
-.logo span {
-  color: #b400ff;
-  text-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
-}
-header {
-  width: 100%;
-}
+    .recommendation-item p::before {
+      content: '▶';
+      color: #b400ff;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
 
-  </style>
+    /* Badge de duración */
+    .rec-duration {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid #b400ff;
+      z-index: 2;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #b400ff, #ff0080);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #ff0080, #b400ff);
+    }
+
+    /* Ajuste para el header en móvil */
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2rem;
+        padding: 0.8rem;
+      }
+    }
+</style>
 </head>
 <body>
 
