@@ -5,628 +5,167 @@
   <title id="pageTitle">Video</title>
   <meta name="description" id="pageDesc" content="Reproductor de video">
   <style>
-    /* ===== VARIABLES Y RESET ===== */
-    :root {
-        --primary: #b400ff;
-        --primary-light: #c44bff;
-        --primary-dark: #8c00cc;
-        --secondary: #ff0080;
-        --secondary-light: #ff4da6;
-        --bg-dark: #0a0a0a;
-        --bg-medium: #141414;
-        --bg-light: #1f1f1f;
-        --bg-card: #1a1a1a;
-        --text: #ffffff;
-        --text-muted: #b0b0b0;
-        --text-soft: #e0e0e0;
-        --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
-        --gradient-hover: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
-        --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.4);
-        --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
-        --shadow-primary: 0 10px 30px rgba(180, 0, 255, 0.3);
-        --border-glow: 0 0 15px rgba(180, 0, 255, 0.3);
-        --glass-effect: rgba(255, 255, 255, 0.05);
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     body {
-        background: var(--bg-dark);
-        color: var(--text);
-        font-family: 'Segoe UI', 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        position: relative;
-        line-height: 1.6;
-    }
-
-    /* Fondo animado sutil */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 30% 30%, rgba(180, 0, 255, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 70%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
-        z-index: -1;
-        pointer-events: none;
-        animation: backgroundShift 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes backgroundShift {
-        0% { opacity: 0.5; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1.2); }
-    }
-
-    /* ===== HEADER MEJORADO ===== */
-    .logo {
-        font-family: 'Playfair Display', serif;
-        text-align: center;
-        font-size: 3.5rem;
-        font-style: italic;
-        margin: 0;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-        color: white;
-        letter-spacing: 2px;
-        border-bottom: 2px solid var(--primary);
-        text-shadow: 0 0 20px rgba(180, 0, 255, 0.5);
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .logo::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(180, 0, 255, 0.2) 0%, transparent 70%);
-        animation: rotate 15s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .logo span {
-        color: var(--primary);
-        text-shadow: 0 0 30px var(--primary), 0 0 60px rgba(180, 0, 255, 0.5);
-        position: relative;
-        display: inline-block;
-        animation: glowPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-        0%, 100% { text-shadow: 0 0 30px var(--primary), 0 0 60px rgba(180, 0, 255, 0.5); }
-        50% { text-shadow: 0 0 50px var(--primary), 0 0 90px rgba(180, 0, 255, 0.8); }
+      background: #0f0f0f;
+      color: #f5f5f5;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     header {
-        width: 100%;
-        background: var(--gradient-primary);
-        text-align: center;
-        padding: 0;
-        /* El header ya no tiene estilos directos, usamos .logo */
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, #b400ff, #ff0080);
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 2px;
     }
 
-    /* ===== REPRODUCTOR DE VIDEO MEJORADO ===== */
     video {
-        width: 100%;
-        max-width: 1000px;
-        border-radius: 16px;
-        margin: 2rem auto 1.5rem;
-        box-shadow: var(--shadow-lg), var(--border-glow);
-        transition: all 0.4s ease;
-        border: 2px solid rgba(180, 0, 255, 0.2);
-        background: #000;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      margin: 2rem auto 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
-    video:hover {
-        box-shadow: 0 20px 40px rgba(180, 0, 255, 0.4);
-        transform: scale(1.01);
-        border-color: var(--primary);
-    }
-
-    /* ===== SECCIÓN DE INFORMACIÓN MEJORADA ===== */
     .info {
-        width: 100%;
-        max-width: 1000px;
-        background: rgba(26, 26, 26, 0.8);
-        backdrop-filter: blur(15px);
-        padding: 2rem;
-        border-radius: 24px;
-        box-shadow: var(--shadow-lg);
-        display: flex;
-        flex-direction: row;
-        gap: 2.5rem;
-        align-items: center;
-        border: 1px solid rgba(180, 0, 255, 0.2);
-        transition: all 0.4s ease;
-        margin: 1rem auto;
-    }
-
-    .info:hover {
-        border-color: var(--primary);
-        box-shadow: 0 15px 40px rgba(180, 0, 255, 0.3);
-        transform: translateY(-5px);
+      width: 100%;
+      max-width: 900px;
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .info img {
-        width: 200px;
-        border-radius: 16px;
-        box-shadow: var(--shadow-md), var(--border-glow);
-        transition: all 0.4s ease;
-        border: 2px solid rgba(180, 0, 255, 0.3);
+      width: 180px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
-    .info img:hover {
-        transform: scale(1.05);
-        border-color: var(--primary);
-        box-shadow: 0 15px 35px rgba(180, 0, 255, 0.5);
-    }
-
-    .details {
-        flex: 1;
-    }
+    .details { flex: 1; }
 
     .details h1 {
-        margin: 0 0 1rem;
-        font-size: 3rem;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-        letter-spacing: 1px;
-        line-height: 1.2;
-        text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        animation: titleGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes titleGlow {
-        0%, 100% { filter: brightness(1); }
-        50% { filter: brightness(1.2); }
+      margin: 0 0 1rem;
+      font-size: 3.5rem;
+      color: #b400ff;
+      font-weight: bold;
     }
 
     .details p {
-        margin: 1.5rem 0;
-        font-size: 1.3rem;
-        color: var(--text-soft);
-        line-height: 1.8;
-        border-left: 4px solid var(--primary);
-        padding-left: 1.5rem;
-        background: rgba(180, 0, 255, 0.05);
-        border-radius: 0 12px 12px 0;
+      margin: 1rem 0;
+      font-size: 1.8rem;
+      color: #f5f5f5;
+      line-height: 2;
     }
 
-    /* ===== BOTÓN DE VOLVER MEJORADO ===== */
     a.back-btn {
-        margin: 2rem 0;
-        padding: 1rem 2.5rem;
-        background: var(--gradient-primary);
-        color: white;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: bold;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-        transition: all 0.4s ease;
-        box-shadow: var(--shadow-md), 0 0 20px rgba(180, 0, 255, 0.3);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
+      margin: 2rem 0;
+      padding: 0.8rem 1.5rem;
+      background: #b400ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
     }
 
-    a.back-btn::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
-        z-index: 0;
+    a.back-btn:hover { background: #ff0080; }
+
+    /* 📱 Ajustes para móviles */
+    @media (max-width: 600px) {
+      .info { flex-direction: column; text-align: center; }
+      .info img { width: 100%; max-width: 300px; margin-bottom: 1rem; }
+      .details h1 { font-size: 1.6rem; }
+      .details p { font-size: 1.1rem; }
     }
 
-    a.back-btn:hover::before {
-        width: 300px;
-        height: 300px;
-    }
-
-    a.back-btn:hover {
-        background: var(--gradient-hover);
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: var(--shadow-lg), 0 0 30px rgba(180, 0, 255, 0.5);
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    a.back-btn span {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* ===== SECCIÓN DE RECOMENDACIONES MEJORADA ===== */
+    /* Recomendaciones */
     .recommendations {
-        width: 100%;
-        max-width: 1000px;
-        margin: 2rem auto;
-        background: rgba(26, 26, 26, 0.8);
-        backdrop-filter: blur(15px);
-        padding: 2rem;
-        border-radius: 24px;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid rgba(180, 0, 255, 0.2);
-        transition: all 0.4s ease;
-    }
-
-    .recommendations:hover {
-        border-color: var(--secondary);
-        box-shadow: 0 15px 40px rgba(255, 0, 128, 0.2);
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
 
     .recommendations h2 {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 1.5rem;
-        font-size: 2.5rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        position: relative;
-        display: inline-block;
+      color: #ff0080;
+      margin-bottom: 1rem;
+      font-size: 2rem;
     }
 
-    .recommendations h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: var(--gradient-primary);
-        border-radius: 3px;
-        animation: lineWidth 3s ease-in-out infinite;
-    }
+.recommendation-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ ahora son 2 columnas */
+  gap: 1rem;
+}
 
-    @keyframes lineWidth {
-        0%, 100% { width: 100%; }
-        50% { width: 70%; }
-    }
-
-    .recommendation-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
 
     .recommendation-item {
-        background: rgba(42, 42, 42, 0.8);
-        backdrop-filter: blur(5px);
-        border-radius: 16px;
-        overflow: hidden;
-        text-align: left;
-        box-shadow: var(--shadow-md);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 1px solid rgba(180, 0, 255, 0.1);
-        cursor: pointer;
-        position: relative;
+      background: #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .recommendation-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, transparent, rgba(180, 0, 255, 0.1), transparent);
-        transform: translateX(-100%);
-        transition: transform 0.6s ease;
-        pointer-events: none;
-    }
-
-    .recommendation-item:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: var(--shadow-lg), 0 0 30px rgba(180, 0, 255, 0.3);
-        border-color: var(--primary);
-    }
-
-    .recommendation-item:hover::before {
-        transform: translateX(100%);
-    }
-
-    .recommendation-item img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s ease;
-    }
-
-    .recommendation-item:hover img {
-        transform: scale(1.1);
-    }
+    .recommendation-item img { width: 100%; display: block; }
 
     .recommendation-item .meta {
-        padding: 1rem;
-        background: linear-gradient(to top, #2a2a2a, transparent);
+      padding: 0.6rem 0.8rem 0.9rem;
     }
 
     .recommendation-item h3 {
-        margin: 0 0 0.3rem;
-        font-size: 1.1rem;
-        color: var(--text);
-        font-weight: 600;
-        line-height: 1.4;
-        transition: color 0.3s ease;
-    }
-
-    .recommendation-item:hover h3 {
-        color: var(--primary);
+      margin: 0 0 0.3rem;
+      font-size: 1.05rem;
+      color: #f5f5f5;
+      line-height: 1.3;
     }
 
     .recommendation-item p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+      margin: 0;
+      font-size: 0.95rem;
+      color: #ccc;
     }
 
-    .recommendation-item p::before {
-        content: '▶';
-        color: var(--primary);
-        font-size: 0.8rem;
-        opacity: 0.7;
-    }
+    .logo {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 3rem;
+  font-style: italic;
+  margin: 0;
+  padding: 1.2rem;
+  background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+  color: white;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #333;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+.logo span {
+  color: #b400ff;
+  text-shadow: 0 0 10px rgba(180, 0, 255, 0.5);
+}
+header {
+  width: 100%;
+}
 
-    /* Badge de duración (opcional, si quieres añadirlo) */
-    .duration-badge {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 2;
-    }
-
-    /* ===== ANIMACIONES ADICIONALES ===== */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .info, .recommendations, video, a.back-btn {
-        animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    .recommendations { animation-delay: 0.2s; }
-    a.back-btn { animation-delay: 0.4s; }
-
-    /* ===== SCROLLBAR PERSONALIZADO ===== */
-    ::-webkit-scrollbar {
-        width: 12px;
-        height: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: var(--bg-dark);
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-radius: 6px;
-        border: 3px solid var(--bg-dark);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
-    }
-
-    /* ===== RESPONSIVE MEJORADO ===== */
-    @media (max-width: 1024px) {
-        .info, .recommendations, video {
-            max-width: 90%;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .logo {
-            font-size: 2.8rem;
-            padding: 1.2rem;
-        }
-
-        .info {
-            flex-direction: column;
-            text-align: center;
-            padding: 1.5rem;
-            gap: 1.5rem;
-        }
-
-        .info img {
-            width: 80%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .details h1 {
-            font-size: 2.2rem;
-        }
-
-        .details p {
-            font-size: 1.1rem;
-            padding-left: 1rem;
-        }
-
-        .recommendations h2 {
-            font-size: 2rem;
-        }
-
-        .recommendation-list {
-            gap: 1rem;
-        }
-
-        .recommendation-item h3 {
-            font-size: 1rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .logo {
-            font-size: 2.2rem;
-            padding: 1rem;
-        }
-
-        video {
-            border-radius: 12px;
-            margin: 1rem auto;
-        }
-
-        .info {
-            padding: 1.2rem;
-        }
-
-        .info img {
-            width: 100%;
-        }
-
-        .details h1 {
-            font-size: 1.8rem;
-        }
-
-        .details p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        a.back-btn {
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .recommendations {
-            padding: 1.2rem;
-        }
-
-        .recommendations h2 {
-            font-size: 1.6rem;
-        }
-
-        .recommendation-list {
-            grid-template-columns: 1fr; /* 1 columna en móvil */
-            gap: 0.8rem;
-        }
-
-        .recommendation-item .meta {
-            padding: 0.8rem;
-        }
-
-        .recommendation-item h3 {
-            font-size: 0.95rem;
-        }
-
-        .recommendation-item p {
-            font-size: 0.85rem;
-        }
-    }
-
-    /* ===== EFECTOS DE CARGA ===== */
-    .loading {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        border: 3px solid rgba(180, 0, 255, 0.3);
-        border-top-color: var(--primary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-
-    /* ===== TOOLTIPS MEJORADOS ===== */
-    [data-tooltip] {
-        position: relative;
-        cursor: help;
-    }
-
-    [data-tooltip]::before {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-5px);
-        background: var(--gradient-primary);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-md);
-        z-index: 1000;
-        pointer-events: none;
-    }
-
-    [data-tooltip]:hover::before {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(-10px);
-    }
-
-    /* ===== GLASSMORPHISM EFFECT ===== */
-    .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-    }
-
-    /* ===== TEXTO CON GRADIENTE ===== */
-    .gradient-text {
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-    }
-</style>
+  </style>
 </head>
 <body>
 
@@ -703,29 +242,36 @@ window.addEventListener("load", () => {
   // 📌 Lista de videos recomendados
   // Orden: ["Título", "Duración", "Categoría", "ID de Imgur", "ID de Catbox"]
   const videos = [
-
+["RedWitch en cosplay de elastigirl chupande verga y cojiendo", "10:09", "Sex", "mfCZfbh", "m9qofd"],
+["Orgia de lesbianas masturbandose y teniendo sexo", "10:23", "Lesbianas", "CBKE06I", "a9642o"],
+["Hermosa chica masturbandose y metiendose cosas por el culo", "9:06", "Masturbacion", "ntz5gzU", "4l93dm"],
+["Lesbiana se dirviente en coche", "14:51", "Lesbianas", "o9qntYJ", "t8cglq"],
+["Chica dando sentones a pene de goma", "5:18", "Masturbacion", "0iBVHXH", "sqo5iz"],
+["Chica tetona se abre y masturba a la camara", "7:17", "Masturbacion", "jATpb6k", "urgmpw"],
 ["Recopilacion de chica metiendose cosas por la vagina hasta chorrear", "2:14", "Masturbacion", "aZiaBjY", "e231n8"],
 ["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
 ["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
 ["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
 ["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
 ["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
+["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
+["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
+["Lesbianas juegan y se exhiben en tienda", "19:20", "Lesbianas", "pCCiquz", "nmfude"],
 ["Colegiala se desnuda y masturba", "8:19", "Masturbacion", "tM2OYxW", "xs793j"],
 ["Chica camina desnuda en las calles de noche", "4:36", "Exhibicionismo", "Yd13NNn", "s7g8ou"],
+["Chica tetona tocandose", "4:18", "Nudes", "AlpG7jg", "4l36ck"],
+["Chica en traje se spiderman se masturba mientras charla", "22:01", "Masturbacion", "1Gz3Z1p", "oeu622"],
+["Chica en cosplay de mavis se toca", "4:18", "Nudes", "qywf1sI", "lbd3vk"],
+["Chica tetona se toca los pechos y juega con ellos", "2:15", "Tetas", "XFXhNdT", "38w2wm"],
+["Rubia se mete los dedos en el vestidor", "4:49", "Masturbacion", "QeHRYlp", "no56vp"],
+["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
+["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
+["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
+["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
 ["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
+["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
 ["Chica de hermoso cuerpo juega con dildo mientras se toca en stream pt2", "7:44", "Nudes", "tPlrkVS", "r3sy0l"],
 ["Chica en stream prueba a meterse dildo por la vagina", "6:14", "Masturbacion", "5KlKL3f", "nzgaep"],
-["Chica rubia masturbandose con productos", "4:21", "Masturbacion", "BlnJWxa", "jhbyxp"],
-["Chica rubia coje en coche", "3:39", "Sex", "Dy4HiMi", "ds8efy"],
-["Izzy metiendose juguete por la vagina", "2:35", "Masturbacion", "3uN7Hbm", "foih7l"],
-["Rubia en cosplay de ash ketchum gime como loca mientras se masturba", "3:49", "Masturbacion", "uqcCdmt", "7kqtax"],
-["Chica dando sentones en pene de goma", "13:02", "Masturbacion", "JPkmjvr", "3ih13k"],
-["Peli naranja se mete juguete por el culo y vagina", "12:09", "Masturbacion", "F4RlCBk", "8b9lo4"],
-["Orgia de chicas lesbianas masturbandose", "7:47", "Lesbianas", "RX0gzwp", "yw7omu"],
-["Streamer cute se masturba con juguetes", "10:27", "Masturbacion", "r2pJfS4", "vm489u"],
-["Chica es cojida duro por la boca y culo", "20:18", "Sex", "zEBWexy", "0j7qw6"],
-["Nicole juega con sus grandes tetas", "3:13", "Tetas", "ZTkxNJc", "8awsvi"],
-["Rubia lame pene de goma y salta en el", "5:24", "Masturbacion", "L8nkq5L", "syha3j"],
 
   ];
 
