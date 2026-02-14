@@ -34,7 +34,9 @@
 </script>
 
 <style>
-    /* RESET Y VARIABLES GLOBALES */
+    /* ===== VERSIÓN OPTIMIZADA PARA MÓVIL ===== */
+    /* Eliminados: blurs, animaciones complejas, gradientes pesados */
+    
     * {
         margin: 0;
         padding: 0;
@@ -43,15 +45,13 @@
 
     :root {
         --primary: #b400ff;
-        --primary-glow: rgba(180, 0, 255, 0.5);
-        --primary-soft: rgba(180, 0, 255, 0.15);
+        --primary-glow: rgba(180, 0, 255, 0.3);
         --bg-dark: #0a0a0a;
         --bg-medium: #141414;
         --bg-light: #1f1f1f;
         --text: #ffffff;
         --text-muted: #b0b0b0;
         --gradient: linear-gradient(135deg, #b400ff, #8a2be2);
-        --gradient-hover: linear-gradient(135deg, #c715ff, #9b3aff);
     }
 
     body {
@@ -59,11 +59,10 @@
         font-family: 'Roboto', sans-serif;
         background: var(--bg-dark);
         color: var(--text);
-        position: relative;
         min-height: 100vh;
     }
 
-    /* Fondo con efecto más sutil y elegante */
+    /* Fondo más simple (sin blur) */
     body::before {
         content: "";
         position: fixed;
@@ -71,398 +70,252 @@
         width: 100%; height: 100%;
         background: url('https://i.imgur.com/HaVTHeY.jpeg') no-repeat center center;
         background-size: cover;
-        opacity: 0.08;
-        z-index: -2;
-        pointer-events: none;
-        filter: blur(2px);
-    }
-
-    /* Overlay con gradiente para mejor legibilidad */
-    body::after {
-        content: "";
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: radial-gradient(circle at 50% 50%, transparent 0%, var(--bg-dark) 100%);
+        opacity: 0.05;
         z-index: -1;
         pointer-events: none;
     }
 
-    /* ===== HEADER Y LOGO MEJORADOS ===== */
+    /* ===== HEADER SIMPLIFICADO ===== */
     .logo {
         font-family: 'Playfair Display', serif;
         text-align: center;
-        font-size: 3.2rem;
+        font-size: 2.5rem;
         font-style: italic;
         margin: 0;
-        padding: 1.5rem 1.2rem;
-        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        padding: 1rem;
+        background: #1a1a1a;
         color: white;
-        letter-spacing: 2px;
-        border-bottom: 2px solid rgba(180, 0, 255, 0.3);
-        text-shadow: 0 0 20px var(--primary-glow);
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .logo::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(180, 0, 255, 0.1) 0%, transparent 70%);
-        animation: rotate 15s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        letter-spacing: 1px;
+        border-bottom: 2px solid var(--primary);
+        text-shadow: 0 0 10px var(--primary-glow);
     }
 
     .logo span {
         color: var(--primary);
-        text-shadow: 0 0 20px var(--primary-glow), 0 0 40px rgba(180, 0, 255, 0.3);
-        position: relative;
-        display: inline-block;
-        animation: glow 3s ease-in-out infinite;
+        text-shadow: 0 0 10px var(--primary-glow);
     }
 
-    @keyframes glow {
-        0%, 100% { text-shadow: 0 0 20px var(--primary-glow), 0 0 40px rgba(180, 0, 255, 0.3); }
-        50% { text-shadow: 0 0 30px var(--primary-glow), 0 0 60px rgba(180, 0, 255, 0.5); }
-    }
-
-    /* ===== TABS O PESTAÑAS MEJORADAS ===== */
+    /* ===== TABS SIMPLIFICADAS ===== */
     #tabMenu {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.8rem;
-        padding: 1.5rem 1rem;
-        max-width: 100%;
-        box-sizing: border-box;
-        background: rgba(20, 20, 20, 0.5);
-        backdrop-filter: blur(10px);
-        margin: 1rem 0;
-        border-radius: 50px;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-        border: 1px solid rgba(180, 0, 255, 0.1);
+        gap: 0.5rem;
+        padding: 1rem;
+        background: #1a1a1a;
+        margin: 0.5rem;
+        border-radius: 30px;
+        border: 1px solid rgba(180, 0, 255, 0.2);
     }
 
     .tabBtn {
-        background: rgba(34, 34, 34, 0.8);
+        background: #222;
         color: var(--text);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 0.7rem 1.5rem;
-        margin: 0;
-        border-radius: 30px;
+        border: 1px solid rgba(180, 0, 255, 0.1);
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
         cursor: pointer;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 500;
-        letter-spacing: 0.5px;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(5px);
+        transition: all 0.2s ease;
         flex: 0 1 auto;
-        min-width: 100px;
-    }
-
-    .tabBtn::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: var(--primary-soft);
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
-        z-index: 0;
-    }
-
-    .tabBtn:hover::before {
-        width: 300px;
-        height: 300px;
-    }
-
-    .tabBtn span {
-        position: relative;
-        z-index: 1;
+        min-width: 70px;
     }
 
     .tabBtn.active {
         background: var(--gradient);
         border-color: var(--primary);
-        box-shadow: 0 5px 20px var(--primary-glow);
-        transform: translateY(-2px);
     }
 
-    .tabBtn:hover {
-        background: #333;
-        border-color: var(--primary);
-        transform: translateY(-2px);
+    .tabBtn:active {
+        transform: scale(0.95);
     }
 
-    /* ===== BARRA DE BÚSQUEDA MEJORADA ===== */
+    /* ===== BARRA DE BÚSQUEDA SIMPLIFICADA ===== */
     #searchBar {
         display: flex;
         justify-content: center;
-        padding: 1rem;
-        margin: 1rem 0;
+        padding: 0.5rem;
     }
 
     #searchBar input {
-        background: linear-gradient(135deg, #1a1a1a, #252525);
+        background: #1a1a1a;
         color: var(--text);
         border: 2px solid rgba(180, 0, 255, 0.2);
-        padding: 12px 24px;
-        font-size: 1.1rem;
-        border-radius: 40px;
-        width: 80%;
-        max-width: 500px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        transition: all 0.4s ease;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 30px;
+        width: 90%;
+        max-width: 400px;
+        transition: all 0.2s ease;
         outline: none;
-        backdrop-filter: blur(5px);
     }
 
     #searchBar input::placeholder {
-        color: #888;
-        font-weight: 300;
-        letter-spacing: 1px;
+        color: #666;
     }
 
     #searchBar input:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 30px var(--primary-glow);
-        width: 85%;
-        max-width: 550px;
-        background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
-        transform: scale(1.02);
+        background: #222;
     }
 
-    /* ===== BOTONES DE SUGERENCIA MEJORADOS ===== */
+    /* ===== BOTONES DE SUGERENCIA SIMPLIFICADOS ===== */
     #suggestionButtons {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.8rem;
-        padding: 1rem;
+        gap: 0.5rem;
+        padding: 0.5rem;
         justify-content: center;
-        max-width: 800px;
-        margin: 0 auto;
     }
 
     #suggestionButtons button {
-        background: rgba(34, 34, 34, 0.7);
+        background: #1a1a1a;
         color: var(--text);
         border: 1px solid rgba(180, 0, 255, 0.2);
-        padding: 0.7rem 1.4rem;
-        border-radius: 30px;
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
         cursor: pointer;
-        font-size: 0.95rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(5px);
-        position: relative;
-        overflow: hidden;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
     }
 
-    #suggestionButtons button::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, var(--primary-soft) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
+    #suggestionButtons button:active {
+        background: var(--primary);
+        transform: scale(0.95);
     }
 
-    #suggestionButtons button:hover {
-        background: var(--gradient);
-        border-color: transparent;
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 20px rgba(180, 0, 255, 0.3);
-    }
-
-    #suggestionButtons button:hover::after {
-        opacity: 1;
-    }
-
-    /* ===== CONTADOR DE RESULTADOS MEJORADO ===== */
+    /* ===== CONTADOR DE RESULTADOS SIMPLIFICADO ===== */
     #resultCount {
         text-align: center;
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: var(--text-muted);
-        margin: 1rem auto;
-        padding: 0.5rem 1rem;
+        margin: 0.5rem auto;
+        padding: 0.5rem;
         background: rgba(180, 0, 255, 0.1);
-        border-radius: 30px;
+        border-radius: 20px;
         display: inline-block;
         left: 50%;
         position: relative;
         transform: translateX(-50%);
         border: 1px solid rgba(180, 0, 255, 0.2);
-        backdrop-filter: blur(5px);
-        font-weight: 500;
-        letter-spacing: 0.5px;
     }
 
-    /* ===== CONTENEDOR DE TARJETAS MEJORADO ===== */
+    /* ===== CONTENEDOR DE TARJETAS OPTIMIZADO ===== */
     #cardContainer {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 1.5rem;
-        padding: 1.5rem;
-        max-width: 1400px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        max-width: 100%;
         margin: 0 auto;
     }
 
-    /* ===== TARJETAS MEJORADAS ===== */
+    /* ===== TARJETAS MÁS LARGAS ===== */
     .card {
-        background: linear-gradient(145deg, #1a1a1a, #242424);
-        border-radius: 16px;
+        background: #1a1a1a;
+        border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: all 0.2s ease;
         position: relative;
         border: 1px solid rgba(180, 0, 255, 0.1);
-        animation: cardAppear 0.5s ease-out forwards;
-        opacity: 0;
-        transform: translateY(20px);
+        display: flex;
+        flex-direction: column;
     }
 
-    @keyframes cardAppear {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .card:nth-child(3n+1) { animation-delay: 0.1s; }
-    .card:nth-child(3n+2) { animation-delay: 0.2s; }
-    .card:nth-child(3n+3) { animation-delay: 0.3s; }
-
-    .card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 50% 0%, var(--primary-soft), transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .card:hover {
-        transform: scale(1.05) translateY(-8px);
-        box-shadow: 0 20px 30px rgba(180, 0, 255, 0.4);
+    .card:active {
+        transform: scale(0.98);
         border-color: var(--primary);
     }
 
-    .card:hover::before {
-        opacity: 1;
-    }
-
+    /* Imagen más grande y con mejor proporción */
     .card img {
         width: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: 4/3;  /* Cambiado de 16/9 a 4/3 para imágenes más altas */
         object-fit: cover;
         display: block;
-        transition: transform 0.5s ease;
+        background: #000;
     }
 
-    .card:hover img {
-        transform: scale(1.1);
-    }
-
+    /* Información de la tarjeta con más padding */
     .card-info {
-        padding: 1rem;
-        font-family: 'Roboto', sans-serif;
-        position: relative;
-        z-index: 2;
-        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        padding: 0.9rem 0.8rem 1rem;  /* Más padding vertical */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
     }
 
+    /* Título más grande y con más espacio */
     .card-title {
-        font-size: 1.1rem;
+        font-size: 1rem;  /* Un poco más grande */
         font-weight: 600;
         color: var(--text);
-        margin-bottom: 0.3rem;
         line-height: 1.4;
-        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        margin-bottom: 0.2rem;
+        /* Limitar a 2 líneas */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
+    /* Meta información con mejor espaciado */
     .card-meta {
-        font-size: 0.8rem;
-        color: #b0b0b0;
+        font-size: 0.8rem;  /* Un poco más grande */
+        color: #aaa;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
+        margin-top: 0.2rem;
     }
 
     .card-meta::before {
         content: '📺';
-        font-size: 0.7rem;
-        opacity: 0.7;
+        font-size: 0.8rem;
+        opacity: 0.8;
     }
 
+    /* Categoría mejor posicionada */
     .card-category {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 8px;
+        left: 8px;
         background: var(--gradient);
-        color: var(--text);
+        color: white;
         font-size: 0.7rem;
+        font-weight: 600;
         padding: 4px 12px;
         border-radius: 20px;
-        z-index: 3;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        box-shadow: 0 2px 10px rgba(180, 0, 255, 0.3);
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255,255,255,0.1);
+        z-index: 2;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
+    /* Duración más visible */
     .card-duration {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.8);
-        color: var(--text);
+        bottom: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.85);
+        color: white;
         font-size: 0.7rem;
+        font-weight: 600;
         padding: 4px 10px;
         border-radius: 20px;
-        z-index: 3;
-        font-weight: 600;
-        backdrop-filter: blur(5px);
+        z-index: 2;
+        backdrop-filter: blur(2px);
         border: 1px solid rgba(255,255,255,0.1);
-        letter-spacing: 0.5px;
     }
 
-    /* ===== REPRODUCTOR DE VIDEO MEJORADO ===== */
+    /* ===== REPRODUCTOR DE VIDEO OPTIMIZADO ===== */
     #videoPlayer {
         display: none;
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.95);
+        background: black;
         z-index: 9999;
-        backdrop-filter: blur(20px);
     }
 
     #videoPlayer video {
@@ -473,381 +326,228 @@
 
     #closeBtn {
         position: absolute;
-        top: 25px;
-        right: 25px;
-        background: rgba(180, 0, 255, 0.3);
-        color: #fff;
-        font-size: 2rem;
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        top: 15px;
+        right: 15px;
+        background: rgba(180, 0, 255, 0.5);
+        color: white;
+        font-size: 1.8rem;
+        border: none;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
         cursor: pointer;
         z-index: 10000;
-        transition: all 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
         line-height: 1;
-        backdrop-filter: blur(10px);
     }
 
-    #closeBtn:hover {
-        background: var(--gradient);
-        transform: rotate(90deg) scale(1.1);
-        border-color: var(--primary);
-        box-shadow: 0 0 30px var(--primary-glow);
+    #closeBtn:active {
+        background: var(--primary);
+        transform: scale(0.9);
     }
 
-    /* ===== PAGINACIÓN MEJORADA ===== */
+    /* ===== PAGINACIÓN OPTIMIZADA ===== */
     #paginationControls {
         display: flex;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 2rem 1rem;
+        gap: 0.3rem;
+        padding: 1rem;
         flex-wrap: wrap;
     }
 
     #paginationControls button {
-        background: rgba(34, 34, 34, 0.7);
+        background: #1a1a1a;
         color: var(--text);
         border: 1px solid rgba(180, 0, 255, 0.2);
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.8rem;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 0.9rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(5px);
-        min-width: 40px;
+        font-size: 0.8rem;
+        min-width: 36px;
+        transition: all 0.2s ease;
     }
 
     #paginationControls button.active {
         background: var(--gradient);
         border-color: var(--primary);
-        box-shadow: 0 5px 15px var(--primary-glow);
-        transform: scale(1.1);
     }
 
-    #paginationControls button:hover:not(.active) {
-        background: #333;
-        border-color: var(--primary);
-        transform: translateY(-2px);
+    #paginationControls button:active {
+        transform: scale(0.9);
     }
 
-    /* ===== MODAL DE EDAD MEJORADO ===== */
+    /* ===== MODAL DE EDAD OPTIMIZADO ===== */
     .age-modal {
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        color: var(--text);
+        background: rgba(0, 0, 0, 0.9);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        font-family: 'Segoe UI', sans-serif;
-        backdrop-filter: blur(15px);
-        animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
     }
 
     .age-content {
-        background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-        padding: 50px;
-        border-radius: 30px;
-        box-shadow: 0 0 60px rgba(180, 0, 255, 0.5);
+        background: #1a1a1a;
+        padding: 30px 20px;
+        border-radius: 20px;
         text-align: center;
-        max-width: 450px;
-        border: 1px solid rgba(180, 0, 255, 0.3);
-        animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes scaleIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
+        max-width: 350px;
+        width: 90%;
+        border: 1px solid var(--primary);
     }
 
     .age-content h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-size: 24px;
+        margin-bottom: 15px;
         color: #ff4d4d;
-        text-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
-        font-weight: 700;
     }
 
     .age-content p {
-        font-size: 18px;
-        margin-bottom: 30px;
-        line-height: 1.6;
-        color: #e0e0e0;
+        font-size: 16px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        color: #ccc;
     }
 
     .age-buttons {
         display: flex;
-        gap: 20px;
+        gap: 15px;
         justify-content: center;
     }
 
     .age-buttons button {
-        padding: 12px 30px;
+        padding: 10px 25px;
         border: none;
-        border-radius: 50px;
-        font-size: 16px;
+        border-radius: 25px;
+        font-size: 15px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        transition: all 0.2s ease;
+        flex: 1;
     }
 
     .age-yes {
         background: var(--gradient);
         color: white;
-        box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
     }
 
     .age-no {
-        background: linear-gradient(135deg, #dc3545, #c82333);
+        background: #dc3545;
         color: white;
-        box-shadow: 0 5px 20px rgba(220, 53, 69, 0.3);
     }
 
-    .age-yes:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 30px rgba(40, 167, 69, 0.5);
+    .age-buttons button:active {
+        transform: scale(0.95);
+        opacity: 0.9;
     }
 
-    .age-no:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 30px rgba(220, 53, 69, 0.5);
-    }
-
-    /* ===== ICONOS FLOTANTES MEJORADOS ===== */
+    /* ===== ICONOS FLOTANTES OPTIMIZADOS ===== */
     .floating-telegram,
     .floating-twitter {
         position: fixed;
-        top: 1.5rem;
-        z-index: 1000;
-        transition: all 0.3s ease;
+        top: 1rem;
+        z-index: 100;
     }
 
     .floating-telegram {
-        left: 1.5rem;
+        left: 1rem;
     }
 
     .floating-twitter {
-        right: 1.5rem;
+        right: 1rem;
     }
 
     .floating-telegram img,
     .floating-twitter img {
-        width: 42px;
-        height: 42px;
-        transition: all 0.3s ease;
-        filter: drop-shadow(0 0 10px var(--primary-glow));
-        border-radius: 50%;
-        background: rgba(180, 0, 255, 0.1);
-        padding: 8px;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(180, 0, 255, 0.3);
+        width: 36px;
+        height: 36px;
+        opacity: 0.9;
     }
 
-    .floating-telegram img:hover,
-    .floating-twitter img:hover {
-        transform: scale(1.15) rotate(5deg);
-        filter: drop-shadow(0 0 20px var(--primary-glow));
-        background: rgba(180, 0, 255, 0.2);
+    .floating-telegram img:active,
+    .floating-twitter img:active {
+        opacity: 1;
+        transform: scale(0.9);
     }
 
-    /* ===== ANIMACIONES ADICIONALES ===== */
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    /* ===== SCROLLBAR PERSONALIZADO ===== */
-    ::-webkit-scrollbar {
-        width: 12px;
-        height: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-        border-radius: 6px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #b400ff, #8a2be2);
-        border-radius: 6px;
-        border: 2px solid #1a1a1a;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #c715ff, #9b3aff);
-    }
-
-    /* ===== RESPONSIVE MEJORADO ===== */
-    @media (max-width: 1024px) {
+    /* ===== MEDIA QUERIES OPTIMIZADAS ===== */
+    @media (max-width: 360px) {
         #cardContainer {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.2rem;
-            padding: 1.2rem;
+            grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+            gap: 0.8rem;
         }
-    }
-
-    @media (max-width: 768px) {
-        .logo {
-            font-size: 2.5rem;
-            padding: 1.2rem;
+        
+        .card img {
+            aspect-ratio: 16/9; /* Vuelve a 16/9 en pantallas muy pequeñas para no ocupar demasiado */
         }
-
-        #tabMenu {
-            border-radius: 30px;
-            padding: 1rem;
-        }
-
+        
         .tabBtn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-            min-width: 80px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            min-width: 60px;
         }
-
-        #cardContainer {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
-        }
-
-        .card-title {
-            font-size: 0.95rem;
-        }
-
-        .floating-telegram,
-        .floating-twitter {
-            top: 1rem;
-        }
-
-        .floating-telegram img,
-        .floating-twitter img {
-            width: 36px;
-            height: 36px;
-            padding: 6px;
-        }
-    }
-
-    @media (max-width: 480px) {
+        
         .logo {
             font-size: 2rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        /* Tablets y superior - más columnas */
+        #cardContainer {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+        
+        .card img {
+            aspect-ratio: 4/3; /* Mantener 4/3 en tablets */
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+        }
+        
+        .card-info {
             padding: 1rem;
         }
-
-        #tabMenu {
-            gap: 0.4rem;
-            padding: 0.8rem;
-        }
-
+        
         .tabBtn {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            min-width: 70px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
         }
+    }
 
-        #searchBar input {
-            padding: 10px 20px;
-            font-size: 0.95rem;
-        }
-
-        #suggestionButtons button {
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-        }
-
+    @media (min-width: 1024px) {
+        /* Escritorio - 4 columnas */
         #cardContainer {
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
-            padding: 0.8rem;
+            grid-template-columns: repeat(4, 1fr);
         }
-
-        .card-info {
-            padding: 0.7rem;
-        }
-
-        .card-title {
-            font-size: 0.85rem;
-        }
-
-        .card-meta {
-            font-size: 0.7rem;
-        }
-
-        .card-category,
-        .card-duration {
-            font-size: 0.6rem;
-            padding: 2px 8px;
-        }
-
-        .age-content {
-            padding: 30px 20px;
-            margin: 0 20px;
-        }
-
-        .age-content h2 {
-            font-size: 24px;
-        }
-
-        .age-content p {
-            font-size: 16px;
-        }
-
-        .age-buttons {
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .age-buttons button {
-            width: 100%;
-            padding: 10px;
-        }
-
-        .floating-telegram {
-            left: 1rem;
-        }
-
-        .floating-twitter {
-            right: 1rem;
-        }
-
-        .floating-telegram img,
-        .floating-twitter img {
-            width: 32px;
-            height: 32px;
-            padding: 5px;
+        
+        .card img {
+            aspect-ratio: 4/3; /* 4/3 también en escritorio */
         }
     }
 
-    /* ===== UTILIDADES ===== */
-    .glass-effect {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    /* ===== UTILIDADES LIGERAS ===== */
+    .hidden {
+        display: none !important;
     }
 
-    .text-gradient {
-        background: var(--gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .text-center {
+        text-align: center;
     }
+
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
 </style>
   
 </head>
