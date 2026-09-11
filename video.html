@@ -1,450 +1,417 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title id="pageTitle">Video</title>
-  <meta name="description" id="pageDesc" content="Reproductor de video">
-<style>
-    /* ===== BLOQUEO DE ZOOM EN MÓVILES ===== */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouPornX — Reproductor</title>
+  <meta name="description" content="Reproductor de video exclusivo para adultos en YouPornX." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://youpornx.github.io/video.html" />
+  <meta property="og:type"  content="video.other" />
+  <meta property="og:title" id="ogTitle" content="YouPornX — Reproductor" />
+  <meta property="og:image" id="ogImage" content="https://i.imgur.com/HaVTHeY.jpeg" />
+  <link rel="icon" href="https://i.imgur.com/HaVTHeY.jpeg" type="image/jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://i.imgur.com" />
+  <link rel="preconnect" href="https://files.catbox.moe" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────
+       VARIABLES (misma paleta que index)
+    ───────────────────────────────────── */
+    :root {
+      --accent:      #7c3aed;
+      --accent-dim:  rgba(124,58,237,.18);
+      --accent-glow: rgba(124,58,237,.45);
+      --bg:    #0d0d0d;
+      --bg1:   #141414;
+      --bg2:   #1c1c1c;
+      --bg3:   #252525;
+      --line:  #2a2a2a;
+      --text:  #f0f0f0;
+      --muted: #888;
+      --r:     10px;
+      --ease:  .25s ease;
+    }
+
+    /* ─────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      background: #0f0f0f;
-      color: #f5f5f5;
-      font-family: "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      /* Bloquear zoom en móviles */
-      touch-action: pan-y pinch-zoom; /* Permite scroll vertical pero bloquea el zoom con pellizco */
+      overflow-x: hidden;
     }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 
-    /* Header igual al otro CSS */
+    /* ─────────────────────────────────────
+       HEADER
+    ───────────────────────────────────── */
+    .site-header {
+      width: 100%;
+      background: var(--bg1);
+      border-bottom: 2px solid var(--accent);
+      text-align: center;
+      padding: 1rem;
+    }
     .logo {
       font-family: 'Playfair Display', serif;
-      text-align: center;
-      font-size: 3rem;
+      font-size: clamp(1.7rem, 5vw, 2.8rem);
       font-style: italic;
-      margin: 0;
-      padding: 1.2rem;
-      background: linear-gradient(to right, #1a1a1a, #2c2c2c);
-      color: white;
+      color: var(--text);
       letter-spacing: 1px;
-      border-bottom: 2px solid #b400ff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      width: 100%;
+      text-shadow: 0 0 8px rgba(255,255,255,.1);
     }
-    
-    .logo span {
-      color: #b400ff;
-      text-shadow: 0 0 15px #b400ff, 0 0 30px rgba(180, 0, 255, 0.5);
-    }
+    .logo sup { font-size: .38em; vertical-align: super; font-style: normal; opacity: .75; letter-spacing: .5px; font-family: "Inter", sans-serif; }
+    .logo b { color: var(--accent); text-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-glow); font-style: normal; }
 
-    header {
+    /* ─────────────────────────────────────
+       LAYOUT CENTRAL
+    ───────────────────────────────────── */
+    .wrap {
       width: 100%;
-    }
-
-    video {
-      width: 100%;
-      max-width: 900px;
-      border-radius: 12px;
-      margin: 2rem auto 1rem;
-      box-shadow: 0 0 20px rgba(180, 0, 255, 0.3);
-      border: 2px solid rgba(180, 0, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    video:hover {
-      box-shadow: 0 0 30px rgba(180, 0, 255, 0.5);
-      border-color: #b400ff;
-    }
-
-    .info {
-      width: 100%;
-      max-width: 900px;
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(180, 0, 255, 0.2);
+      max-width: 960px;
+      padding: 0 1rem;
       display: flex;
-      flex-direction: row;
-      gap: 1.5rem;
-      align-items: center;
-      border: 1px solid rgba(180, 0, 255, 0.2);
-      transition: all 0.3s ease;
+      flex-direction: column;
+      gap: 1.1rem;
     }
 
-    .info:hover {
-      box-shadow: 0 0 25px rgba(180, 0, 255, 0.3);
-      border-color: #b400ff;
-    }
-
-    .info img {
-      width: 180px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(180, 0, 255, 0.3);
-      border: 2px solid rgba(180, 0, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .info img:hover {
-      transform: scale(1.02);
-      border-color: #b400ff;
-      box-shadow: 0 0 25px #b400ff;
-    }
-
-    .details { flex: 1; }
-
-    .details h1 {
-      margin: 0 0 1rem;
-      font-size: 3.5rem;
-      color: #b400ff;
-      font-weight: bold;
-      text-shadow: 0 0 20px rgba(180, 0, 255, 0.5);
-      letter-spacing: 2px;
-    }
-
-    .details p {
-      margin: 1rem 0;
-      font-size: 1.8rem;
-      color: #f5f5f5;
-      line-height: 2;
-      border-left: 4px solid #b400ff;
-      padding-left: 1rem;
-      background: rgba(180, 0, 255, 0.05);
-      border-radius: 0 8px 8px 0;
-    }
-
-    /* Botón de volver mejorado */
-    a.back-btn {
-      margin: 2rem 0;
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, #b400ff, #ff0080);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(180, 0, 255, 0.4);
-      border: 2px solid rgba(255,255,255,0.2);
-      display: inline-block;
-    }
-
-    a.back-btn:hover { 
-      background: linear-gradient(135deg, #ff0080, #b400ff);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(180, 0, 255, 0.6);
-      border-color: rgba(255,255,255,0.4);
-    }
-
-    a.back-btn:active {
-      transform: translateY(0);
-    }
-
-    /* Ajustes para móviles */
-    @media (max-width: 600px) {
-      .info { flex-direction: column; text-align: center; }
-      .info img { width: 100%; max-width: 300px; margin-bottom: 1rem; }
-      .details h1 { font-size: 2.2rem; }
-      .details p { 
-        font-size: 1.2rem; 
-        border-left: none;
-        border-top: 4px solid #b400ff;
-        padding-left: 0;
-        padding-top: 1rem;
-      }
-      
-      .logo {
-        font-size: 2.2rem;
-        padding: 1rem;
-      }
-    }
-
-    /* Recomendaciones mejoradas */
-    .recommendations {
+    /* ─────────────────────────────────────
+       REPRODUCTOR
+    ───────────────────────────────────── */
+    .player-box {
       width: 100%;
-      max-width: 900px;
-      margin: 2rem auto;
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(180, 0, 255, 0.2);
-      border: 1px solid rgba(180, 0, 255, 0.2);
-    }
-
-    .recommendations h2 {
-      color: #ff0080;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      text-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
-      letter-spacing: 1px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .recommendations h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #b400ff, #ff0080);
-      border-radius: 3px;
-    }
-
-    .recommendation-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    /* Items de recomendación mejorados */
-    .recommendation-item {
-      background: #2a2a2a;
-      border-radius: 10px;
+      margin-top: 1.6rem;
+      background: #000;
+      border-radius: var(--r);
       overflow: hidden;
-      text-align: left;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(180, 0, 255, 0.2);
-      cursor: pointer;
-      position: relative;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 24px var(--accent-dim);
+      transition: box-shadow var(--ease);
     }
-
-    .recommendation-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(180, 0, 255, 0.4);
-      border-color: #b400ff;
-    }
-
-    .recommendation-item:active {
-      transform: translateY(0);
-    }
-
-    .recommendation-item img { 
-      width: 100%; 
+    .player-box:hover { box-shadow: 0 0 36px var(--accent-glow); }
+    .player-box video {
+      width: 100%;
+      max-height: 520px;
       display: block;
-      transition: transform 0.3s ease;
     }
 
-    .recommendation-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .recommendation-item .meta {
-      padding: 0.8rem;
-      background: linear-gradient(to top, #2a2a2a, #333);
-    }
-
-    .recommendation-item h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1.1rem;
-      color: #fff;
-      line-height: 1.4;
-      font-weight: 600;
-    }
-
-    .recommendation-item:hover h3 {
-      color: #b400ff;
-    }
-
-    .recommendation-item p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #b0b0b0;
+    /* ─────────────────────────────────────
+       INFO DEL VIDEO
+    ───────────────────────────────────── */
+    .info {
       display: flex;
-      align-items: center;
-      gap: 0.3rem;
+      gap: 1.2rem;
+      align-items: flex-start;
+      background: var(--bg1);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.2rem;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .info:hover { border-color: rgba(124,58,237,.4); box-shadow: 0 0 20px var(--accent-dim); }
+
+    .info__thumb {
+      flex-shrink: 0;
+      width: 150px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: var(--bg2);
+      transition: transform var(--ease), border-color var(--ease);
+    }
+    .info__thumb:hover { transform: scale(1.03); border-color: var(--accent); }
+
+    .info__body  { flex: 1; min-width: 0; }
+    .info__title {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 600; color: var(--accent);
+      line-height: 1.3; margin-bottom: .8rem;
+      overflow-wrap: break-word;
+    }
+    .info__row {
+      font-size: .88rem; color: #ccc;
+      padding: .45rem .75rem;
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: .5rem;
+      line-height: 1.5;
+    }
+    .info__row strong { color: var(--text); }
+
+    @media (max-width: 560px) {
+      .info { flex-direction: column; }
+      .info__thumb { width: 100%; max-width: 100%; }
+      .info__row { border-left: none; border-top: 3px solid var(--accent); border-radius: 0 0 6px 6px; }
     }
 
-    .recommendation-item p::before {
-      content: '▶';
-      color: #b400ff;
-      font-size: 0.8rem;
-      opacity: 0.7;
+    /* ─────────────────────────────────────
+       BOTÓN VOLVER
+    ───────────────────────────────────── */
+    .btn-back {
+      display: inline-block;
+      align-self: center;
+      padding: .7rem 1.8rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 22px;
+      font-size: .93rem;
+      font-weight: 600;
+      letter-spacing: .4px;
+      border: 1.5px solid rgba(255,255,255,.15);
+      box-shadow: 0 4px 16px var(--accent-glow);
+      transition: filter var(--ease), transform var(--ease), box-shadow var(--ease);
     }
+    .btn-back:hover  { filter: brightness(1.12); transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
+    .btn-back:active { transform: translateY(0); }
 
-    /* Badge de duración */
-    .rec-duration {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(0,0,0,0.8);
-      color: white;
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-      border: 1px solid #b400ff;
-      z-index: 2;
+    /* ─────────────────────────────────────
+       RECOMENDACIONES
+    ───────────────────────────────────── */
+    .recs {
+      background: var(--bg1);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
     }
-
-    /* Scrollbar personalizada */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    .recs__title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--line);
     }
-
-    ::-webkit-scrollbar-track {
-      background: #1a1a1a;
+    .recs__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: .9rem;
     }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #b400ff, #ff0080);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #ff0080, #b400ff);
-    }
-
-    /* Ajuste para el header en móvil */
     @media (max-width: 480px) {
-      .logo {
-        font-size: 2rem;
-        padding: 0.8rem;
-      }
+      .recs__grid { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
     }
-</style>
+
+    .rec-card {
+      background: var(--bg2);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+    .rec-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px var(--accent-glow); border-color: rgba(124,58,237,.4); }
+    .rec-card:active { transform: translateY(0); }
+
+    .rec-card a { display: block; color: inherit; }
+
+    .rec-card__img-wrap { position: relative; }
+    .rec-card__img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--bg1);
+      transition: transform var(--ease);
+    }
+    .rec-card:hover .rec-card__img { transform: scale(1.05); }
+    .rec-card__dur {
+      position: absolute; bottom: 5px; right: 6px;
+      background: rgba(0,0,0,.8); color: #fff;
+      font-size: .6rem; padding: 2px 6px;
+      border-radius: 5px; border: 1px solid rgba(124,58,237,.35);
+      pointer-events: none;
+    }
+
+    .rec-card__body { padding: .55rem .65rem; }
+    .rec-card__name {
+      font-size: .78rem; font-weight: 500; color: var(--text);
+      line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .rec-card:hover .rec-card__name { color: var(--accent); }
+    .rec-card__cat { font-size: .68rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────── */
+    .site-footer {
+      width: 100%;
+      text-align: center;
+      font-size: .75rem; color: #444;
+      padding: 1rem; border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+
+    /* ─────────────────────────────────────
+       SCROLLBAR
+    ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg1); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  </style>
 </head>
 <body>
 
-  <header>
-  <h1 class="logo">You<span>PornX</span></h1>
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" aria-label="Inicio YouPornX">
+    <h1 class="logo">You<b>PornX<sup>v2</sup></b></h1>
+  </a>
 </header>
 
+<!-- CONTENIDO -->
+<div class="wrap">
 
-  <video 
-  id="videoPlayer" 
-  controls 
-  preload="metadata" 
-  poster="" 
-  playsinline>
-</video>
+  <!-- Reproductor -->
+  <div class="player-box">
+    <video id="player" controls preload="metadata" playsinline aria-label="Reproductor de video"></video>
+  </div>
 
-
-  <div class="info">
-    <img id="videoThumb" alt="Miniatura">
-    <div class="details">
-      <h1 id="videoTitle">Sin título</h1>
-      <p><strong>Categoría:</strong> <span id="videoDesc">Sin descripción</span></p>
-      <p><strong>Duración:</strong> <span id="videoDuration">--:--</span></p>
+  <!-- Info -->
+  <section class="info" aria-label="Información del video">
+    <img id="thumb" class="info__thumb" src="" alt="Miniatura" width="150" height="85" />
+    <div class="info__body">
+      <h2 id="vtitle" class="info__title">Cargando…</h2>
+      <p class="info__row"><strong>Categoría:</strong> <span id="vcat">—</span></p>
+      <p class="info__row"><strong>Duración:</strong>  <span id="vdur">—</span></p>
     </div>
-  </div>
+  </section>
 
-  <a href="index.html" class="back-btn">⬅ Volver al inicio</a>
+  <!-- Volver -->
+  <a href="index.html" class="btn-back">⬅ Volver al inicio</a>
 
-  <!-- Recomendaciones -->
-  <div class="recommendations">
-    <h2>Agregados recientemente</h2>
-    <div id="recommendationList" class="recommendation-list"></div>
-  </div>
+  <!-- Recomendados -->
+  <section class="recs" aria-label="Videos recomendados">
+    <h2 class="recs__title">🎬 También te puede gustar</h2>
+    <div id="recGrid" class="recs__grid"></div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Contenido exclusivo para adultos +18 — YouDev © 2025
+</footer>
+
+<!-- Adsterra banner -->
+<script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
+<div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
 
 <script>
-  const VIDEO_BASE = "https://files.catbox.moe/";
-  const VIDEO_EXT = ".mp4";
-  const THUMB_BASE = "https://i.imgur.com/";
-  const THUMB_EXT = ".jpg";
+/* ================================================================
+   CONSTANTES
+================================================================ */
+const IMG = 'https://i.imgur.com/';
+const VID = 'https://files.catbox.moe/';
+const img = id => IMG + id + '.png';
+const vid = id => VID + id + '.mp4';
 
-  // Cargar el video actual desde parámetros
-  const params = new URLSearchParams(window.location.search);
-  const src = params.get("src") || VIDEO_BASE + "u6qw7b" + VIDEO_EXT;
-  const title = params.get("title") || "Nudes";
-  const desc = params.get("desc") || "Video de nudes en HD";
-  const duration = params.get("duration") || "0:22";
-  const thumb = params.get("thumb") || THUMB_BASE + "SG0I9VL" + THUMB_EXT;
-  const video = document.getElementById("videoPlayer");
-video.src = src;
-video.poster = thumb;   // 👉 aquí se usa la miniatura como poster
+/* ================================================================
+   CARGAR PARÁMETROS DEL VIDEO ACTUAL
+================================================================ */
+const p       = new URLSearchParams(location.search);
+const src     = p.get('src')      || vid('u6qw7b');
+const title   = p.get('title')    || 'Sin título';
+const cat     = p.get('desc')     || '—';
+const dur     = p.get('duration') || '—';
+const thumb   = p.get('thumb')    || img('SG0I9VL');
 
-  document.getElementById("videoPlayer").src = src;
-  document.getElementById("videoTitle").textContent = title;
-  document.getElementById("videoDesc").textContent = desc;
-  document.getElementById("videoDuration").textContent = duration;
-  document.getElementById("videoThumb").src = thumb;
+/* Aplicar al DOM */
+const player = document.getElementById('player');
+player.src    = src;
+player.poster = thumb;
 
-  document.title = title + " | YouDev";
-  document.querySelector("meta[name='description']").setAttribute("content", desc);
+document.getElementById('vtitle').textContent = title;
+document.getElementById('vcat').textContent   = cat;
+document.getElementById('vdur').textContent   = dur;
 
-// ✅ Anuncios automáticos basados en tiempo de página
-window.addEventListener("load", () => {
-  // Primer anuncio a los 10 segundos
-  setTimeout(() => {
-    window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-  }, 10000);
+const tEl = document.getElementById('thumb');
+tEl.src = thumb;
+tEl.alt = title;
 
-  // Luego cada 2 minutos (120000 ms)
-  setInterval(() => {
-    window.open("https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2", "_blank");
-  }, 120000);
+/* SEO dinámico */
+document.title = title + ' — YouPornX';
+document.getElementById('ogTitle').content = title + ' — YouPornX';
+document.getElementById('ogImage').content = thumb;
+
+/* ================================================================
+   ANUNCIOS AUTOMÁTICOS ADSTERRA
+   Solo se dispara si el usuario hizo clic/tap (navegadores modernos
+   bloquean window.open sin interacción del usuario)
+================================================================ */
+let userClicked = false;
+document.addEventListener('click',      () => { userClicked = true; }, { once: true });
+document.addEventListener('touchstart', () => { userClicked = true; }, { once: true });
+
+window.addEventListener('load', () => {
+  const fireAd = () => {
+    if (!userClicked) return;
+    window.open(
+      'https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2',
+      '_blank', 'noopener'
+    );
+  };
+  setTimeout(fireAd, 10000);
+  setInterval(fireAd, 120000);
 });
 
-  // 📌 Lista de videos recomendados
-  // Orden: ["Título", "Duración", "Categoría", "ID de Imgur", "ID de Catbox"]
-  const videos = [
-["RedWitch en cosplay de elastigirl chupande verga y cojiendo", "10:09", "Sex", "mfCZfbh", "m9qofd"],
-["Orgia de lesbianas masturbandose y teniendo sexo", "10:23", "Lesbianas", "CBKE06I", "a9642o"],
-["Hermosa chica masturbandose y metiendose cosas por el culo", "9:06", "Masturbacion", "ntz5gzU", "4l93dm"],
-["Lesbiana se dirviente en coche", "14:51", "Lesbianas", "o9qntYJ", "t8cglq"],
-["Chica dando sentones a pene de goma", "5:18", "Masturbacion", "0iBVHXH", "sqo5iz"],
-["Chica tetona se abre y masturba a la camara", "7:17", "Masturbacion", "jATpb6k", "urgmpw"],
-["Recopilacion de chica metiendose cosas por la vagina hasta chorrear", "2:14", "Masturbacion", "aZiaBjY", "e231n8"],
-["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
-["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
-["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
-["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
-["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
-["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
-["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
-["Lesbianas juegan y se exhiben en tienda", "19:20", "Lesbianas", "pCCiquz", "nmfude"],
-["Colegiala se desnuda y masturba", "8:19", "Masturbacion", "tM2OYxW", "xs793j"],
-["Chica camina desnuda en las calles de noche", "4:36", "Exhibicionismo", "Yd13NNn", "s7g8ou"],
-["Chica tetona tocandose", "4:18", "Nudes", "AlpG7jg", "4l36ck"],
-["Chica en traje se spiderman se masturba mientras charla", "22:01", "Masturbacion", "1Gz3Z1p", "oeu622"],
-["Chica en cosplay de mavis se toca", "4:18", "Nudes", "qywf1sI", "lbd3vk"],
-["Chica tetona se toca los pechos y juega con ellos", "2:15", "Tetas", "XFXhNdT", "38w2wm"],
-["Rubia se mete los dedos en el vestidor", "4:49", "Masturbacion", "QeHRYlp", "no56vp"],
-["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
-["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
-["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
-["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
-["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
-["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
-["Chica de hermoso cuerpo juega con dildo mientras se toca en stream pt2", "7:44", "Nudes", "tPlrkVS", "r3sy0l"],
-["Chica en stream prueba a meterse dildo por la vagina", "6:14", "Masturbacion", "5KlKL3f", "nzgaep"],
+/* ================================================================
+   RECOMENDACIONES — carga desde data.json
+================================================================ */
+fetch('data.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(json => {
+    /* Mezclar todos los videos y tomar 12 */
+    const all = [...json.v, ...json.a];
+    const shuffled = all
+      .map(x => ({ x, r: Math.random() }))
+      .sort((a, b) => a.r - b.r)
+      .slice(0, 12)
+      .map(({ x }) => x);
 
-  ];
+    const grid = document.getElementById('recGrid');
+    shuffled.forEach(([t, d, c, i, v]) => {
+      const videoUrl = VID + v + '.mp4';
+      const thumbUrl = IMG + i + '.png';
+      const href = 'video.html?' + new URLSearchParams({ src: videoUrl, title: t, desc: c, duration: d, thumb: thumbUrl });
 
-  function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
-
-  const recommendationList = document.getElementById("recommendationList");
-  shuffle(videos).slice(0, 12).forEach(v => {
-    const [t, d, c, imgurId, catboxId] = v; // ⚡ ahora la lógica respeta tu orden
-    const videoUrl = VIDEO_BASE + catboxId + VIDEO_EXT;
-    const thumbUrl = THUMB_BASE + imgurId + THUMB_EXT;
-    const href = `video.html?src=${encodeURIComponent(videoUrl)}&title=${encodeURIComponent(t)}&desc=${encodeURIComponent(c)}&duration=${encodeURIComponent(d)}&thumb=${encodeURIComponent(thumbUrl)}`;
-
-    const item = document.createElement("div");
-    item.className = "recommendation-item";
-    item.innerHTML = `
-      <a href="${href}">
-        <img src="${thumbUrl}" alt="${t}">
-        <div class="meta">
-          <h3>${t}</h3>
-          <p>${c} • ${d}</p>
-        </div>
-      </a>
-    `;
-    recommendationList.appendChild(item);
+      const card = document.createElement('article');
+      card.className = 'rec-card';
+      card.innerHTML = `
+        <a href="${href}" aria-label="${t}">
+          <div class="rec-card__img-wrap">
+            <img class="rec-card__img" src="${thumbUrl}" alt="${t}" loading="lazy" width="320" height="180" />
+            <span class="rec-card__dur">${d}</span>
+          </div>
+          <div class="rec-card__body">
+            <p class="rec-card__name">${t}</p>
+            <p class="rec-card__cat">${c}</p>
+          </div>
+        </a>`;
+      grid.appendChild(card);
+    });
+  })
+  .catch(err => {
+    document.getElementById('recGrid').innerHTML =
+      '<p style="color:#666;font-size:.85rem;grid-column:1/-1">No se pudieron cargar las recomendaciones.</p>';
+    console.error('data.json error:', err);
   });
 </script>
-
-<script async="async" data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
-<div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
 
 </body>
 </html>
