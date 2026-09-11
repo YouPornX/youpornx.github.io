@@ -1,677 +1,1474 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta name="description" content="Sitio XXX con contenido exclusivo, Packs caseros, Chicas, Hentai y contenido caliente of para adultos.">
+  <meta name="keywords" content="packs exclusivos, videos caseros, contenido premium, nudes, galería privada, contenido para adultos, Telegram packs, videos gratis, chicas reales, porno, xxx">
+  <meta name="author" content="YouDev">
+  <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1a1a1a" />
+  <meta property="og:title" content="Packs Exclusivos + Hentai | YouPornX">
+<meta property="og:description" content="Sitio XXX con contenido exclusivo, Packs caseros, Chicas, Hentai y contenido caliente of para adultos.">
+<meta name="twitter:title" content="Packs Exclusivos + Hentai | YouPornX">
+<meta name="twitter:description" content="Sitio XXX con contenido exclusivo, Packs caseros, Chicas, Hentai y contenido caliente of para adultos.">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YouPornX — Videos Exclusivos para Adultos</title>
-  <meta name="description" content="Galería interactiva con videos exclusivos para adultos: nudes, hentai, packs y contenido premium. Solo mayores de 18 años." />
-  <meta name="robots"    content="index, follow" />
-  <meta name="author"    content="YouDev" />
-  <meta name="theme-color" content="#0d0d0d" />
-  <link rel="canonical"  href="https://youpornx.github.io/" />
-
-  <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="YouPornX — Videos Exclusivos para Adultos" />
-  <meta property="og:description" content="Galería de videos exclusivos para adultos mayores de 18 años." />
-  <meta property="og:image"       content="https://i.imgur.com/HaVTHeY.jpeg" />
-  <meta property="og:url"         content="https://youpornx.github.io/" />
-  <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="YouPornX — Videos Exclusivos para Adultos" />
-  <meta name="twitter:image"      content="https://i.imgur.com/HaVTHeY.jpeg" />
-
+  <meta property="og:image" content="https://i.imgur.com/HaVTHeY.jpeg" />
+<meta name="twitter:image" content="https://i.imgur.com/HaVTHeY.jpeg" />
+  <title>YouPornX | Packs y Hentai Exclusivos</title>
   <link rel="icon" href="https://i.imgur.com/HaVTHeY.jpeg" type="image/jpeg" />
+  <link rel="canonical" href="https://youpornx.github.io/" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://i.imgur.com" />
-  <link rel="preconnect" href="https://files.catbox.moe" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org","@type":"WebSite",
-    "name":"YouPornX","url":"https://youpornx.github.io/",
-    "description":"Galería de videos exclusivos para adultos",
-    "potentialAction":{"@type":"SearchAction","target":"https://youpornx.github.io/?q={q}","query-input":"required name=q"}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "YouPornX",
+  "url": "https://youpornx.github.io/",
+  "description": "Galería interactiva con contenido exclusivo para adultos",
+  "creator": {
+    "@type": "Person",
+    "name": "YouDev"
   }
-  </script>
+}
+</script>
 
-  <style>
-    /* ─────────────────────────────────────
-       VARIABLES
-    ───────────────────────────────────── */
-    :root {
-      --accent:      #7c3aed;
-      --accent-dim:  rgba(124,58,237,.18);
-      --accent-glow: rgba(124,58,237,.45);
-      --bg:    #0d0d0d;
-      --bg1:   #141414;
-      --bg2:   #1c1c1c;
-      --bg3:   #252525;
-      --line:  #2a2a2a;
-      --text:  #f0f0f0;
-      --muted: #888;
-      --r:     10px;
-      --ease:  .25s ease;
+<style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: #111;
+        color: #fff;
     }
 
-    /* ─────────────────────────────────────
-       RESET & BASE
-    ───────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html   { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    body   {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+    /* ===== BOTONES MEJORADOS ===== */
+    .tabBtn {
+        background: #222;
+        color: #fff;
+        border: 2px solid transparent;
+        padding: 0.6rem 1.2rem;
+        margin: 0 0.3rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    /* Fondo decorativo — no bloquea render */
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background: url('https://i.imgur.com/HaVTHeY.jpeg') center/cover no-repeat;
-      opacity: .06;
-      z-index: -1;
-      pointer-events: none;
-    }
-    img { display: block; max-width: 100%; }
-    button { font-family: inherit; cursor: pointer; }
-    a { color: inherit; text-decoration: none; }
 
-    /* accesibilidad */
-    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+    .tabBtn.active {
+        background: #b400ff;
+        border-color: #fff;
+        box-shadow: 0 0 15px #b400ff;
+        transform: translateY(-2px);
+    }
 
-    /* ─────────────────────────────────────
-       MODAL DE EDAD
-    ───────────────────────────────────── */
-    #ageGate {
-      position: fixed; inset: 0;
-      background: #0a0a0a;
-      display: flex; justify-content: center; align-items: center;
-      z-index: 9999;
-      padding: 1rem;
+    .tabBtn:hover {
+        background: #9a00d9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(180, 0, 255, 0.4);
     }
-    .age-box {
-      background: var(--bg1);
-      border: 1px solid var(--accent);
-      border-radius: 14px;
-      padding: 2.2rem 1.8rem;
-      max-width: 420px; width: 100%;
-      text-align: center;
-      box-shadow: 0 0 40px var(--accent-dim);
-    }
-    .age-box h2 { font-size: 1.35rem; color: #ff5555; margin-bottom: .8rem; }
-    .age-box p  { font-size: .9rem; color: #ccc; line-height: 1.55; margin-bottom: 1.2rem; }
-    .age-terms  {
-      font-size: .76rem; color: #999; text-align: left;
-      background: var(--bg2); border: 1px solid var(--line);
-      border-radius: 8px; padding: 1rem; line-height: 1.5; margin-bottom: 1.4rem;
-    }
-    .age-btns   { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
-    .age-btns button {
-      padding: .7rem 1.8rem; border: none; border-radius: 22px;
-      font-size: .93rem; font-weight: 600;
-      transition: transform var(--ease), box-shadow var(--ease), filter var(--ease);
-    }
-    .age-btns button:hover  { transform: translateY(-2px); filter: brightness(1.12); }
-    .age-btns button:active { transform: translateY(0); }
-    #btnEnter { background: #22863a; color: #fff; box-shadow: 0 4px 14px rgba(34,134,58,.4); }
-    #btnExit  { background: #b91c1c; color: #fff; box-shadow: 0 4px 14px rgba(185,28,28,.4); }
 
-    /* ─────────────────────────────────────
-       HEADER
-    ───────────────────────────────────── */
-    .site-header {
-      position: relative;
-      background: var(--bg1);
-      border-bottom: 2px solid var(--accent);
-      padding: 1rem 3.5rem;
-      text-align: center;
+    .tabBtn:active {
+        transform: translateY(0);
     }
+
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5.5vw, 2.9rem);
-      font-style: italic;
-      letter-spacing: 1px;
-      color: var(--text);
-      text-shadow: 0 0 8px rgba(255,255,255,.12);
+        font-family: 'Playfair Display', serif;
+        text-align: center;
+        font-size: 3rem;
+        font-style: italic;
+        margin: 0;
+        padding: 1.2rem;
+        background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+        color: white;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #b400ff;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
     }
-    .logo sup { font-size: .38em; vertical-align: super; font-style: normal; opacity: .75; letter-spacing: .5px; font-family: "Inter", sans-serif; }
-    .logo b { color: var(--accent); text-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-glow); font-style: normal; }
-
-    .socials { position: absolute; top: 50%; transform: translateY(-50%); display: flex; gap: .5rem; }
-    .socials.left  { left: 1rem; }
-    .socials.right { right: 1rem; }
-    .socials a img {
-      width: 32px; height: 32px;
-      border-radius: 50%; padding: 6px;
-      background: var(--accent-dim);
-      filter: drop-shadow(0 0 6px var(--accent));
-      transition: transform var(--ease), filter var(--ease), background var(--ease);
-    }
-    .socials a:hover img { transform: scale(1.18); filter: drop-shadow(0 0 12px var(--accent)); background: rgba(124,58,237,.3); }
-
-    @media (max-width: 480px) {
-      .site-header { padding: .85rem 2.8rem; }
-      .socials a img { width: 26px; height: 26px; padding: 4px; }
+    .logo span {
+        color: #b400ff;
+        text-shadow: 0 0 15px #b400ff, 0 0 30px rgba(180, 0, 255, 0.5);
     }
 
-    /* ─────────────────────────────────────
-       TABS
-    ───────────────────────────────────── */
-    .tabs {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: .5rem;
-      padding: 1rem 1rem .5rem;
+    /* ===== BOTONES DE SUGERENCIA MEJORADOS ===== */
+    #suggestionButtons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem;
+        justify-content: center;
     }
-    .tab {
-      background: var(--bg2); color: var(--text);
-      border: 1.5px solid transparent;
-      padding: .5rem 1.15rem;
-      border-radius: 22px; font-size: .9rem; font-weight: 500;
-      transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
-      flex: 1 1 auto; max-width: 150px; text-align: center;
+    #suggestionButtons button {
+        background: #222;
+        color: #fff;
+        border: 2px solid transparent;
+        padding: 0.5rem 1.2rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    .tab.active {
-      background: var(--accent); border-color: rgba(255,255,255,.3);
-      box-shadow: 0 0 14px var(--accent-glow); transform: translateY(-2px);
+    #suggestionButtons button:hover {
+        background: #b400ff;
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(180, 0, 255, 0.4);
     }
-    .tab:hover:not(.active) { background: #5b21b6; transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-glow); }
-    .tab:active { transform: translateY(0); }
-
-    /* ─────────────────────────────────────
-       BUSCADOR
-    ───────────────────────────────────── */
-    .search { padding: .5rem 1rem; text-align: center; }
-    .search input {
-      width: min(88%, 420px);
-      background: var(--bg2); color: var(--text);
-      border: 1.5px solid #333;
-      border-radius: 26px; padding: .65rem 1.1rem;
-      font-size: .95rem; outline: none;
-      transition: border-color var(--ease), box-shadow var(--ease);
-    }
-    .search input::placeholder { color: #555; }
-    .search input:focus { border-color: var(--accent); box-shadow: 0 0 18px var(--accent-dim); }
-
-    /* ─────────────────────────────────────
-       CATEGORÍAS
-    ───────────────────────────────────── */
-    #catButtons {
-      display: flex; flex-wrap: wrap;
-      gap: .4rem; padding: .6rem 1rem;
-      justify-content: center;
-    }
-    #catButtons button {
-      background: var(--bg2); color: var(--text);
-      border: 1.5px solid transparent;
-      padding: .3rem .85rem;
-      border-radius: 20px; font-size: .78rem; font-weight: 500;
-      transition: background var(--ease), transform var(--ease);
-    }
-    #catButtons button:hover { background: var(--accent); transform: translateY(-1px); }
-    #catButtons button:active { transform: translateY(0); }
-
-    /* ─────────────────────────────────────
-       CONTEO
-    ───────────────────────────────────── */
-    #resultCount { text-align: center; font-size: .78rem; color: var(--muted); padding: .2rem 1rem; }
-
-    /* ─────────────────────────────────────
-       GRID
-    ───────────────────────────────────── */
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem; padding: .5rem 1rem 1rem;
-    }
-    @media (max-width: 560px) {
-      #grid { grid-template-columns: repeat(2, 1fr); gap: .65rem; padding: .4rem .65rem .8rem; }
-    }
-    @media (max-width: 340px) {
-      #grid { grid-template-columns: 1fr; }
+    #suggestionButtons button:active {
+        transform: translateY(0);
     }
 
-    /* ─────────────────────────────────────
-       TARJETA
-    ───────────────────────────────────── */
+    #resultCount {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ccc;
+        margin-bottom: 0.5rem;
+    }
+
+    #cardContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+
     .card {
-      background: var(--bg2);
-      border-radius: var(--r);
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid var(--line);
-      box-shadow: 0 3px 10px rgba(0,0,0,.4);
-      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
-      position: relative;
+        background: linear-gradient(to bottom, #1a1a1a, #2c2c2c);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
     }
     .card:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 8px 22px var(--accent-glow);
-      border-color: rgba(124,58,237,.5);
+        transform: scale(1.03);
+        box-shadow: 0 6px 18px rgba(180, 0, 255, 0.4);
     }
-    .card:active { transform: translateY(-1px); }
-    .card__img {
-      width: 100%; height: 180px;
-      object-fit: cover;
-      background: var(--bg1);
-      transition: transform var(--ease);
+    .card img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s ease;
     }
-    .card:hover .card__img { transform: scale(1.05); }
-    @media (max-width: 560px) { .card__img { height: 120px; } }
+    .card:hover img {
+        transform: scale(1.05);
+    }
+    .card-info {
+        padding: 0.7rem;
+        font-family: 'Roboto', sans-serif;
+    }
+    .card-title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 0.3rem;
+    }
+    .card-meta {
+        font-size: 0.75rem;
+        color: #ccc;
+    }
+    .card-category {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: #b400ff;
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .card-duration {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(0,0,0,0.7);
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 6px;
+        border: 1px solid rgba(180, 0, 255, 0.3);
+    }
 
-    .card__badge {
-      position: absolute; top: 7px; left: 7px;
-      background: var(--accent); color: #fff;
-      font-size: .6rem; font-weight: 700;
-      padding: 2px 7px; border-radius: 9px;
-      pointer-events: none; letter-spacing: .3px;
+    #videoPlayer {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: #000;
+        z-index: 9999;
     }
-    .card__dur {
-      position: absolute; top: 7px; right: 7px;
-      background: rgba(0,0,0,.78); color: #fff;
-      font-size: .63rem; padding: 2px 6px; border-radius: 5px;
-      border: 1px solid rgba(124,58,237,.35);
-      pointer-events: none;
+    #videoPlayer video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
-    .card__body { padding: .55rem .7rem; }
-    .card__title {
-      font-size: .83rem; font-weight: 500; color: var(--text);
-      line-height: 1.3;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    #closeBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(180, 0, 255, 0.3);
+        color: #fff;
+        font-size: 1.5rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        z-index: 10000;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
     }
-    .card__cat { font-size: .7rem; color: var(--muted); margin-top: .2rem; }
+    #closeBtn:hover {
+        background: #b400ff;
+        border-color: #fff;
+        transform: rotate(90deg);
+        box-shadow: 0 0 20px #b400ff;
+    }
 
-    /* Ad slot en el grid */
-    .ad-slot {
-      grid-column: 1 / -1;
-      display: flex; justify-content: center; align-items: center;
-      padding: .5rem 0; min-height: 60px;
+    #paginationControls {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+    #paginationControls button {
+        background: #222;
+        color: #fff;
+        border: 2px solid transparent;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        min-width: 36px;
+    }
+    #paginationControls button.active {
+        background: #b400ff;
+        border-color: #fff;
+        box-shadow: 0 0 15px #b400ff;
+        transform: scale(1.05);
+    }
+    #paginationControls button:hover {
+        background: #9a00d9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(180, 0, 255, 0.4);
+    }
+    #paginationControls button:active {
+        transform: translateY(0);
     }
 
-    /* ─────────────────────────────────────
-       PAGINACIÓN
-    ───────────────────────────────────── */
-    #pagination {
-      display: flex; justify-content: center; gap: .4rem;
-      padding: .6rem 1rem 1.2rem; flex-wrap: wrap;
+    .age-modal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(to bottom right, #111, #222);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        font-family: 'Segoe UI', sans-serif;
+        transition: opacity 0.4s ease;
     }
-    #pagination button {
-      background: var(--bg2); color: var(--text);
-      border: 1.5px solid transparent;
-      padding: .35rem .72rem; border-radius: 7px;
-      font-size: .82rem; font-weight: 500; min-width: 36px;
-      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
-    }
-    #pagination button.active {
-      background: var(--accent); border-color: rgba(255,255,255,.3);
-      box-shadow: 0 0 10px var(--accent-glow); transform: scale(1.06);
-    }
-    #pagination button:hover:not(.active) { background: #5b21b6; transform: translateY(-2px); }
-    #pagination button:active { transform: translateY(0); }
 
-    /* ─────────────────────────────────────
-       ESTADO VACÍO / LOADER
-    ───────────────────────────────────── */
-    .state-msg {
-      grid-column: 1 / -1;
-      text-align: center; padding: 3rem 1rem;
-      color: var(--muted); font-size: .9rem;
+    .age-content {
+        background: rgba(30, 30, 30, 0.95);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(180, 0, 255, 0.3);
+        text-align: center;
+        max-width: 400px;
+        border: 2px solid #b400ff;
     }
-    .dots span {
-      display: inline-block; width: 9px; height: 9px;
-      background: var(--accent); border-radius: 50%;
-      margin: 0 3px;
-      animation: blink .9s ease infinite;
-    }
-    .dots span:nth-child(2) { animation-delay: .15s; }
-    .dots span:nth-child(3) { animation-delay: .3s;  }
-    @keyframes blink { 0%,80%,100%{transform:scale(.55);opacity:.35} 40%{transform:scale(1);opacity:1} }
 
-    /* ─────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────── */
-    .site-footer {
-      text-align: center; font-size: .78rem; color: #444;
-      padding: 1.2rem 1rem; border-top: 1px solid var(--line);
+    .age-content h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #ff4d4d;
+        text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
     }
-    .site-footer span { color: var(--accent); font-weight: 600; }
 
-    /* ─────────────────────────────────────
-       SCROLLBAR
-    ───────────────────────────────────── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg1); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-  </style>
+    .age-content p {
+        font-size: 16px;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+
+    .age-buttons button {
+        padding: 12px 25px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .age-yes {
+        background: #28a745;
+        color: white;
+        border: 2px solid transparent;
+    }
+
+    .age-no {
+        background: #dc3545;
+        color: white;
+        border: 2px solid transparent;
+    }
+
+    .age-yes:hover {
+        background: #218838;
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(40, 167, 69, 0.5);
+    }
+
+    .age-no:hover {
+        background: #c82333;
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(220, 53, 69, 0.5);
+    }
+
+    .age-buttons button:active {
+        transform: translateY(0);
+    }
+
+    .floating-twitter {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 100;
+    }
+
+    .floating-twitter img {
+        width: 36px;
+        height: 36px;
+        transition: transform 0.3s ease;
+        filter: drop-shadow(0 0 8px #b400ff);
+        border-radius: 50%;
+        background: rgba(180, 0, 255, 0.1);
+        padding: 6px;
+    }
+
+    .floating-telegram {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        z-index: 100;
+    }
+
+    .floating-telegram img {
+        width: 36px;
+        height: 36px;
+        transition: transform 0.3s ease;
+        filter: drop-shadow(0 0 8px #b400ff);
+        border-radius: 50%;
+        background: rgba(180, 0, 255, 0.1);
+        padding: 6px;
+    }
+
+    .floating-telegram img:hover,
+    .floating-twitter img:hover {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 15px #b400ff);
+        background: rgba(180, 0, 255, 0.2);
+    }
+
+    @media (max-width: 480px) {
+        .floating-telegram {
+            top: 1rem;
+            left: 1rem;
+        }
+
+        .floating-telegram img {
+            width: 32px;
+            height: 32px;
+            padding: 5px;
+        }
+
+        .floating-twitter {
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .floating-twitter img {
+            width: 32px;
+            height: 32px;
+            padding: 5px;
+        }
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url('https://i.imgur.com/HaVTHeY.jpeg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.15;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    #searchBar input {
+        background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+        color: #fff;
+        border: 2px solid #444;
+        padding: 10px 16px;
+        font-size: 1rem;
+        border-radius: 30px;
+        width: 80%;
+        max-width: 400px;
+        box-shadow: 0 0 10px rgba(180, 0, 255, 0.2);
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+        outline: none;
+    }
+
+    #searchBar input::placeholder {
+        color: #aaa;
+    }
+
+    #searchBar input:focus {
+        border-color: #b400ff;
+        box-shadow: 0 0 20px #b400ff;
+        background: linear-gradient(to right, #222, #333);
+    }
+
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #222;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    #tabMenu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tabBtn {
+        flex: 1 1 auto;
+        max-width: 160px;
+        text-align: center;
+    }
+
+    /* Pequeños detalles que no afectan rendimiento */
+    .tabBtn.active span {
+        text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    }
+</style>
+  
 </head>
 <body>
 
-<!-- ══════════ MODAL EDAD ══════════ -->
-<div id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
-  <div class="age-box">
-    <h2 id="ageTitle">🔞 Contenido para adultos</h2>
-    <p>Este sitio contiene material explícito para adultos. Debes ser mayor de 18 años para continuar.</p>
-    <div class="age-terms">
-      Al acceder confirmas que eres mayor de edad según las leyes de tu país. Todo el material proviene de fuentes públicas de libre acceso. No se almacena contenido privado ni protegido por derechos de autor.
-    </div>
-    <div class="age-btns">
-      <button id="btnEnter">✔ Soy mayor de edad</button>
-      <button id="btnExit">✘ Salir</button>
+<div style="display:none">
+  Categorías: Sexo, Masturbación, Lesbianas, Culo, Tetas, Nudes
+</div>
+
+<div id="ageGate" class="age-modal">
+  <div class="age-content">
+    <h2>🔞 Contenido para adultos</h2>
+    <p>Este sitio contiene material explícito. Debes ser mayor de 18 años para continuar.</p>
+
+    <div style="text-align:left; font-size:14px; background:#1c1c1c; padding:15px; border-radius:8px; margin-bottom:20px; line-height:1.5;">
+  <strong>Términos y condiciones:</strong><br><br>
+  Al acceder a este sitio, confirmas que eres mayor de edad según las leyes de tu país. Este sitio está destinado exclusivamente para adultos y puede contener imágenes, videos y descripciones explícitas.<br><br>
+  Todo el material disponible en esta plataforma ha sido recopilado desde fuentes públicas y de libre acceso en internet. No se almacena contenido privado, exclusivo ni protegido por derechos de autor, y se presume que todo lo publicado está libre de restricciones legales.<br><br>
+</div>
+
+
+    <div class="age-buttons">
+      <button id="enterBtn" class="age-yes">Sí, soy mayor de edad</button>
+      <button id="exitBtn" class="age-no">No</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════ HEADER ══════════ -->
-<header class="site-header">
-  <nav class="socials left" aria-label="Telegram">
-    <a href="https://t.me/+z--_xKuncVE1MDIx" target="_blank" rel="noopener noreferrer" aria-label="Canal de Telegram">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" width="32" height="32" loading="lazy" />
-    </a>
-  </nav>
 
-  <h1 class="logo">You<b>PornX<sup>v2</sup></b></h1>
+  <h1 class="logo">You<span>PornX</span></h1>
+  <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" class="floating-twitter" aria-label="Twitter">
+  <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="Twitter">
+</a>
+<a href="https://t.me/+z--_xKuncVE1MDIx" target="_blank" class="floating-telegram" aria-label="Telegram">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+</a>
 
-  <nav class="socials right" aria-label="X Twitter">
-    <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Perfil en X">
-      <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="X / Twitter" width="32" height="32" loading="lazy" />
-    </a>
-  </nav>
-</header>
+ <div id="tabMenu" style="text-align:center; padding:1rem;">
+  <button class="tabBtn active" data-tab="videos">Videos</button>
+  <button class="tabBtn" data-tab="anime">Anime</button>
+  <button class="tabBtn" data-tab="largos">Videos largos</button>
+</div>
 
-<!-- ══════════ CONTENIDO PRINCIPAL ══════════ -->
-<main id="main">
+<div id="searchBar" style="text-align:center; margin-top:1rem;">
+  <input type="text" id="searchInput" placeholder=" Buscar videos..." />
+</div>
 
-  <!-- Tabs -->
-  <nav class="tabs" id="tabs" aria-label="Secciones" role="tablist">
-    <button class="tab active" data-tab="videos" role="tab" aria-selected="true">▶ Videos</button>
-    <button class="tab" data-tab="anime"  role="tab" aria-selected="false">🎌 Anime</button>
-    <button class="tab" data-tab="largos" role="tab" aria-selected="false">⏱ Largos</button>
-  </nav>
+<div id="suggestionButtons"></div>
+<div id="resultCount"></div>
 
-  <!-- Buscador -->
-  <section class="search" aria-label="Buscar">
-    <label for="q" class="sr-only">Buscar videos</label>
-    <input type="search" id="q" placeholder="🔍 Buscar videos..." autocomplete="off" spellcheck="false" />
-  </section>
+<div id="cardContainer"></div>
+<div id="paginationControls"></div>
 
-  <!-- Categorías -->
-  <nav id="catButtons" aria-label="Filtrar por categoría"></nav>
+<div id="videoPlayer">
+  <button id="closeBtn">✕</button>
+  <video id="activeVideo" controls muted playsinline></video>
+</div>
 
-  <!-- Conteo de resultados -->
-  <p id="resultCount" aria-live="polite" aria-atomic="true"></p>
 
-  <!-- Grid -->
-  <section id="grid" aria-label="Galería de videos"></section>
+  <script>
+    const rawVideos = [
+  
+["Nudes", "0:22", "Nudes", "SG0I9VL", "u6qw7b"],
+["Nudes", "1:32", "Nudes", "LClAbxL", "l4eze6"],
+["Nudes", "0:37", "Nudes", "xr3gdIb", "s28tos"],
+["Tetas", "1:12", "Tetas", "MWBirqN", "yrnd74"],
+["Tetas", "0:12", "Tetas", "ArnJxsj", "gsf0cr"],
+["Nudes", "0:59", "Nudes", "3w5eUCV", "066lya"],
+["Nudes", "0:27", "Nudes", "ZIKii5X", "vumydq"],
+["Masturbacion", "0:59", "Masturbacion", "offjHar", "craa0p"],
+["Baile", "0:59", "Baile", "3ikmvjO", "8zs2xq"],
+["Culo", "0:43", "Culo", "dpGYby0", "j1sl8w"],
+["Culo", "0:17", "Culo", "5Hi0lnJ", "c0h4ce"],
+["Masturbacion", "1:00", "Masturbacion", "6JbT6hH", "m2ntcy"],
+["Tetas", "0:38", "Tetas", "jbDHNFJ", "c6hlv9"],
+["Nudes", "0:30", "Nudes", "HA4Q8yT", "1k80s5"],
+["Mamada", "1:00", "Mamada", "YCzTv3I", "urx747"],
+["Mamada", "1:12", "Mamada", "OXtMGi2", "sw7e72"],
+["Exhibicionismo", "0:30", "Exhibicionismo", "0tK0nSH", "jzvttm"],
+["Nudes", "0:16", "Nudes", "z7bbWLm", "98hw8i"],
+["Sex", "0:45", "Sex", "cQ7iozY", "0c6e3d"],
+["Mamada", "0:34", "Mamada", "AK22Hoj", "gchtj3"],
+["Mamada", "0:05", "Mamada", "HcNnLBO", "4g8xly"],
+["Culo", "0:15", "Culo", "1QTZSuE", "egs75h"],
+["Tetas", "0:24", "Tetas", "CuiFCLt", "t95rdy"],
+["Lesbianas", "0:20", "Lesbianas", "73MrlEK", "rihpw7"],
+["Masturbacion", "0:29", "Masturbacion", "jQvgVaD", "fot9m8"],
+["Sex", "1:38", "Sex", "7QkvPKd", "b1001q"],
+["Sex", "0:21", "Sex", "e1edsFy", "9r5s63"],
+["Sex", "1:44", "Sex", "kX46VZl", "t5oigl"],
+["Mamada", "1:47", "Mamada", "gdOK8ON", "wvauds"],
+["Mamada", "1:11", "Mamada", "3JxF3sx", "wc2l8u"],
+["Nudes", "0:25", "Nudes", "g9WYTxA", "lad984"],
+["Masturbacion", "0:44", "Masturbacion", "bLMaPn8", "0rzmv3"],
+["Tetas", "0:07", "Tetas", "oggMpZ5", "huodgg"],
+["Exhibicionismo", "0:17", "Exhibicionismo", "8yQNesJ", "pfuv8u"],
+["Mamada", "1:01", "Mamada", "IosdaAe", "75ssfg"],
+["Tetas", "0:09", "Tetas", "SBTFQ4n", "zodz6c"],
+["Nudes", "0:04", "Nudes", "JYEqwSp", "4ehroa"],
+["Masturbacion", "0:59", "Masturbacion", "CkkVyTt", "ztv69c"],
+["Culo", "0:30", "Culo", "alfODqT", "1hbcho"],
+["Mamada", "0:49", "Mamada", "6mt9B5l", "22svay"],
+["Nudes", "2:05", "Nudes", "c1L5kFt", "sx5sh8"],
+["Masturbacion", "0:44", "Masturbacion", "fXjwckM", "43lg63"],
+["Culo", "0:14", "Culo", "DAAcXlB", "e2yypp"],
+["Mamada", "0:23", "Mamada", "lDL1711", "9tg0xs"],
+["Mamada", "0:25", "Mamada", "WyKvfe7", "d3w6og"],
+["Mamada", "0:32", "Mamada", "Pk64txg", "8g37j6"],
+["Mamada", "4:34", "Mamada", "bIvQOlR", "6cvm2h"],
+["Sex", "0:15", "Sex", "VxJkQdt", "z2egbt"],
+["Nudes", "0:59", "Nudes", "FMVJ0NB", "cz73nu"],
+["Sex", "0:51", "Sex", "5r9Xy24", "jnvpl0"],
+["Nudes", "1:58", "Nudes", "q8ZP1hL", "xykamn"],
+["Masturbacion", "0:31", "Masturbacion", "qot2Qjb", "hhrdnw"],
+["Sex", "0:23", "Sex", "u9NZjHg", "pfqfx5"],
+["Mamada", "0:07", "Mamada", "qYgteq6", "hcfbg6"],
+["Mamada", "0:12", "Mamada", "dmioVGW", "j61bdf"],
+["Sex", "1:00", "Sex", "t1VwUl4", "c6i0lb"],
+["Culo", "0:14", "Culo", "DLrZeWz", "bzmwch"],
+["Tetas", "0:11", "Tetas", "XBns2E9", "o3p1o5"],
+["Mamada", "0:57", "Mamada", "yZ4AuFd", "q9b8as"],
+["Lesbianas", "0:58", "Lesbianas", "Jrw1U1V", "aob6bs"],
+["Mamada", "0:51", "Mamada", "KsoqcGa", "we4y84"],
+["Culo", "0:34", "Culo", "pRjBRph", "ca34gc"],
+["Tetas", "0:11", "Tetas", "NrXxCsP", "eun9ou"],
+["Nudes", "0:33", "Nudes", "MzCixfD", "qp5z5l"],
+["Sex", "0:20", "Sex", "Oc2iCg7", "0c26gl"],
+["Culo", "0:05", "Culo", "bp5iI5J", "p9f2so"],
+["Tetas", "0:08", "Tetas", "hn7Bx5m", "c0d650"],
+["Masturbacion", "0:21", "Masturbacion", "q3qJNlQ", "xsdzjd"],
+["Exhibicionismo", "0:30", "Exhibicionismo", "CwgmLl0", "i9l2us"],
+["Sex", "0:16", "Sex", "D21xTgm", "uciq9y"],
+["Sex", "1:05", "Sex", "IqJTxQB", "ix3wni"],
+["SweetieFox", "1:05", "Nudes", "pmJNNhJ", "70hgpl"],
+["Mamada", "0:16", "Mamada", "Bu3inQ9", "uhxvuw"],
+["Sex", "1:44", "Sex", "TNoMfuM", "dgva2j"],
+["Tetas", "0:13", "Tetas", "pIIf9MP", "2l2iuf"],
+["Baile", "0:19", "Baile", "dfuW1nY", "7lutc6"],
+["Nudes", "0:39", "Nudes", "YW9kwYs", "t238lp"],
+["Nudes", "0:59", "Nudes", "ptSWgfT", "tbgypa"],
+["Masturbacion", "0:20", "Masturbacion", "2lVZxKQ", "tx79eg"],
+["Sex", "0:20", "Sex", "HTf8izH", "3h54sv"],
+["Masturbacion", "0:51", "Masturbacion", "XFnaBVu", "fx8ev4"],
+["Tetas", "0:09", "Tetas", "R78AvqW", "y4nn3r"],
+["Culo", "0:16", "Culo", "dwla6mO", "3fqcmx"],
+["Masturbacion", "0:18", "Masturbacion", "l45yHy0", "79q0dp"],
+["Mamada", "0:51", "Mamada", "BPMppOn", "zddr53"],
+["Nudes", "0:29", "Nudes", "zuULwVd", "tw39nb"],
+["Sex", "1:51", "Sex", "G79d36h", "z5crk8"],
+["Tetas", "0:29", "Tetas", "TE7OjGt", "qca7vm"],
+["Culo", "0:06", "Culo", "hD3rQN5", "udhwo3"],
+["Mamada", "0:59", "Mamada", "3JxfM8W", "7k4wny"],
+["Lesbianas", "0:53", "Lesbianas", "wUQHZ3p", "vkghgy"],
+["Sex", "0:58", "Sex", "AudFWDV", "yk8saf"],
+["Masturbacion", "0:23", "Masturbacion", "kIq3743", "pwj88j"],
+["Masturbacion", "0:57", "Masturbacion", "0uxSdBa", "usoj3h"],
+["Sex", "1:08", "Sex", "q6BuEaJ", "s7wda2"],
+["Lesbianas", "0:10", "Lesbianas", "19Yp9mW", "73ikgq"],
+["Sex", "1:14", "Sex", "vTindIT", "s6reun"],
+["Sex", "0:27", "Sex", "5fDKgVp", "q4ahwu"],
+["Tetas", "0:14", "Tetas", "TzD44wn", "6zi6uh"],
+["Sex", "4:17", "Sex", "Mvz2RI8", "xrjkqj"],
+["Mamada", "2:02", "Mamada", "EDcQDju", "kykr2r"],
+["Tetas", "0:14", "Tetas", "a5Bj9GY", "uzu42g"],
+["Sex", "2:09", "Sex", "LcPVTOw", "3h3gbf"],
+["Tetas", "0:11", "Tetas", "MoqLuwN", "iefzjx"],
+["Tetas", "0:35", "Tetas", "iL1eO9u", "ft6nlt"],
+["Sex", "1:59", "Sex", "7orguPu", "85mo9x"],
+["Masturbacion", "0:10", "Masturbacion", "SsSyRjQ", "htzmu0"],
+["Tetas", "0:10", "Tetas", "Ev2sKHP", "4zf71m"],
+["Culo", "0:41", "Culo", "ysOnVsO", "0rylgw"],
+["Culo", "0:12", "Culo", "SUJi9rW", "9kv3wc"],
+["Sex", "0:19", "Sex", "GHJNZkP", "l1211x"],
+["Mamada", "0:38", "Mamada", "OnfvEzm", "e6gs60"],
+["Nudes", "1:01", "Nudes", "XZ9q508", "t04ujn"],
+["Culo", "0:22", "Culo", "cUxyo8e", "cp17qc"],
+["Lesbianas", "1:36", "Lesbianas", "nbDH1EP", "vx80e7"],
+["Sex", "2:20", "Sex", "nlZFCsY", "v3msa0"],
+["Sex", "0:59", "Sex", "CYufHnb", "mc9va8"],
+["Culo", "0:08", "Culo", "oPc66j8", "mh8ynp"],
+["Mamada", "0:24", "Mamada", "SEWRL4E", "9mw1sx"],
+["Sex", "0:45", "Recopilacion", "LHFh7q0", "iscmlx"],
+["Sex", "3:33", "Sex", "ywmNd93", "atogm9"],
+["Mamada", "4:16", "Mamada", "eDUDDoV", "gvdf6n"],
+["Lesbianas", "4:59", "Lesbianas", "aaMJjDf", "yhrbr5"],
+["Masturbacion", "4:57", "Masturbacion", "WimFfk5", "jac9nk"],
+["Mamada", "3:20", "Mamada", "UdRIIgJ", "3wb83n"],
+["Masturbacion", "3:36", "Masturbacion", "LlxMDVa", "hwxq6m"],
+["BelleDelphine", "4:37", "Masturbacion", "BWIySy5", "vt1lgk"],
+["Masturbacion", "4:06", "Masturbacion", "ijLqXN4", "db4vzi"],
+["Sex", "3:35", "Sex", "ZxlqJrB", "31q087"],
+["Sophie Rain", "6:10", "Nudes", "prtJB7n", "d4bf59"],
+["Repartidora de pizza", "7:00", "Sex", "93TsQWM", "m4bm67"],
+["Sex", "2:57", "Sex", "DJQddhU", "qxi4mt"],
+["Sex", "3:41", "Sex", "JFuJTaB", "8pdg2p"],
+["Mamada", "4:11", "Mamada", "1Twazfq", "mc1411"],
+["jameliz", "6:08", "Sex", "K1XBn24", "zgk8p3"],
+["Jameliz", "8:38", "Sex", "sBEWTaR", "vvljqc"],
+["Tetas", "3:20", "Tetas", "2UVzMN4", "vvljqc"],
+["Sex", "6:15", "Lesbianas", "qBr5LCt", "5zud2p"],
+["Sex", "4:49", "Masturbacion", "JppPB03", "mfmjuh"],
+["Trio sex", "4:44", "Sex", "V3Eop3f", "892hhj"],
+["Sex", "3:15", "Sex", "HlpaFp4", "298je9"],
+["Duo lesbico", "5:27", "Lesbianas", "MLKLtUx", "b4uw81"],
+["Mamada", "3:24", "Mamada", "dDt3ir7", "csw0uo"],
+["Sophie Rain", "4:08", "Nudes", "I68Lq0I", "q8k491"],
+["Sophie Rain", "6:19", "Nudes", "9YhW6No", "qgbqia"],
+["Recopilacion de nudes", "10:39", "Recopilacion", "iX0xXza", "1wk3kz"],
+["Hannaowo", "2:36", "Mamada", "X8rKahQ", "9w37bf"],
+["Hannaowo", "3:35", "Mamada", "EL2CAGR", "inidje"],
+["Sex", "1:48", "Sex", "5TCYwIR", "gmke8w"],
+["Mamada", "0:51", "Mamada", "u7FSzHg", "f9fx86"],
+["BelleDelphine", "1:30", "Mamada", "GxNkFmY", "eqnwin"],
+["Sex", "1:00", "Sex", "ImUZlyr", "hhx3uz"],
+["Tetas", "0:57", "Tetas", "o1SVQcL", "lurykz"],
+["Tetas", "0:21", "Tetas", "1SlUN7D", "xsahaz"],
+["Baile", "0:35", "Baile", "HLGFJqd", "qpiesb"],
+["Duo lesbico", "0:59", "Masturbacion", "N0e4GNx", "zapl2d"],
+["Masturbacion", "2:10", "Masturbacion", "SciBunP", "mtam88"],
+["Tetas", "0:10", "Tetas", "hs1ooud", "23yqhv"],
+["Sex", "0:29", "Sex", "jkO5or4", "h8rmu0"],
+["Tetas", "0:07", "Tetas", "4nFBY5Y", "w9yocm"],
+["Sex", "0:48", "Sex", "jt4NE56", "xzn5l7"],
+["Nudes", "0:12", "Nudes", "WpXtryn", "g83hpi"],
+["Cuarteto sexual", "2:32", "Sex", "OSNnXRn", "0ns5ch"],
+["Masturbacion", "0:24", "Masturbacion", "sEXp0zd", "br6dgt"],
+["Masturbacion", "0:28", "Masturbacion", "OoCk6kf", "s196tn"],
+["Sex", "0:23", "Sex", "XsCtBO8", "unq79l"],
+["Sex", "0:37", "Sex", "05TsrGl", "pz1ogq"],
+["Exhibicionismo", "0:40", "Exhibicionismo", "pTRtAxM", "eum7yg"],
+["Sex", "0:30", "Sex", "reb5Kzc", "meok3x"],
+["Exhibicionismo", "1:29", "Exhibicionismo", "PVZSIWA", "4bkwc1"],
+["Nudes", "0:38", "Nudes", "IOdgBsP", "3k2n0o"],
+["Chica en cosplay cogiendo", "1:49", "Sex", "JLVlVla", "t0hh19"],
+["Jameliz", "0:07", "Exhibicionismo", "Mf9eWwA", "ws1h2u"],
+["Tetas", "0:11", "Tetas", "dL7QxfF", "ll8lzu"],
+["Culo", "0:13", "Culo", "HfuHRmt", "hwsv5y"],
+["Leana lovings", "0:50", "Mamada", "EY8a0rO", "wg2pva"],
+["Mamada", "1:00", "Mamada", "Q7GLFu4", "tru7uv"],
+["Mamada", "0:55", "Mamada", "lV5Vn4h", "e8tzz5"],
+["Sex", "0:54", "Sex", "O0loUYO", "4p8u1b"],
+["Exhibicionismo", "0:22", "Exhibicionismo", "EGW5Gqq", "m57ijy"],
+["Sex", "1:25", "Sex", "3zx2J3f", "t24wzu"],
+["Mamada", "1:18", "Mamada", "lHSXJYY", "qd0dgc"],
+["Sex", "1:07", "Sex", "bnlOrjq", "umjrsl"],
+["Mamada", "1:18", "Mamada", "ukB93eR", "2apmly"],
+["Hannaowo", "2:20", "Sex", "exmnDN7", "chpplw"],
+["Sex", "2:30", "Sex", "T2n43m5", "c9rv3l"],
+["Tetas", "1:01", "Tetas", "C8MASMt", "whtbmp"],
+["Culo", "0:52", "Culo", "dwrk2eh", "qw84ym"],
+["Sex", "1:33", "Sex", "D3FMwG8", "3jadnf"],
+["Mamada", "0:46", "Mamada", "N1QzLoY", "52ylb5"],
+["Masturbacion", "3:03", "Masturbacion", "ShbS8ne", "bors78"],
+["Sex", "4:17", "Sex", "lCe38ws", "xrjkqj"],
+["Sex", "0:52", "Sex", "sUFMWph", "9ja8t1"],
+["Mamada", "2:46", "Mamada", "COlflDv", "a8npqa"],
+["Masturbacion", "0:58", "Masturbacion", "I96sG5o", "l2q3hg"],
+["Culo", "1:16", "Culo", "RWwev42", "z8ojod"],
+["Sex", "2:00", "Sex", "ed9QrZn", "64iogh"],
+["Culo", "0:51", "Culo", "A8LbOpW", "4860tr"],
+["Tetas", "0:24", "Tetas", "B92fgaJ", "oqorh0"],
+["Masturbacion", "1:18", "Masturbacion", "GEWZzq7", "8pkwvi"],
+["Sex", "2:20", "Sex", "3k7dT7m", "lc653f"],
+["Nudes", "0:57", "Nudes", "Kqv3oYf", "hrwf1p"],
+["Nudes", "1:21", "Nudes", "kivNFgr", "d7lxax"],
+["Mamada", "2:42", "Mamada", "k4K7dIf", "7l7k6m"],
+["Jameliz", "2:42", "Masturbacion", "IpCSZKK", "6oqthz"],
+["Baile", "1:04", "Baile", "yfrYC6W", "c7t0tr"],
+["Exhibicionismo", "1:00", "Exhibicionismo", "fK4IlVi", "h8xgrd"],
+["Exhibicionismo", "0:57", "Exhibicionismo", "lNi01rr", "c6qrmy"],
+["Sex", "1:10", "Sex", "QAUnP6T", "gmq13m"],
+["Lesbianas al aire libre", "4:56", "Exhibicionismo", "sYCiwzP", "xzlt5w"],
+["Masturbacion", "1:01", "Masturbacion", "62i1sEw", "re96q0"],
+["Sex", "2:15", "Sex", "ATcLgLO", "4v2nk3"],
+["Culo", "0:38", "Culo", "Twn8yGo", "tye6ij"],
+["Sexo en la nieve", "1:52", "Exhibicionismo", "RgtHl4G", "sri7pq"],
+["Tetas", "1:45", "Tetas", "UhKMypi", "efffo6"],
+["Masturbacion", "4:23", "Masturbacion", "ge1n7ez", "mprw31"],
+["Sex", "1:35", "Sex", "WLHPM1u", "i51ed8"],
+["Jameliz", "0:48", "Nudes", "hMbaDu2", "0vl084"],
+["Exhibicionismo", "0:31", "Exhibicionismo", "Lq1I9KY", "le4esf"],
+["Nudes", "0:38", "Nudes", "Wg78se6", "a22ww1"],
+["Masturbacion", "1:09", "Masturbacion", "uynlQY0", "cwajhn"],
+["Masturbacion", "2:20", "Masturbacion", "R6B2AFG", "p93b8f"],
+["Mamada", "1:04", "Mamada", "FHlJZeD", "rblbco"],
+["Culo", "0:25", "Culo", "rOu4ETV", "w4xzrq"],
+["Nudes", "0:52", "Nudes", "R7zgmQU", "xeodpc"],
+["Sophie rain mostrando las tetas", "1:16", "Tetas", "P1l9y6H", "buvexl"],
+["Sophie rain muestra las tetas", "2:22", "Tetas", "PsA76MQ", "fv4xhl"],
+["Masturbacion", "1:57", "Masturbacion", "yPnRuei", "du1yb2"],
+["Masturbacion", "2:19", "Masturbacion", "TnjArTm", "nim0jd"],
+["Tetas", "0:42", "Tetas", "9xFxucH", "6mecjn"],
+["Japonesa haciendo paja rusa", "0:41", "Tetas", "LwNK10l", "3jpyu5"],
+["Tetas", "0:22", "Tetas", "2KZ6Pop", "ciz7z0"],
+["Sex", "0:46", "Sex", "wnGcbPu", "hycupe"],
+["Nudes", "0:21", "Nudes", "I8dIUD2", "lvuhg5"],
+["Chica se desnuda frente a la camara", "1:26", "Nudes", "SxFFq5b", "667f3l"],
+["Emma fiore", "0:24", "Tetas", "qpLV8Gh", "ofhzig"],
+["Tetas", "0:31", "Tetas", "TFysJhj", "nwt1br"],
+["Chica baila twerk", "0:30", "Baile", "1PlQucP", "f7i0a6"],
+["Camila se desnuda para la camara", "0:16", "Nudes", "YP7guzo", "as8imw"],
+["Camila sin ropa en video", "0:39", "Nudes", "2Md6wBn", "4cdjf7"],
+["Camila se toca mientras trabaja", "0:19", "Nudes", "aE1z6PR", "s9ytwj"],
+["Camila muestra todo", "0:36", "Nudes", "dR9353k", "ama2en"],
+["Tetas", "0:25", "Tetas", "0vFKaTi", "ed6jop"],
+["Tetas", "0:10", "Tetas", "jm38iwe", "onu7t5"],
+["Nudes", "0:15", "Nudes", "JyEIjx6", "ixdjcm"],
+["Streamer se masturba en camara", "0:17", "Masturbacion", "5afKECm", "q9nkme"],
+["Gotica tetona mostrando los pechos", "0:30", "Tetas", "hBLM21J", "afc38h"],
+["Hermosa blanca se desviste y muestra todo", "0:27", "Nudes", "ioCGWPp", "kjhnll"],
+["Tetona cogiendo duro", "2:09", "Sex", "uenzsAF", "yj29wl"],
+["Emikukis filtrada cogiendo con jueguete", "0:19", "Masturbacion", "HAfq9g4", "22g28m"],
+["Hermosa chica muestra el culo", "0:19", "Culo", "rKdPwlv", "10x4l0"],
+["Asiatica cojiendo duro", "0:28", "Sex", "M8A3FOE", "5aomh8"],
+["Chica muestra todo", "0:20", "Nudes", "LH22yDV", "69os6f"],
+["Enfermera se la chupa a paciente en consultorio", "2:19", "Mamada", "GVQj0K9", "6j5fig"],
+["Chica juega con su amigo", "1:13", "Mamada", "ab8W54u", "56w3le"],
+["Camila se saca toda la ropa", "0:56", "Nudes", "K9YwY0B", "f2rl63"],
+["Camila moviendo las tetas y culo", "0:19", "Nudes", "qFcpLzh", "usyor7"],
+["Camila chica caliente mostrandose frente a la camara", "0:26", "Nudes", "xMZCMNH", "qf8wv4"],
+["Camila desvistiendose", "0:42", "Nudes", "Kd7jZSk", "pmlqfr"],
+["Camila mostrando el culo", "0:16", "Culo", "FdWhY9K", "gga6gk"],
+["Camila desnuda", "0:36", "Nudes", "rCCow24", "dbv65v"],
+["Tetas", "0:21", "Tetas", "S1rVdvb", "cwpszh"],
+["Cami nudes", "0:19", "Nudes", "wchsEWD", "scojk2"],
+["Camila nudes", "0:16", "Nudes", "e8BF2wJ", "cb6sl8"],
+["Cami desnuda", "0:19", "Nudes", "wIJWU9u", "pc8oao"],
+["Camila nudes", "0:29", "Nudes", "oS9rwJZ", "j4lsp8"],
+["Pelinaranja mostrando el culo", "0:21", "Culo", "2atHChU", "98aphd"],
+["Chica rubia masturbandose", "1:29", "Masturbacion", "PG3a7fJ", "p0v0la"],
+["Chica masturbandose mientras se ducha", "1:36", "Masturbacion", "MtXVDOA", "s56cg7"],
+["Hermosa chica cojiendo", "0:26", "Sex", "QDhlqs6", "1mo7c7"],
+["Rubia masturbandose mientras se baña", "5:55", "Masturbacion", "8O5I6pn", "eufrwx"],
+["Dreamymoo metiendose dildo", "0:24", "Masturbacion", "4upycem", "5if9nq"],
+["Japonesa cosplayer masturbandose con juguete", "0:33", "Sex", "znJFPzE", "mv6kup"],
+["Sofi chorreando en cosplay de conejita", "0:30", "Culo", "aIN4vYT", "ge5i1w"],
+["Sofi metiendose juguete", "0:20", "Masturbacion", "qOnwUVZ", "kzm7pu"],
+["Dreamymoo masturbandose", "0:23", "Masturbacion", "LkFCAa4", "lxniaz"],
+["Dreamymoo metiendose juguete", "0:23", "Masturbacion", "5trj7Te", "c4az6a"],
+["Cosplayer se sienta en juguete frente a la camara", "0:52", "Masturbacion", "VrGfWqR", "o1uglq"],
+["Chica maquillandose desnuda", "0:38", "Culo", "XlFX8tu", "k4dfw4"],
+["Chica en cosplay se sienta en la camara", "0:34", "Masturbacion", "6gwZOKL", "ihbbme"],
+["Chica cosplayer desnuda", "0:35", "Nudes", "PJbSkCK", "kx30ge"],
+["Cosplayer de hxh muestra las tetas", "0:05", "Tetas", "EOH8xBH", "8lvy91"],
+["Chica se masturba mientras se toca", "9:58", "Masturbacion", "NXNHdf2", "s366yk"],
+["Cojiendo en el bosque por la noche", "0:41", "Exhibicionismo", "byI06ra", "o219q9"],
+["Hermosa chica haciendo rebotar sus tetas", "0:08", "Tetas", "IHtvEZW", "i9o39c"],
+["Hermosas tetas de hannapunzel", "0:13", "Tetas", "aCD6oPE", "8gsnjb"],
+["Chico se coje a japonesa en minifalda", "0:38", "Sex", "gt4amO0", "q0117j"],
+["Chica mostrando la vagina a la camara", "0:19", "Sex", "boUMYs4", "9aq61p"],
+["Rubia masturbandose", "0:30", "Masturbacion", "Pg1Mj9F", "g41u0s"],
+["Chica dandole fuertes sentones a su novio", "1:22", "Sex", "jHYFiPn", "pwdyb9"],
+["Teniendo sexo al aire libre pt1", "1:02", "Exhibicionismo", "8NMfR15", "k5mlmc"],
+["Chica se embriaga y termina tiendo sexo", "11:24", "Sex", "ued5FSy", "vxloer"],
+["Dreamymoo juega en cosplay de Raven", "11:08", "Masturbacion", "1TURya0", "ig1kin"],
+["Hermosa chica se atraganta", "14:15", "Mamada", "Aby2qaP", "zgqxlg"],
+["Cajera de starbucks seduce a chico para tener sexo pt2", "2:42", "Sex", "p2qE6T3", "rvglme"],
+["Cajera de Starbucks seduce a chico para tener sexo pt1", "1:38", "Mamada", "4KZDbSc", "fbvt8r"],
+["Vendedora de tienda se masturba con cliente", "5:05", "Exhibicionismo", "Ow0LWeS", "h6l4wo"],
+["Cosplayer de velma chupando verga", "14:55", "Sex", "I90eT4P", "2591h9"],
+["Dreamymoo se masturba con juguete sexual", "3:10", "Masturbacion", "wGlGOKF", "vh52tj"],
+["Dreamymoo tocandose", "6:37", "Masturbacion", "lSpLHx4", "4716lp"],
+["Dreamymoo metiendose cosas por el culo", "7:55", "Culo", "FNCDfjS", "nfshus"],
+["Dreamymoo chorrea con juguete", "8:25", "Masturbacion", "RssPdJC", "xsxmr3"],
+["Dreamymoo frotandose la vagina hasta chorrear", "9:00", "Masturbacion", "Cv21qjc", "577lrw"],
+["Hermosa chica dandole sentones a juguete sexual", "4:55", "Masturbacion", "hVd9pPR", "nmz028"],
+["Hermosa asiatica se frota dildo", "0:32", "Masturbacion", "OTob6J9", "gglqhu"],
+["Sexo vaginal con cosplayer de hinata", "4:31", "Sex", "J6qAsY9", "96ka9o"],
+["Lesbianas bailando mientras se tocan", "9:00", "Baile", "E5fs8YW", "b0lcov"],
+["Lesbianas se desnudan y masturban juntas", "16:08", "Lesbianas", "XC4i739", "mofmgk"],
+["LInda chica se atraganta con juguete sexual", "7:57", "Mamada", "qeuX4bK", "a2qoh2"],
+["Dreamymoo se mete multiples juguetes", "10:04", "Masturbacion", "v3XFOtQ", "xynw45"],
+["Dreamymoo se mete multiples juguetes hasta correrse", "10:04", "Masturbacion", "O8mueNB", "xynw45"],
+["Dreamymoo en cosplay tiene un squirt", "5:48", "Sex", "xro9J8w", "jvns9r"],
+["Se coje duro a chica en cosplay de zelda", "11:30", "Sex", "arMmv7W", "80me9b"],
+["Chica charla denuda frente a la camara", "6:49", "Nudes", "IQdIM6E", "ywcqrm"],
+["Chica se desviste y se toca", "3:23", "Nudes", "dSsLKXo", "v4ow88"],
+["Chica tetona le hace paja rusa mientras chupa", "1:00", "Mamada", "Ipf0oDD", "ykc81y"],
+["Teniendo sexo al aire libre pt2", "5:30", "Exhibicionismo", "SjK3YHO", "3bd39a"],
+["Linda chica jugando con sus tetas", "0:19", "Tetas", "KqmoO6l", "pdad9w"],
+["Corena en traje de beisbol muestra las tetas", "0:31", "Tetas", "dsmuJje", "ojjwka"],
+["Dreamymoo en traje de navidad jugueteando", "7:29", "Masturbacion", "k2jACsQ", "ed2kcf"],
+["Chica gotica muestra el culo y se mete cosas", "6:53", "Masturbacion", "oT6dod8", "gln70l"],
+["Chica cojiendo mientras se masturba", "8:06", "Sex", "ucC6hnl", "36xo69"],
+["Rutina de ejercicio de sweetifox desnuda", "15:48", "Nudes", "mlkJLP0", "nx2ymk"],
+["Hermosa chica es cojida por su novio", "14:57", "Sex", "EZP5p9g", "4hkc95"],
+["Asiatica juega con sus tetas mientras chupa", "6:51", "Mamada", "7hT7udT", "krbxp7"],
+["Chica se masturba en traje de policia", "9:20", "Masturbacion", "A6K1ojE", "8rrqsd"],
+["Belledelphine juega con pene de goma", "8:24", "Masturbacion", "EwGzTcW", "6sa309"],
+["Daphne y velma tienen relaciones", "19:27", "Lesbianas", "OTWIOjX", "xjdpit"],
+["Se cojen a cosplayer de kobeni", "11:30", "Sex", "lWuIivK", "31yn3w"],
+["Hermosa chica juega con vibrador para luego dejarse cojer", "8:55", "Sex", "haLLOQL", "w44urv"],
+["Chica rubia se deja cojer fuerte", "13:00", "Sex", "cS74OJL", "pqutvw"],
+["Chica de taller mecanico se deja cojer como pago", "5:34", "Sex", "rb5B66h", "9gtj67"],
+["Rubia se masturba con juguete y se mete", "13:35", "Sex", "jmoW8WW", "i1vjr4"],
+["Hanapunzel desvistiendose", "1:58", "Nudes", "gR5Z2v5", "an8aks"],
+["Chica gotica se mete tentaculo por el culo", "7:54", "Masturbacion", "yjcra57", "bbr7aj"],
+["Linda chica coje con su novio al aire libre", "15:48", "Sex", "9olr8Qa", "djb8o2"],
+["Trabajadora de McDonalds se tocan", "8:21", "Lesbianas", "BFdpR3V", "0kaqo1"],
+["Chica gotica tocandose", "0:36", "Masturbacion", "WUSgYLF", "iry0f3"],
+["Hernosa chica deja que su novio se venga en su cara", "0:37", "Mamada", "LWEO0U0", "2ds8v7"],
+["Lesbianas se conocen en hotel y terminan teniendo relaciones", "26:30", "Lesbianas", "daeZkem", "cmq1i1"],
+["Duo de lesbianas teniendo relaciones", "10:32", "Lesbianas", "pfLgo5R", "ysi70f"],
+["Duo sexual de lesbianas en cosplay de monjas", "18:50", "Lesbianas", "lbM0UeU", "r73zes"],
+["Hermosa chica en traje de spiderman se masturba", "0:38", "Masturbacion", "xPUWT4i", "1im2bu"],
+["Chica da sentones en juguete", "0:21", "Masturbacion", "YF2I3jW", "837r9m"],
+["Chica se desnuda y muestra todo", "2:46", "Nudes", "g55NN5a", "jxex16"],
+["Chica juega con su novio", "11:00", "Sex", "nr0UOEQ", "khachj"],
+["Chica tiene sexo con muñeco de goma", "6:15", "Masturbacion", "K7mXZXX", "xxgfe1"],
+["Chica en traje de velma se mete pene de silicona", "13:13", "Masturbacion", "F9sIOBk", "6vgt7e"],
+["Sex", "12:30", "Sex", "qPlZash", "wciu82"],
+["Chica tetona se la cojen por el culo", "14:50", "Sex", "hOBq1pw", "aw3r3n"],
+["Chica se masturba con vibrador", "3:28", "Masturbacion", "Ilfiqff", "0vca5q"],
+["Chica de hermosas tetas recopilacion", "1:26", "Tetas", "qzTn2WL", "1wnlj0"],
+["Sophie rain desnuda en mallas", "1:50", "Nudes", "2ZJO7a8", "31mlg2"],
+["Rubia muestra el culo a la camara", "1:31", "Culo", "K9PfS9c", "hddd0m"],
+["Chica muestra en culo a la camara mientras chupa", "3:10", "Culo", "doMv9gO", "vynu2p"],
+["Chica le dan leche en traje de vaquita", "3:05", "Sex", "T30ooS6", "ohbity"],
+["Chica se masturba con vibrador", "1:30", "Masturbacion", "YGhpkeO", "t3qj1g"],
+["Chica le dan verga por navidad", "5:50", "Sex", "peyyO6z", "7hukx4"],
+["Chica en traje de Shun-li cojiendo", "10:28", "Sex", "goGGjr4", "d6wunm"],
+["Chica en traje de spiderman se masturba con dildo", "6:56", "Masturbacion", "wtas6zQ", "lmozvd"],
+["Chica hace rusa mientras chupa juguete sexual", "4:01", "Tetas", "UyqdUkN", "pd4o6h"],
+["Hanapunzel mostrando las tetas mientras baila", "0:09", "Tetas", "8gUJH8W", "wmoz4o"],
+["Hermosa rubia posa en culo frente a la camara", "0:50", "Culo", "hbzNdS7", "wzy1j0"],
+["Chica se mete cosas por su hermoso culo", "2:50", "Culo", "gOFpR5y", "vww599"],
+["Chico pide servicio sexual con Dora", "14:32", "Sex", "bbTgXFf", "i19hj2"],
+["Chica se masturba al espejo", "1:26", "Masturbacion", "XKGEMLI", "293m5y"],
+["Ladron seduce a chica para cojersela", "18:16", "Sex", "V0vxZ0X", "6iag9o"],
+["Duo de lesbianas tienen sexo", "4:31", "Lesbianas", "9RNhDzg", "ub6485"],
+["Linda rubia se saca las tetas a la camara", "0:31", "Tetas", "P4d29B4", "svnhsx"],
+["Lesbianas tienen sexo", "9:24", "Lesbianas", "vNIGT71", "9l1kia"],
+["Janice nichole y jameliz mueven el culo en video", "0:05", "Baile", "6WNj2kE", "l3a9qg"],
+["Chica interrumpe la partida de su novio para mamarsela", "7:40", "Mamada", "RvXQyff", "to4s3h"],
+["Chica se frota y mete cosas para masturbarse", "11:57", "Masturbacion", "SN7x4W0", "klfbt1"],
+["Chico se corre en la cara de hanapunzel", "0:28", "Masturbacion", "hKw0EWQ", "nmg642"],
+["Rubia de rosa cojiendo", "7:16", "Sex", "JLILQeE", "1b2zhk"],
+["Cuarteto de lesbianas jugando y masturbandose", "5:10", "Lesbianas", "tyNuN1i", "f2bazz"],
+["Asiatica se masturba mientras gime", "7:16", "Masturbacion", "lwgvQGD", "lgcgkz"],
+["Hermosa chica se masturba mientras juega con sus pies", "9:10", "Masturbacion", "ZQHVxVO", "7vmr1l"],
+["Chica vestida de rosa tiene sexo duro", "5:09", "Sex", "Wk6lrJm", "jdbu96"],
+["Cosplayer juega con sus juguetes mientras se masturba", "2:06", "Masturbacion", "Yuwhmcc", "a6lqyt"],
+["Chica se desnuda mientras se aceita para masturbarse", "2:06", "Nudes", "WEkLZFl", "62b883"],
+["Chica tiene sexo en cosplaye de Tatsumaki", "2:06", "Sex", "CHR1rZr", "qf8i6r"],
+["Lesbianas tienen relaciones al aire libre mientras juegan en la piscina", "18:29", "Lesbianas", "DkghgVI", "gnfzce"],
+["RedWitch cojiendo con su novio", "12:05", "Sex", "DUMXsp4", "8ejfv3"],
+["RedWitch cojiendo en distintas posiciones", "6:00", "Sex", "TpR48gv", "s51qg9"],
+["RedWitch se quita la ropa y masturba", "7:29", "Masturbacion", "DgJ8RzS", "ers143"],
+["RedWitch habla a la camara mientras se toca", "13:56", "Masturbacion", "1oiz1Oh", "tcoan4"],
+["RedWitch se deja cojer por el culo", "14:34", "Sex", "QMKdvDF", "bqf5i3"],
+["RedWitch mueve el culo y se masturba", "8:44", "Masturbacion", "01uIwty", "9xac6n"],
+["RedWitch cojiendo", "9:38", "Sex", "InbYsNL", "lq9456"],
+["RedWitch se mete cosas por el culo", "12:02", "Sex", "WR2yP9r", "crkfd7"],
+["RedWitch le da sentones a su novio y se le viene en la cara", "8:26", "Sex", "keIJjcR", "6x26zv"],
+["RedWtch masturbandose en mallas", "6:59", "Masturbacion", "tF6ndud", "8zsuem"],
+["RedWitch en cosplay de cammy jugando con dildos", "7:53", "Masturbacion", "us6RK1y", "0hh5tj"],
+["RedWitch jugando con su culo", "4:06", "Masturbacion", "9gPbs3E", "xxw4of"],
+["Chica gotica se masturba a la camara RedWitch", "11:31", "Masturbacion", "Npausxg", "cqr3y3"],
+["RedWitch gime como puta mientras coje", "14:10", "Sex", "cpIjxhR", "8mkwby"],
+["RedWitch se masturba mientras se ducha", "9:59", "Masturbacion", "Ooucygd", "o1zpgq"],
+["Chica en cosplay de Nier Automata se masturba con juguetes", "6:21", "Masturbacion", "dcMoI5k", "vnkxv5"],
+["RedWitch en traje de gata cojiendo", "10:39", "Sex", "1pr8cke", "s2cs0f"],
+["Emmafiore se masturba", "1:32", "Masturbacion", "bEbiW6l", "stprnl"],
+["Rubias lesbianas se tocan y masturban juntas", "9:12", "Lesbianas", "Wjk5ER3", "d6vuyt"],
+["Chica muestra las tetas", "3:10", "Tetas", "1JMNgal", "5qcab2"],
+["Lesbianas se besan y tocan", "9:17", "Lesbianas", "BQS6ztq", "zv89hs"],
+["Emmafiore y su amiga tienen sexo", "8:01", "Lesbianas", "MRGA32b", "jpoku8"],
+["Trio juguetean y bailan", "9:04", "Lesbianas", "R7zyYCC", "9e88nv"],
+["Mewslut cojiendo en cosplay", "8:57", "Sex", "BipyRBz", "4ka1si"],
+["Latinas lesbianas tienen sexo", "6:06", "Lesbianas", "y3fcAvy", "gryepq"],
+["Chica de pelo rosa juega con pene de goma", "13:08", "Masturbacion", "YvHW2WP", "ll3vt5"],
+["Redwitch haciendo poses de animes", "8:37", "Nudes", "gWH10kN", "3tirpd"],
+["Argentina tetona juega con ellas", "3:03", "Tetas", "Ec0Vkor", "rrd6qe"],
+["Chica en traje de halloween desnudandose", "5:00", "Nudes", "VLztfUI", "jj1o63"],
+["RedWitch se mete cosas mientras chupa verga", "12:22", "Sex", "wFfMAlZ", "2q5su2"],
+["Latina karol chupa y pega sentones", "9:42", "Sex", "AEktzsO", "79g1xf"],
+["Hermosa culona pegando sentones", "6:49", "Sex", "jbKbN5N", "safu9u"],
+["Chica en cosplay de kitana se desnuda", "10:24", "Nudes", "WgQEYAz", "3jfo9m"],
+["Chica se atraganta con verga", "9:44", "Mamada", "fU9iobD", "31lof1"],
+["Chica metiendose juguetes sexuales por el culo", "8:02", "Masturbacion", "7GDiDX8", "csiu80"],
+["Fetiche de pies mientras chica se masturba", "17:14", "Masturbacion", "wjVKimp", "xswbcq"],
+["Chica española tiene sexo al aire libre a media noche", "7:22", "Sex", "hvOw9dW", "jiza9d"],
+["Chica baila mientras de saca la ropa", "4:38", "Baile", "WuMUmCP", "t0xt0x"],
+["Chico se coje a perra hambrienta", "16:07", "Sex", "T7ZXv6d", "wc36vx"],
+["Rubia extranjera moviendo las nalgas", "5:53", "Culo", "YyG5hZ9", "fg1m6s"],
+["Latina masturbandose en estacionamiento", "9:04", "Masturbacion", "QQ0AXOc", "dsr8wj"],
+["Hermosa chica se entrega a mamar verga", "4:31", "Mamada", "7W2b9nD", "ugwzmy"],
+["Perrita cute recibiendo leche por el culo", "5:41", "Mamada", "UgMDYAZ", "3j0lvd"],
+["Flaquita latina jugando a la camara", "5:48", "Masturbacion", "zUpHW9Q", "may4cr"],
+["Tetona en traje de elfa se da placer con dildo", "11:00", "Mamada", "FgtpxIc", "0r94xp"],
+["Perrita juega a la camara", "19:19", "Nudes", "GnSVY1k", "6qw68y"],
+["Dreamymoo habla y gime mientras se masturba", "8:20", "Masturbacion", "W8zwwfx", "kqt71f"],
+["Sesion de fotos sexuales de sweetie fox acaba en sexo", "5:12", "Sex", "tQPuTo7", "rqv4t9"],
+["Sweetie fox gime fuerte mientras da sentones", "3:01", "Sex", "FhMye3Z", "2oykfm"],
+["Sweetie fox juega con su almohada y vagina", "3:53", "Masturbacion", "H4F2Iqi", "nf6efe"],
+["Sweetie fox se deja penetrar", "1:28", "Sex", "ZkUFsXQ", "q7ic9o"],
+["Sweetie fox cojiendo y gimiendo como perra", "1:09", "Sex", "dzHnee7", "a4ys4f"],
+["Chica en traje de gatita se masturba y manosea", "4:45", "Masturbacion", "LtVwkwz", "spkehk"],
+["Chica morena se masturba en ropa interior de cosplay", "6:14", "Masturbacion", "Cnio55K", "23ajue"],
+["Chica se deja penetrar por dildo automatico", "5:38", "Masturbacion", "Hjzq9KV", "0l16pq"],
+["Chica dando sentones en ropa interior", "5:44", "Sex", "6SJRh7T", "ep3k7g"],
+["Rubia es penetrada", "5:03", "Sex", "YpismUy", "7rcx13"],
+["Chica se desnuda y tiene sexo mientras se graba", "10:40", "Sex", "EEVnjMH", "38etc6"],
+["Chica teniendo sexo en la playa", "11:47", "Sex", "xz7u3Yr", "uqc9cz"],
+["Chica juguetona se masturba en la cama", "4:18", "Masturbacion", "JNBLgje", "ft2tl8"],
+["Chica gime rico mientras le penetran", "15:05", "Sex", "7YHMTO1", "on6ju8"],
+["Chica es cumeada en la cara y sale a la calle para exhibirse", "5:10", "Sex", "LYKWS2n", "8uqt0q"],
+["Chica mueve el culo mientras se desnuda", "1:45", "Baile", "bOAKqWG", "si4npk"],
+["Rubia de ricas tetas las saca para jugar", "0:52", "Tetas", "J4RsOzV", "bgc207"],
+["Chica se masturba y se sienta en pene de silicona al aire libre", "11:35", "Masturbacion", "xEtYZAe", "b8u1u8"],
+["Kitty en ropa de navidad se masturba y penetra con extraño pene", "18:40", "Masturbacion", "e5cvFHl", "o8hkfr"],
+["Chica en cosplay de Harley Quinn", "0:40", "Masturbacion", "ihde6hD", "wjioq6"],
+["Recopilacion de chica siendo perra al aire libre", "0:58", "Recopilacion", "86gVpA7", "s1zisg"],
+["Lola rose y amiga hacen trio sexual y comparten semen", "11:54", "Sex", "RX89rou", "ngiv1l"],
+["Chica de lindas tetas se masturba con pene de goma", "0:49", "Masturbacion", "pJ6Db2N", "ee5o17"],
+["Chica colapsa al dar sentones a enorme pene de goma", "0:59", "Masturbacion", "X0UnYFp", "l0mham"],
+["Chica seduce chico en el gym para llevarselo a cojer", "8:11", "Sex", "IxU0QB6", "90a1th"],
+["Hermosa rubia blanquita cojiendo rico", "6:45", "Sex", "pPBVTXj", "njrcf1"],
+["Rubia es seducida al aire libre para cojer", "10:11", "Sex", "UYnTIrW", "0ez5wy"],
+["Rubia saca el pene a su hermanastro para cojerselo", "9:28", "Sex", "WRC3Zcr", "bcvwbk"],
+["Chica rubia coje en piscina a oscuras", "12:19", "Sex", "btcY9vb", "z99h8o"],
 
-  <!-- Paginación -->
-  <nav id="pagination" aria-label="Páginas"></nav>
+["Rubia de fansly cojiendo rico", "13:31", "Sex", "SYsNG3f", "kogq78"],
+["Rubia de fansly cojiend rico pt2", "14:59", "Sex", "higTO36", "77z7ft"],
+["Rubia es convencida para cojer", "14:03", "Sex", "7ROKmqm", "834xrj"],
+["Chica rubia jugaba play cojiendo", "8:31", "Sex", "vQS93jT", "3i9041"],
+["Chica es tratada como perra mientras coje", "13:54", "Sex", "0dBLWSX", "g7kgkr"],
+["Trabajadoras de McDonalds se divierten", "8:21", "Lesbianas", "403wQXf", "mxmvcw"],
+["Sweetie fox chupando verga en carro", "4:27", "Sex", "n4LlYdL", "42o01w"],
+["Gotica culona penetrada por el culo", "2:18", "Sex", "I0jKZmg", "f9fl1m"],
+["Chica haciendo batido desnuda", "4:50", "Nudes", "bXWSkrC", "3usi81"],
+["Gotica desnuda mostrando todo", "3:39", "Nudes", "qnzv4Cx", "654wqm"],
+["Chica de hermosas tetas jugando con vibrador", "7:11", "Nudes", "4dw0NNZ", "yplb4l"],
+["Chica tetona tocandose", "5:08", "Tetas", "0y5cFwC", "encvq7"],
+["Tetona tocandose", "5:08", "Tetas", "s1injOs", "lv3drs"],
+["Argentina de ricas tetas manoseandose", "6:36", "Tetas", "x7akUg1", "7mowb9"],
+["Chica se masturba con dildo", "3:42", "Masturbacion", "yxmKHqu", "l3pgrm"],
+["Hermosa chica se desnuda y masturba con vibrador", "8:19", "Masturbacion", "8vX0FyX", "a66gbl"],
+["Chica peli rosa cojiendo con su pareja", "6:02", "Sex", "tU1l9zH", "b9l3w4"],
+["Chica pasea y es cojida bajo puente por desconocido", "4:42", "Sex", "Kgsahkt", "704bu0"],
+["Chica masturba a su novio", "3:37", "Sex", "De1xeWY", "70jnmo"],
+["Chica se mete pene de goma y se llena de semen", "4:06", "Masturbacion", "15eFMzj", "zvmdrl"],
+["Red Witch cojiendo y tragando semen", "12:59", "Sex", "eqjT8jc", "q1kbk7"],
+["Vladislava haciendo ejercicio desnuda", "5:02", "Nudes", "8r40Qw9", "qj1teb"],
+["Chica en stream prueba a meterse dildo por la vagina", "6:14", "Masturbacion", "5KlKL3f", "nzgaep"],
+["Hermosa chica dedeandose pt1", "16:28", "Masturbacion", "NdJjjvz", "da0t41"],
+["Hermosa chica dedeandose pt2", "12:15", "Masturbacion", "44AGxsc", "chke5t"],
+["Linda chica rubia tocandose con su novio mientras cojen", "18:14", "Sex", "A45Ef6E", "2koy3x"],
+["Chica metiendose vibrador por el culo", "4:45", "Masturbacion", "UQ3WQ6F", "i017nz"],
+["Sweetie fox cojiendo y gimiendo rico", "5:59", "Sex", "KAowf6N", "61mrjx"],
+["Sweetie fox en traje cotica es cojida y domada", "5:00", "Sex", "seXEym1", "h4f1so"],
+["Chica de hermoso cuerpo juega con dildo mientras se toca en stream pt2", "7:44", "Nudes", "tPlrkVS", "r3sy0l"],
+["Chica gotica hace twerk y baila", "1:59", "Baile", "9c6xPXG", "w478bm"],
+["Chica tetona baila y se toca en la ducha", "7:50", "Tetas", "5VuvkXQ", "olhehr"],
+["Lesbianas juguetean", "4:44", "Lesbianas", "Wdhd037", "7vm3zb"],
+["Chica se desnuda y masturba", "6:56", "Masturbacion", "kgn8xA1", "4a6idy"],
+["Jameliz se aceita y toca", "4:37", "Masturbacion", "QSoGuBO", "k0rqho"],
+["Chica en traje de coneja rosa se masturba y mete cosas", "17:05", "Masturbacion", "OnpxdAj", "z8tjhi"],
+["Masturbacion", "7:35", "Masturbacion", "kFOl8ZX", "glsvi7"],
+["Chica en vestido rojo se desnuda y usa vibrador", "5:22", "Masturbacion", "cGNGLCy", "2u3ca7"],
+["Masturbacion", "8:01", "Masturbacion", "foCJhAw", "gi7sl1"],
+["Chica coje y hace paja con las tetas", "6:31", "Sex", "bSoVrfp", "z5hg9f"],
+["Chica se frota y masturba con dildo", "7:34", "Masturbacion", "yppcKDC", "b1ryaj"],
+["Chica se masturba rico y frota la vagina", "4:10", "Masturbacion", "5Clx94Y", "rgn7j8"],
+["Hermosa rubia chupa y es cojida por su pareja", "6:50", "Sex", "ZjppeLW", "cgofkb"],
+["Chica se desnuda y masturba", "8:19", "Masturbacion", "tM2OYxW", "xs793j"],
+["Chica camina desnuda en las calles de noche", "4:36", "Exhibicionismo", "Yd13NNn", "s7g8ou"],
+["Chica tetona tocandose", "4:18", "Nudes", "AlpG7jg", "4l36ck"],
+["Chica en traje se spiderman se masturba mientras charla", "22:01", "Masturbacion", "1Gz3Z1p", "oeu622"],
+["Chica en cosplay de mavis se toca", "4:18", "Nudes", "qywf1sI", "lbd3vk"],
+["Chica tetona se toca los pechos y juega con ellos", "2:15", "Tetas", "XFXhNdT", "38w2wm"],
+["Rubia se mete los dedos en el vestidor", "4:49", "Masturbacion", "QeHRYlp", "no56vp"],
+["Rubia masturbandose", "2:55", "Masturbacion", "PTYOqeG", "mxgsc1"],
+["Chice tetona coje con su novio", "9:39", "Sex", "9zdnDjn", "0af75v"],
+["Rubia provoca a su novio para que se la coja en la cocina", "13:11", "Sex", "9BPslLB", "1pgprb"],
+["Lesbianas se masturban y cojen en tienda", "16:05", "Lesbianas", "1JlSbA7", "0br0ei"],
+["Chica en ropa de exploradora es cojida por el culo", "12:00", "Sex", "99Fs1AW", "e6tr2j"],
+["Chica cojiendo al aire libre", "4:39", "Exhibicionismo", "Sxn9fXK", "lyiroo"],
+["Lesbianas juegan y se exhiben en tienda", "19:20", "Lesbianas", "pCCiquz", "nmfude"],
+["Zorra es cojida contra la pared", "2:57", "Sex", "yjTmX6o", "mchwu0"],
+["Lesbiana se dirviente en coche", "14:51", "Lesbianas", "o9qntYJ", "t8cglq"],
+["Chica dando sentones a pene de goma", "5:18", "Masturbacion", "0iBVHXH", "sqo5iz"],
+["Chica tetona se abre y masturba a la camara", "7:17", "Masturbacion", "jATpb6k", "urgmpw"],
+["Recopilacion de chica metiendose cosas por la vagina hasta chorrear", "2:14", "Masturbacion", "aZiaBjY", "e231n8"],
+["Chica arrastra a desconocido a su casa para cojerselo", "6:36", "Sex", "KUTPgis", "ggg87s"],
+["Duo lesbico de cosplayer se masturban y juegan juntas", "4:16", "Lesbianas", "UC9a0BW", "lu3ijd"],
+["Rubia en traje de coneja da sentones a pene de goma", "7:01", "Masturbacion", "UvoHToB", "1q3ru7"],
+["RedWitch en cosplay de elastigirl chupande verga y cojiendo", "10:09", "Sex", "mfCZfbh", "m9qofd"],
+["Orgia de lesbianas masturbandose y teniendo sexo", "10:23", "Lesbianas", "CBKE06I", "a9642o"],
+["Hermosa chica masturbandose y metiendose cosas por el culo", "9:06", "Masturbacion", "ntz5gzU", "4l93dm"],
 
-</main>
+["Chica rubia masturbandose con productos", "4:21", "Masturbacion", "BlnJWxa", "jhbyxp"],
+["Chica rubia coje en coche", "3:39", "Sex", "Dy4HiMi", "ds8efy"],
+["Izzy metiendose juguete por la vagina", "2:35", "Masturbacion", "3uN7Hbm", "foih7l"],
+["Rubia en cosplay de ash ketchum gime como loca mientras se masturba", "3:49", "Masturbacion", "uqcCdmt", "7kqtax"],
+["Chica dando sentones en pene de goma", "13:02", "Masturbacion", "JPkmjvr", "3ih13k"],
+["Peli naranja se mete juguete por el culo y vagina", "12:09", "Masturbacion", "F4RlCBk", "8b9lo4"],
+["Orgia de chicas lesbianas masturbandose", "7:47", "Lesbianas", "RX0gzwp", "yw7omu"],
+["Streamer cute se masturba con juguetes", "10:27", "Masturbacion", "r2pJfS4", "vm489u"],
+["Chica es cojida duro por la boca y culo", "20:18", "Sex", "zEBWexy", "0j7qw6"],
+["Nicole juega con sus grandes tetas", "3:13", "Tetas", "ZTkxNJc", "8awsvi"],
+["Rubia lame pene de goma y salta en el", "5:24", "Masturbacion", "L8nkq5L", "syha3j"],
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer class="site-footer">
-  <p>Contenido exclusivo para adultos +18 &mdash; YouDev © 2025 &mdash; Visitas: <span id="visits">…</span></p>
-</footer>
+];
 
-<!-- Adsterra banner -->
-<script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
-<div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
+const animeVideos = [
+  ["Animación", "2:13", "Sex", "Hfoq173", "ykod8l"],
+  ["Animación", "1:45", "Sex", "BR6V1XI", "b7facn"],
+  ["Anime", "1:19", "Sex", "RQpaScc", "42u3bw"],
+  ["Anime", "2:17", "Sex", "G9sX27p", "q5xa43"],
+  ["Anime", "2:18", "Sex", "QGkFO8t", "9lq6im"],
+  ["Anime", "2:17", "Sex", "wI9eKFZ", "gvllf8"],
+  ["Animación", "1:45", "Sex", "VYB67Kc", "otkt0l"],
+  ["Animación", "1:30", "Sex", "QHImTw8", "3tf6o0"],
+  ["Animación", "1:34", "Sex", "jqFYlWT", "emmho0"],
+  ["Animación", "0:49", "Sex", "ecYC74y", "4xzs9e"],
+  ["Animación", "1:27", "Sex", "k936EZR", "w8wr2g"],
+  ["Animación", "0:36", "Sex", "8Ec6s2P", "vgcryz"],
+  ["Animación", "2:25", "Sex", "yo0zmVr", "2ek9y7"],
+  ["Animación", "0:26", "Sex", "AmfrLjc", "8z7f30"],
+  ["Animación", "0:07", "Sex", "Ex28Jdu", "jv7mhu"],
+];
 
-<script>
-/* ================================================================
-   CONFIGURACIÓN
-================================================================ */
-const CFG = {
-  imgBase:   'https://i.imgur.com/',
-  vidBase:   'https://files.catbox.moe/',
-  dataUrl:   'data.json',
-  perPage:   9,
-  adEvery:   7,
-  adKey:     '0d9a0873af673bd6f59bd7407b098187',
-  adSrc:     '//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js',
-  popupUrl:  'https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2',
-  exitUrl:   'https://youezx.github.io/YouScripts/',
-  promoCard: { t:'Compra a precios bajos', d:'Ver', c:'Promo', i:'o5Kpn76', v:'https://you-eshop-4.myshopify.com/' },
-};
+    let cardsData = rawVideos.map(([title, duration, category, imgCode, videoCode]) => ({
+      title,
+      duration,
+      category,
+      img: `https://i.imgur.com/${imgCode}.png`,
+      video: `https://files.catbox.moe/${videoCode}.mp4`
+    }));
+    let animeCards = animeVideos.map(([title, duration, category, imgCode, videoCode]) => ({
+  title,
+  duration,
+  category,
+  img: `https://i.imgur.com/${imgCode}.png`,
+  video: `https://files.catbox.moe/${videoCode}.mp4`
+}));
 
-/* ================================================================
-   ESTADO
-================================================================ */
-const state = {
-  allCards:   [],   // videos principales (con promos)
-  animeCards: [],
-  cur:        [],   // datos de la vista actual
-  label:      'Todos',
-  page:       1,
-};
-
-/* ================================================================
-   HELPERS
-================================================================ */
-const img  = id  => CFG.imgBase + id + '.png';
-const vid  = id  => CFG.vidBase + id + '.mp4';
-const secs = str => { const [m,s] = str.split(':').map(Number); return m*60+(s||0); };
-const toCard = ([t,d,c,i,v]) => ({t,d,c,i,v});
-const shuffle = a => a.map(x=>({x,r:Math.random()})).sort((a,b)=>a.r-b.r).map(({x})=>x);
-
-function withPromos(arr) {
-  const out = [];
-  arr.forEach((c,i) => { out.push(c); if ((i+1)%3===0) out.push(CFG.promoCard); });
-  return out;
+function shuffleArray(array) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 }
 
-/* ================================================================
-   RENDER TARJETAS
-================================================================ */
-function showCards(data, label) {
-  state.cur   = data;
-  state.label = label;
-  state.page  = 1;
-  render();
-}
+   let currentPage = 1;
+const itemsPerPage = 9;
 
-function render() {
-  const grid  = document.getElementById('grid');
-  const count = document.getElementById('resultCount');
-  const pager = document.getElementById('pagination');
 
-  const total  = state.cur.length;
-  const nPages = Math.max(1, Math.ceil(total / CFG.perPage));
-  if (state.page > nPages) state.page = nPages;
-
-  const slice = state.cur.slice((state.page-1)*CFG.perPage, state.page*CFG.perPage);
-
-  /* conteo */
-  count.textContent = total
-    ? `${slice.length} de ${total} videos — "${state.label}"`
-    : '';
-
-  /* grid */
-  grid.innerHTML = '';
-
-  if (total === 0) {
-    grid.innerHTML = '<p class="state-msg">😕 Sin resultados para esa búsqueda.</p>';
-    pager.innerHTML = '';
-    return;
+function insertAdsEvery(dataArray, adCard, interval = 3) {
+  const result = [];
+  for (let i = 0; i < dataArray.length; i++) {
+    result.push(dataArray[i]);
+    if ((i + 1) % interval === 0) {
+      result.push(adCard);
+    }
   }
+  return result;
+}
 
-  slice.forEach((c, i) => {
-    /* tarjeta */
-    const art = document.createElement('article');
-    art.className = 'card';
-    art.setAttribute('role', 'button');
-    art.setAttribute('tabindex', '0');
-    art.setAttribute('aria-label', c.t);
+function renderCards(data = cardsData, label = "Todos") {
+  const container = document.getElementById("cardContainer");
+  const countDisplay = document.getElementById("resultCount");
+  const pagination = document.getElementById("paginationControls");
 
-    art.innerHTML = `
-      <span class="card__badge">${c.c}</span>
-      <img class="card__img" src="${img(c.i)}" alt="${c.t}" loading="lazy" width="320" height="180" />
-      <span class="card__dur">${c.d}</span>
-      <div class="card__body">
-        <p class="card__title">${c.t}</p>
-        <p class="card__cat">${c.c}</p>
-      </div>`;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageItems = data.slice(start, end);
 
-    const open = () => {
-      if (c.c === 'Promo') { window.open(c.v, '_blank', 'noopener,noreferrer'); return; }
-      const p = new URLSearchParams({ src: vid(c.v), title: c.t, desc: c.c, duration: c.d, thumb: img(c.i) });
-      window.location.href = 'video.html?' + p;
+  container.innerHTML = "";
+  countDisplay.textContent = `Mostrando ${pageItems.length} de ${data.length} video${data.length !== 1 ? "s" : ""} para: "${label}"`;
+
+  pageItems.forEach((card, index) => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <div class="card-category">${card.category}</div>
+      <img src="${card.img}" alt="${card.title}" loading="lazy" />
+      <div class="card-duration">${card.duration}</div>
+      <div class="card-info">
+        <div class="card-title">${card.title}</div>
+        <div class="card-meta">${card.category}</div>
+      </div>
+    `;
+
+    div.onclick = () => {
+      if (card.category === "Promo") {
+        window.open(card.video, "_blank");
+      } else {
+        const url = `video.html?src=${encodeURIComponent(card.video)}&title=${encodeURIComponent(card.title)}&desc=${encodeURIComponent(card.category)}&duration=${encodeURIComponent(card.duration)}&thumb=${encodeURIComponent(card.img)}`;
+        window.location.href = url;
+      }
     };
-    art.addEventListener('click', open);
-    art.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') open(); });
-    grid.appendChild(art);
 
-    /* banner de anuncios cada N tarjetas */
-    if ((i+1) % CFG.adEvery === 0) {
-      const slot = document.createElement('div');
-      slot.className = 'ad-slot';
-      const cfg = document.createElement('script');
-      cfg.textContent = `atOptions={'key':'${CFG.adKey}','format':'iframe','height':250,'width':300,'params':{}};`;
-      const inv = document.createElement('script');
-      inv.src   = CFG.adSrc;
-      inv.async = true;
-      slot.append(cfg, inv);
-      grid.appendChild(slot);
+    container.appendChild(div);
+
+    // 👉 Insertar banner cada 3 tarjetas
+    if ((index + 1) % 7 === 0) {
+      const bannerDiv = document.createElement("div");
+      bannerDiv.className = "banner";
+
+      const scriptConfig = document.createElement("script");
+      scriptConfig.type = "text/javascript";
+      scriptConfig.innerHTML = `
+        atOptions = {
+          'key' : '0d9a0873af673bd6f59bd7407b098187',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      `;
+
+      const scriptInvoke = document.createElement("script");
+      scriptInvoke.type = "text/javascript";
+      scriptInvoke.src = "//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js";
+
+      bannerDiv.appendChild(scriptConfig);
+      bannerDiv.appendChild(scriptInvoke);
+
+      container.appendChild(bannerDiv);
     }
   });
 
-  /* paginación */
-  pager.innerHTML = '';
-  for (let p = 1; p <= nPages; p++) {
-    const btn = document.createElement('button');
-    btn.textContent = p;
-    if (p === state.page) { btn.classList.add('active'); btn.setAttribute('aria-current','page'); }
-    btn.addEventListener('click', () => {
-      state.page = p;
-      render();
-      document.getElementById('main').scrollIntoView({ behavior:'smooth' });
-    });
-    pager.appendChild(btn);
+  // Render pagination buttons
+  pagination.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add("active");
+    btn.onclick = () => {
+      currentPage = i;
+      renderCards(data, label);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    pagination.appendChild(btn);
   }
 }
 
-/* ================================================================
-   RENDER BOTONES DE CATEGORÍA
-================================================================ */
-function showCats(data) {
-  const wrap = document.getElementById('catButtons');
-  wrap.innerHTML = '';
-  const cats = [...new Set(data.map(c=>c.c).filter(c=>c!=='Promo'))];
-  cats.forEach(cat => {
-    const b = document.createElement('button');
-    b.textContent = cat;
-    b.addEventListener('click', () => showCards(data.filter(c=>c.c===cat), cat));
-    wrap.appendChild(b);
+
+function renderVentaCards(data) {
+  const container = document.getElementById("cardContainer");
+  const countDisplay = document.getElementById("resultCount");
+  const pagination = document.getElementById("paginationControls");
+
+  container.innerHTML = `<h2 style="text-align:center; color:#b400ff; margin-bottom:1rem;">🎁 Packs exclusivos</h2>`;
+  countDisplay.textContent = `Mostrando ${data.length} paquetes disponibles`;
+  pagination.innerHTML = "";
+
+  data.forEach((card, index) => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${card.media[0].src}" alt="Miniatura" style="width:100%; height:290px; object-fit:cover; border-radius:8px 8px 0 0;" />
+      <div class="card-info" style="padding:0.6rem;">
+        <div class="card-title">${card.title}</div>
+        <div class="card-meta">${card.description}</div>
+        <div style="font-weight:bold; color:#b400ff;">${card.price}</div>
+      </div>
+    `;
+    div.onclick = () => openVentaModal(card);
+    container.appendChild(div);
   });
-  const all = document.createElement('button');
-  all.textContent = 'Todos';
-  all.addEventListener('click', () => showCards(data, 'Todos'));
-  wrap.appendChild(all);
 }
 
-/* ================================================================
-   ARRANQUE
-================================================================ */
-document.addEventListener('DOMContentLoaded', async () => {
+function renderSuggestionButtons(dataArray) {
+  const container = document.getElementById("suggestionButtons");
+  container.innerHTML = "";
 
-  /* ── Modal de edad ── */
-  if (localStorage.getItem('age') === '1') {
-    document.getElementById('ageGate').style.display = 'none';
-  }
-  document.getElementById('btnEnter').addEventListener('click', () => {
-    localStorage.setItem('age', '1');
-    document.getElementById('ageGate').style.display = 'none';
+  const categories = [...new Set(dataArray.map(card => card.category))];
+
+  categories.forEach(category => {
+    const btn = document.createElement("button");
+    btn.textContent = category;
+    btn.onclick = () => {
+      const filtered = dataArray.filter(card => card.category === category);
+      renderCards(filtered, category);
+    };
+    container.appendChild(btn);
   });
-  document.getElementById('btnExit').addEventListener('click', () => {
-    window.location.href = CFG.exitUrl;
+
+  const allBtn = document.createElement("button");
+  allBtn.textContent = "Todos";
+  allBtn.onclick = () => renderCards(dataArray, "Todos");
+  container.appendChild(allBtn);
+}
+
+function playVideo(src) {
+  const player = document.getElementById("videoPlayer");
+  const video = document.getElementById("activeVideo");
+
+  player.style.display = "block";
+  video.src = src;
+  video.load();
+
+  video.play().catch(err => {
+    console.warn("Reproducción bloqueada:", err);
+    alert("Toca el video para reproducirlo. Algunos navegadores móviles requieren interacción.");
   });
 
-  /* ── Indicador de carga ── */
-  document.getElementById('grid').innerHTML =
-    '<div class="state-msg"><div class="dots"><span></span><span></span><span></span></div><p style="margin-top:.7rem">Cargando videos…</p></div>';
+}  
+    document.getElementById("closeBtn").onclick = () => {
+      const player = document.getElementById("videoPlayer");
+      const video = document.getElementById("activeVideo");
+      video.pause();
+      video.src = "";
+      player.style.display = "none";
+    };
 
-  /* ── Carga de datos desde data.json ── */
-  try {
-    const res  = await fetch(CFG.dataUrl);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const json = await res.json();
+function openVentaModal(card) {
+  const modal = document.getElementById("ventaModal");
+  const content = document.getElementById("ventaContent");
+  content.innerHTML = `
+    <h2 style="text-align:center; color:#b400ff;">${card.title}</h2>
+    <p style="text-align:center; margin-bottom:1rem;">${card.description}</p>
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      ${card.media.map(item => {
+        if (item.type === "img") {
+          return `<img src="${item.src}" style="width:100%; border-radius:8px;" />`;
+        } else if (item.type === "video") {
+          return `<video src="${item.src}" controls muted playsinline style="width:100%; border-radius:8px;"></video>`;
+        }
+      }).join("")}
+    </div>
+    <div style="text-align:center; margin-top:1rem;">
+      <button onclick="window.open('${card.telegram}', '_blank')" style="
+        padding:0.6rem 1.2rem;
+        background:#0088cc;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size:1rem;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+      ">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" style="width:20px; height:20px;" />
+        Ir al Telegram
+      </button>
+    </div>
+  `;
+  modal.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-    state.allCards   = withPromos(shuffle(json.v.map(toCard)));
-    state.animeCards = json.a.map(toCard);
-
-    showCards(state.allCards, 'Todos');
-    showCats(state.allCards);
-  } catch (err) {
-    document.getElementById('grid').innerHTML =
-      '<p class="state-msg">⚠️ No se pudieron cargar los videos. Recarga la página.</p>';
-    console.error('data.json error:', err);
+document.addEventListener("DOMContentLoaded", () => {
+  // PASO 2: Verificar si ya confirmó edad
+  const confirmed = localStorage.getItem("ageConfirmed");
+  if (confirmed === "true") {
+    document.getElementById("ageGate").style.display = "none";
   }
 
-  /* ── Tabs ── */
-  document.querySelectorAll('.tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+  const adCard = {
+    title: "Compra a precios bajos",
+    duration: "Ver",
+    category: "Promo",
+    img: "https://i.imgur.com/o5Kpn76.png",
+    video: "https://you-eshop-4.myshopify.com/"
+  };
 
+  cardsData = insertAdsEvery(shuffleArray(cardsData), adCard, 3);
+  renderCards(cardsData, "Todos");
+  renderSuggestionButtons(cardsData);
+
+  document.getElementById("searchInput").addEventListener("input", e => {
+    const query = e.target.value.toLowerCase();
+    const filtered = cardsData.filter(card => card.title.toLowerCase().includes(query));
+    renderCards(filtered, query ? `Resultados para "${query}"` : "Todos");
+  });
+
+  const searchInput = document.getElementById("searchInput");
+  const suggestions = ["Sophie Rain", "Belle Delphine", "Hannaowo", "Jameliz", "Dreamymoo", "Camila", "Dreamymoo","Dreamymoo","Dreamymoo","Dreamymoo",];
+
+  searchInput.addEventListener("focus", () => {
+    const random = suggestions[Math.floor(Math.random() * suggestions.length)];
+    searchInput.placeholder = `🔍 Buscar: ${random}`;
+  });
+
+  document.querySelectorAll(".tabBtn").forEach(btn => {
+    btn.onclick = () => {
+      const ageGate = document.getElementById("ageGate");
+      if (ageGate && ageGate.style.display !== "none") return;
+
+      document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      currentPage = 1;
       const tab = btn.dataset.tab;
-      if (tab === 'videos') {
-        showCards(state.allCards, 'Todos');
-        showCats(state.allCards);
-      } else if (tab === 'anime') {
-        showCards(state.animeCards, 'Anime');
-        showCats(state.animeCards);
-      } else if (tab === 'largos') {
-        const l = state.allCards.filter(c => secs(c.d) >= 180);
-        showCards(l, 'Videos largos');
-        showCats(l);
+
+      if (tab === "videos") {
+        renderCards(cardsData, "Todos");
+        renderSuggestionButtons(cardsData);
+      } else if (tab === "anime") {
+        renderCards(animeCards, "Anime");
+        renderSuggestionButtons(animeCards);
+      } else if (tab === "largos") {
+        const largos = cardsData.filter(card => {
+          const [min, sec] = card.duration.split(":").map(Number);
+          return min >= 3;
+        });
+        renderCards(largos, "Videos largos");
+        renderSuggestionButtons(largos);
       }
-    });
+    };
   });
+});
+ 
+  // Reactivar botón de edad
+document.getElementById("enterBtn").onclick = () => {
+  localStorage.setItem("ageConfirmed", "true");
+  document.getElementById("ageGate").style.display = "none";
+  document.getElementById("telegramNotice").style.display = "block"; // 👈 Mostrar aviso
+};
 
-  /* ── Buscador ── */
-  const suggestions = ['Sophie Rain','Jameliz','Dreamymoo','Hannaowo','RedWitch','Camila'];
-  const qEl = document.getElementById('q');
-  qEl.addEventListener('focus', () => {
-    qEl.placeholder = '🔍 Ej: ' + suggestions[Math.floor(Math.random()*suggestions.length)];
-  });
-  qEl.addEventListener('blur',  () => { qEl.placeholder = '🔍 Buscar videos...'; });
-  qEl.addEventListener('input', () => {
-    const q = qEl.value.trim().toLowerCase();
-    if (!q) { showCards(state.allCards, 'Todos'); return; }
-    const f = state.allCards.filter(c =>
-      c.t.toLowerCase().includes(q) || c.c.toLowerCase().includes(q)
-    );
-    showCards(f, '"' + qEl.value.trim() + '"');
-  });
+document.getElementById("exitBtn").onclick = () => {
+  alert("Debes ser mayor de edad para acceder a este contenido.");
+  window.location.href = "https://youezx.github.io/YouScripts/";
+};
 
-  /* ── Contador de visitas ── */
-  fetch('https://api.counterapi.dev/v1/youpornx/v1/up')
-    .then(r => r.json())
-    .then(d => { document.getElementById('visits').textContent = (d.count||0).toLocaleString('es'); })
-    .catch(() => { document.getElementById('visits').textContent = '—'; });
+// Si ya había confirmado antes, ocultamos modal y mostramos aviso directamente
+if (localStorage.getItem("ageConfirmed") === "true") {
+  document.getElementById("ageGate").style.display = "none";
+  document.getElementById("telegramNotice").style.display = "block";
+}
 
-  /* ── Pop-up Adsterra (solo tras interacción del usuario) ── */
-  if (!sessionStorage.getItem('pop')) {
-    let touched = false;
-    const mark = () => { touched = true; };
-    document.addEventListener('click',      mark, { once: true });
-    document.addEventListener('touchstart', mark, { once: true });
-    setTimeout(() => {
-      if (!touched) return;
-      const s = document.createElement('script');
-      s.src   = '//sillinessshoplifting.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js';
-      s.async = true;
-      document.body.appendChild(s);
-      sessionStorage.setItem('pop', '1');
-    }, 10000);
+  </script>
+
+<script>
+const binId = '68ce5bb6ae596e708ff4c7a9'; //ID real
+const apiKey = '$2a$10$b4tDNL0bWvPPTfcIegqlAucKX14k8QwikSfSS7K1n0uqIAChABo4u'; //API Key
+
+// Obtener visitas
+fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+  headers: {
+    'X-Master-Key': apiKey
   }
+})
+.then(res => res.json())
+.then(data => {
+  const visitas = data.record.visitas + 1;
+  document.getElementById('visitas').textContent = visitas;
 
+  // Actualizar visitas
+  fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': apiKey
+    },
+    body: JSON.stringify({ visitas })
+  });
+})
+.catch(err => {
+  console.error("Error al obtener visitas:", err);
+  document.getElementById('visitas').textContent = "Error";
 });
 </script>
+
+<div id="visitas" style="font-weight: bold; margin-top: 10px;">
+  Cargando visitas...
+</div>
+
+</script>
+
+<script type="text/javascript" src="//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js"></script>
+<p style="text-align:center; font-size:0.9rem; color:#aaa; margin-top:1rem;">
+  Packs exclusivos, nudes, hentai y más. Navegación interactiva y contenido premium para adultos. YouDev.
+</p>
+
+<script async="async" data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
+<div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
+
+<script>
+  if (!sessionStorage.getItem("adsterraShown")) {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "//sillinessshoplifting.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js";
+    document.body.appendChild(s);
+
+    sessionStorage.setItem("adsterraShown", "true");
+  }
+</script>
+
 </body>
 </html>
