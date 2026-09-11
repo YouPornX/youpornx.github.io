@@ -2,753 +2,676 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Registro de Préstamos | You Credit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #060c14;
-      --surface: #0c1524;
-      --surface-2: #0f1c2e;
-      --surface-3: #132034;
-      --border: rgba(148,163,184,0.09);
-      --border-hover: rgba(148,163,184,0.2);
-      --text: #e8f0fd;
-      --text-2: #7d96b8;
-      --text-3: #3e5470;
-      --primary: #4f8cff;
-      --primary-2: #2563eb;
-      --primary-glow: rgba(79,140,255,0.18);
-      --accent: #06d6a0;
-      --success: #10b981;
-      --success-bg: rgba(16,185,129,0.12);
-      --warning: #f59e0b;
-      --warning-bg: rgba(245,158,11,0.12);
-      --danger: #f43f5e;
-      --danger-bg: rgba(244,63,94,0.12);
-      --radius: 14px;
-      --radius-lg: 20px;
-      --shadow: 0 8px 32px rgba(0,0,0,0.5);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouPornX — Videos Exclusivos para Adultos</title>
+  <meta name="description" content="Galería interactiva con videos exclusivos para adultos: nudes, hentai, packs y contenido premium. Solo mayores de 18 años." />
+  <meta name="robots"    content="index, follow" />
+  <meta name="author"    content="YouDev" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <link rel="canonical"  href="https://youpornx.github.io/" />
 
-    body {
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="YouPornX — Videos Exclusivos para Adultos" />
+  <meta property="og:description" content="Galería de videos exclusivos para adultos mayores de 18 años." />
+  <meta property="og:image"       content="https://i.imgur.com/HaVTHeY.jpeg" />
+  <meta property="og:url"         content="https://youpornx.github.io/" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="YouPornX — Videos Exclusivos para Adultos" />
+  <meta name="twitter:image"      content="https://i.imgur.com/HaVTHeY.jpeg" />
+
+  <link rel="icon" href="https://i.imgur.com/HaVTHeY.jpeg" type="image/jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://i.imgur.com" />
+  <link rel="preconnect" href="https://files.catbox.moe" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"WebSite",
+    "name":"YouPornX","url":"https://youpornx.github.io/",
+    "description":"Galería de videos exclusivos para adultos",
+    "potentialAction":{"@type":"SearchAction","target":"https://youpornx.github.io/?q={q}","query-input":"required name=q"}
+  }
+  </script>
+
+  <style>
+    /* ─────────────────────────────────────
+       VARIABLES
+    ───────────────────────────────────── */
+    :root {
+      --accent:      #7c3aed;
+      --accent-dim:  rgba(124,58,237,.18);
+      --accent-glow: rgba(124,58,237,.45);
+      --bg:    #0d0d0d;
+      --bg1:   #141414;
+      --bg2:   #1c1c1c;
+      --bg3:   #252525;
+      --line:  #2a2a2a;
+      --text:  #f0f0f0;
+      --muted: #888;
+      --r:     10px;
+      --ease:  .25s ease;
+    }
+
+    /* ─────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html   { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body   {
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       min-height: 100vh;
-      background-image:
-        radial-gradient(ellipse at 15% 40%, rgba(79,140,255,0.06) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 10%, rgba(6,214,160,0.04) 0%, transparent 45%);
+      overflow-x: hidden;
     }
-
-    /* ─────────────────────────────── LAYOUT */
-    .container { max-width: 1000px; margin: 0 auto; padding: 24px 16px; }
-
-    /* ─────────────────────────────── HEADER */
-    header {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; margin-bottom: 28px; flex-wrap: wrap;
+    /* Fondo decorativo — no bloquea render */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background: url('https://i.imgur.com/HaVTHeY.jpeg') center/cover no-repeat;
+      opacity: .06;
+      z-index: -1;
+      pointer-events: none;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    /* accesibilidad */
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+    /* ─────────────────────────────────────
+       MODAL DE EDAD
+    ───────────────────────────────────── */
+    #ageGate {
+      position: fixed; inset: 0;
+      background: #0a0a0a;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 9999;
+      padding: 1rem;
+    }
+    .age-box {
+      background: var(--bg1);
+      border: 1px solid var(--accent);
+      border-radius: 14px;
+      padding: 2.2rem 1.8rem;
+      max-width: 420px; width: 100%;
+      text-align: center;
+      box-shadow: 0 0 40px var(--accent-dim);
+    }
+    .age-box h2 { font-size: 1.35rem; color: #ff5555; margin-bottom: .8rem; }
+    .age-box p  { font-size: .9rem; color: #ccc; line-height: 1.55; margin-bottom: 1.2rem; }
+    .age-terms  {
+      font-size: .76rem; color: #999; text-align: left;
+      background: var(--bg2); border: 1px solid var(--line);
+      border-radius: 8px; padding: 1rem; line-height: 1.5; margin-bottom: 1.4rem;
+    }
+    .age-btns   { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .age-btns button {
+      padding: .7rem 1.8rem; border: none; border-radius: 22px;
+      font-size: .93rem; font-weight: 600;
+      transition: transform var(--ease), box-shadow var(--ease), filter var(--ease);
+    }
+    .age-btns button:hover  { transform: translateY(-2px); filter: brightness(1.12); }
+    .age-btns button:active { transform: translateY(0); }
+    #btnEnter { background: #22863a; color: #fff; box-shadow: 0 4px 14px rgba(34,134,58,.4); }
+    #btnExit  { background: #b91c1c; color: #fff; box-shadow: 0 4px 14px rgba(185,28,28,.4); }
+
+    /* ─────────────────────────────────────
+       HEADER
+    ───────────────────────────────────── */
+    .site-header {
+      position: relative;
+      background: var(--bg1);
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 3.5rem;
+      text-align: center;
+    }
     .logo {
-      width: 48px; height: 48px; border-radius: 15px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1rem; color: #fff; letter-spacing: .5px;
-      box-shadow: 0 0 28px var(--primary-glow), 0 0 0 1px rgba(255,255,255,0.08) inset;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5.5vw, 2.9rem);
+      font-style: italic;
+      letter-spacing: 1px;
+      color: var(--text);
+      text-shadow: 0 0 8px rgba(255,255,255,.12);
     }
-    .brand-name { font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
-    .brand-sub { font-size: .78rem; color: var(--text-3); margin-top: 2px; }
+    .logo sup { font-size: .38em; vertical-align: super; font-style: normal; opacity: .75; letter-spacing: .5px; font-family: "Inter", sans-serif; }
+    .logo b { color: var(--accent); text-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-glow); font-style: normal; }
 
-    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-
-    /* ─────────────────────────────── BUTTONS */
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 16px; border-radius: 12px; border: 1px solid transparent;
-      font-family: inherit; font-size: .85rem; font-weight: 600;
-      cursor: pointer; transition: all .18s ease; white-space: nowrap;
-      line-height: 1;
+    .socials { position: absolute; top: 50%; transform: translateY(-50%); display: flex; gap: .5rem; }
+    .socials.left  { left: 1rem; }
+    .socials.right { right: 1rem; }
+    .socials a img {
+      width: 32px; height: 32px;
+      border-radius: 50%; padding: 6px;
+      background: var(--accent-dim);
+      filter: drop-shadow(0 0 6px var(--accent));
+      transition: transform var(--ease), filter var(--ease), background var(--ease);
     }
-    .btn-primary {
-      background: var(--primary); color: #fff;
-      box-shadow: 0 0 18px rgba(79,140,255,0.35);
+    .socials a:hover img { transform: scale(1.18); filter: drop-shadow(0 0 12px var(--accent)); background: rgba(124,58,237,.3); }
+
+    @media (max-width: 480px) {
+      .site-header { padding: .85rem 2.8rem; }
+      .socials a img { width: 26px; height: 26px; padding: 4px; }
     }
-    .btn-primary:hover { background: var(--primary-2); transform: translateY(-1px); box-shadow: 0 4px 24px rgba(79,140,255,0.4); }
 
-    .btn-ghost {
-      background: var(--surface); border-color: var(--border); color: var(--text-2);
+    /* ─────────────────────────────────────
+       TABS
+    ───────────────────────────────────── */
+    .tabs {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: .5rem;
+      padding: 1rem 1rem .5rem;
     }
-    .btn-ghost:hover { background: var(--surface-2); border-color: var(--border-hover); color: var(--text); }
-
-    .btn-danger { background: var(--danger-bg); border-color: rgba(244,63,94,0.4); color: var(--danger); }
-    .btn-danger:hover { background: var(--danger); color: #fff; border-color: transparent; }
-
-    .btn-success { background: var(--success-bg); border-color: rgba(16,185,129,0.4); color: var(--success); }
-    .btn-success:hover { background: var(--success); color: #fff; border-color: transparent; }
-
-    .btn-icon { padding: 9px 11px; }
-
-    /* ─────────────────────────────── STATS BAR */
-    .stats-bar {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 12px; margin-bottom: 20px;
+    .tab {
+      background: var(--bg2); color: var(--text);
+      border: 1.5px solid transparent;
+      padding: .5rem 1.15rem;
+      border-radius: 22px; font-size: .9rem; font-weight: 500;
+      transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+      flex: 1 1 auto; max-width: 150px; text-align: center;
     }
-    @media (max-width: 640px) { .stats-bar { grid-template-columns: 1fr 1fr; } }
-    .stat-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 14px 16px;
-      transition: border-color .2s, transform .2s;
+    .tab.active {
+      background: var(--accent); border-color: rgba(255,255,255,.3);
+      box-shadow: 0 0 14px var(--accent-glow); transform: translateY(-2px);
     }
-    .stat-card:hover { border-color: var(--border-hover); transform: translateY(-1px); }
-    .stat-label {
-      font-size: .7rem; font-weight: 700; color: var(--text-3);
-      text-transform: uppercase; letter-spacing: .07em; margin-bottom: 7px;
-    }
-    .stat-value { font-size: 1.05rem; font-weight: 800; color: var(--text); }
-    .stat-value.c-primary { color: var(--primary); }
-    .stat-value.c-warning { color: var(--warning); }
-    .stat-value.c-success { color: var(--success); }
+    .tab:hover:not(.active) { background: #5b21b6; transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-glow); }
+    .tab:active { transform: translateY(0); }
 
-    /* ─────────────────────────────── MAIN CARD */
+    /* ─────────────────────────────────────
+       BUSCADOR
+    ───────────────────────────────────── */
+    .search { padding: .5rem 1rem; text-align: center; }
+    .search input {
+      width: min(88%, 420px);
+      background: var(--bg2); color: var(--text);
+      border: 1.5px solid #333;
+      border-radius: 26px; padding: .65rem 1.1rem;
+      font-size: .95rem; outline: none;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .search input::placeholder { color: #555; }
+    .search input:focus { border-color: var(--accent); box-shadow: 0 0 18px var(--accent-dim); }
+
+    /* ─────────────────────────────────────
+       CATEGORÍAS
+    ───────────────────────────────────── */
+    #catButtons {
+      display: flex; flex-wrap: wrap;
+      gap: .4rem; padding: .6rem 1rem;
+      justify-content: center;
+    }
+    #catButtons button {
+      background: var(--bg2); color: var(--text);
+      border: 1.5px solid transparent;
+      padding: .3rem .85rem;
+      border-radius: 20px; font-size: .78rem; font-weight: 500;
+      transition: background var(--ease), transform var(--ease);
+    }
+    #catButtons button:hover { background: var(--accent); transform: translateY(-1px); }
+    #catButtons button:active { transform: translateY(0); }
+
+    /* ─────────────────────────────────────
+       CONTEO
+    ───────────────────────────────────── */
+    #resultCount { text-align: center; font-size: .78rem; color: var(--muted); padding: .2rem 1rem; }
+
+    /* ─────────────────────────────────────
+       GRID
+    ───────────────────────────────────── */
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem; padding: .5rem 1rem 1rem;
+    }
+    @media (max-width: 560px) {
+      #grid { grid-template-columns: repeat(2, 1fr); gap: .65rem; padding: .4rem .65rem .8rem; }
+    }
+    @media (max-width: 340px) {
+      #grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────
+       TARJETA
+    ───────────────────────────────────── */
     .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 20px; position: relative;
+      background: var(--bg2);
+      border-radius: var(--r);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      box-shadow: 0 3px 10px rgba(0,0,0,.4);
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+      position: relative;
     }
-    .card-header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 8px 22px var(--accent-glow);
+      border-color: rgba(124,58,237,.5);
     }
-    .card-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--primary); box-shadow: 0 0 8px var(--primary);
+    .card:active { transform: translateY(-1px); }
+    .card__img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      background: var(--bg1);
+      transition: transform var(--ease);
     }
-    .card-title { font-size: .95rem; font-weight: 700; }
+    .card:hover .card__img { transform: scale(1.05); }
+    @media (max-width: 560px) { .card__img { height: 120px; } }
 
-    /* ─────────────────────────────── TOOLBAR */
-    .toolbar { display: flex; gap: 10px; margin-bottom: 14px; }
-    .search-wrap { flex: 1; position: relative; }
-    .search-icon {
-      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-      color: var(--text-3); pointer-events: none;
+    .card__badge {
+      position: absolute; top: 7px; left: 7px;
+      background: var(--accent); color: #fff;
+      font-size: .6rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 9px;
+      pointer-events: none; letter-spacing: .3px;
     }
-    .input, .select {
-      background: var(--surface-2); border: 1px solid var(--border);
-      color: var(--text); padding: 10px 12px; border-radius: 11px; width: 100%;
-      font-family: inherit; font-size: .875rem;
-      transition: border-color .2s, box-shadow .2s;
+    .card__dur {
+      position: absolute; top: 7px; right: 7px;
+      background: rgba(0,0,0,.78); color: #fff;
+      font-size: .63rem; padding: 2px 6px; border-radius: 5px;
+      border: 1px solid rgba(124,58,237,.35);
+      pointer-events: none;
     }
-    .input::placeholder { color: var(--text-3); }
-    .input.with-icon { padding-left: 36px; }
-    .input:focus, .select:focus {
-      outline: none; border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
+    .card__body { padding: .55rem .7rem; }
+    .card__title {
+      font-size: .83rem; font-weight: 500; color: var(--text);
+      line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    textarea.input { resize: vertical; min-height: 78px; }
-    .select {
-      cursor: pointer; appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233e5470' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
-    }
-    select option { background: #0c1524; }
+    .card__cat { font-size: .7rem; color: var(--muted); margin-top: .2rem; }
 
-    /* ─────────────────────────────── LOAN LIST */
-    .list { display: flex; flex-direction: column; gap: 8px; }
-
-    .loan-item {
-      display: flex; gap: 12px; align-items: center;
-      padding: 12px 14px; border-radius: var(--radius);
-      border: 1px solid var(--border); background: var(--surface-2);
-      cursor: pointer; transition: all .18s ease;
-    }
-    .loan-item:hover {
-      border-color: rgba(79,140,255,0.45); background: var(--surface-3);
-      transform: translateY(-1px); box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-    }
-
-    /* ─────────────────────────────── AVATAR */
-    .avatar {
-      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: .88rem; color: #fff; cursor: pointer;
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .av-0 { background: linear-gradient(135deg,#3b82f6,#8b5cf6); }
-    .av-1 { background: linear-gradient(135deg,#10b981,#3b82f6); }
-    .av-2 { background: linear-gradient(135deg,#f59e0b,#ef4444); }
-    .av-3 { background: linear-gradient(135deg,#8b5cf6,#ec4899); }
-    .av-4 { background: linear-gradient(135deg,#06b6d4,#3b82f6); }
-    .av-5 { background: linear-gradient(135deg,#f43f5e,#f59e0b); }
-
-    .item-body { flex: 1; min-width: 0; }
-    .item-name {
-      font-weight: 700; font-size: .9rem;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-    }
-    .item-meta { font-size: .77rem; color: var(--text-3); margin-top: 2px; }
-    .progress-bar {
-      height: 3px; border-radius: 99px; background: rgba(255,255,255,0.05);
-      margin-top: 7px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; border-radius: 99px;
-      background: linear-gradient(90deg, var(--success), var(--accent));
-      transition: width .4s ease;
+    /* Ad slot en el grid */
+    .ad-slot {
+      grid-column: 1 / -1;
+      display: flex; justify-content: center; align-items: center;
+      padding: .5rem 0; min-height: 60px;
     }
 
-    .item-right { text-align: right; flex-shrink: 0; }
-    .item-balance { font-weight: 700; font-size: .9rem; }
-    .item-due { font-size: .73rem; color: var(--text-3); margin-top: 3px; }
-
-    /* ─────────────────────────────── BADGES */
-    .badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 2px 8px; border-radius: 999px; font-size: .68rem;
-      font-weight: 700; letter-spacing: .04em; border: 1px solid;
+    /* ─────────────────────────────────────
+       PAGINACIÓN
+    ───────────────────────────────────── */
+    #pagination {
+      display: flex; justify-content: center; gap: .4rem;
+      padding: .6rem 1rem 1.2rem; flex-wrap: wrap;
     }
-    .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .badge.paid   { color: var(--success); border-color: rgba(16,185,129,.35); background: var(--success-bg); }
-    .badge.paid::before { background: var(--success); }
-    .badge.partial { color: var(--warning); border-color: rgba(245,158,11,.35); background: var(--warning-bg); }
-    .badge.partial::before { background: var(--warning); }
-    .badge.pending { color: var(--danger); border-color: rgba(244,63,94,.35); background: var(--danger-bg); }
-    .badge.pending::before { background: var(--danger); }
-
-    /* ─────────────────────────────── EMPTY STATE */
-    .empty { text-align: center; padding: 44px 24px; border: 1px dashed rgba(148,163,184,0.12); border-radius: var(--radius); }
-    .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: .45; }
-    .empty-text { color: var(--text-3); font-size: .88rem; line-height: 1.6; }
-
-    /* ─────────────────────────────── MODAL */
-    #formModal {
-      display: none; position: fixed; z-index: 1000;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(4,8,18,0.75);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      align-items: flex-start; justify-content: center;
-      overflow-y: auto; padding: 20px 16px;
+    #pagination button {
+      background: var(--bg2); color: var(--text);
+      border: 1.5px solid transparent;
+      padding: .35rem .72rem; border-radius: 7px;
+      font-size: .82rem; font-weight: 500; min-width: 36px;
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
     }
-    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(22px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    #detailCard { max-width: 640px; width: 100%; margin: 20px auto; animation: slideUp .25s ease; }
-
-    .modal-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--border);
+    #pagination button.active {
+      background: var(--accent); border-color: rgba(255,255,255,.3);
+      box-shadow: 0 0 10px var(--accent-glow); transform: scale(1.06);
     }
-    .modal-title { font-size: 1.05rem; font-weight: 800; }
+    #pagination button:hover:not(.active) { background: #5b21b6; transform: translateY(-2px); }
+    #pagination button:active { transform: translateY(0); }
 
-    .close-btn {
-      width: 32px; height: 32px; border-radius: 9px;
-      background: var(--surface-3); border: 1px solid var(--border);
-      color: var(--text-2); font-size: 1.15rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all .18s;
+    /* ─────────────────────────────────────
+       ESTADO VACÍO / LOADER
+    ───────────────────────────────────── */
+    .state-msg {
+      grid-column: 1 / -1;
+      text-align: center; padding: 3rem 1rem;
+      color: var(--muted); font-size: .9rem;
     }
-    .close-btn:hover { background: var(--danger-bg); border-color: var(--danger); color: var(--danger); }
-
-    /* ─────────────────────────────── FORM */
-    .section-label {
-      font-size: .7rem; font-weight: 700; color: var(--text-3);
-      text-transform: uppercase; letter-spacing: .08em;
-      margin-bottom: 12px; margin-top: 4px;
+    .dots span {
+      display: inline-block; width: 9px; height: 9px;
+      background: var(--accent); border-radius: 50%;
+      margin: 0 3px;
+      animation: blink .9s ease infinite;
     }
-    .row { display: grid; gap: 12px; }
-    .row.two { grid-template-columns: 1fr 1fr; }
-    @media (max-width: 520px) { .row.two { grid-template-columns: 1fr; } }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .label { font-size: .8rem; font-weight: 600; color: var(--text-2); }
-    .hint  { font-size: .74rem; color: var(--text-3); }
-    .error { font-size: .77rem; color: var(--danger); }
-    .divider { height: 1px; background: var(--border); margin: 18px 0; }
+    .dots span:nth-child(2) { animation-delay: .15s; }
+    .dots span:nth-child(3) { animation-delay: .3s;  }
+    @keyframes blink { 0%,80%,100%{transform:scale(.55);opacity:.35} 40%{transform:scale(1);opacity:1} }
 
-    .form-actions {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      padding-top: 16px; margin-top: 4px; border-top: 1px solid var(--border);
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────── */
+    .site-footer {
+      text-align: center; font-size: .78rem; color: #444;
+      padding: 1.2rem 1rem; border-top: 1px solid var(--line);
     }
+    .site-footer span { color: var(--accent); font-weight: 600; }
 
-    /* ─────────────────────────────── SUMMARY */
-    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-    .summary-box {
-      background: var(--surface-3); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 14px 16px;
-    }
-    .summary-box .s-label { font-size: .72rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
-    .summary-box .s-value { font-size: 1.12rem; font-weight: 800; }
-    .s-value.c-primary { color: var(--primary); }
-    .s-value.c-warning { color: var(--warning); }
-
-    /* ─────────────────────────────── PAYMENTS */
-    .pay-list { display: flex; flex-direction: column; gap: 6px; }
-    .pay-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 13px; background: var(--surface-3);
-      border: 1px solid var(--border); border-radius: 10px; font-size: .85rem;
-    }
-    .pay-date { color: var(--text-3); }
-    .pay-amount { font-weight: 700; color: var(--success); }
-    .no-payments { color: var(--text-3); font-size: .84rem; text-align: center; padding: 14px 0; }
-
-    /* ─────────────────────────────── PHOTO MODAL */
-    #photoModal {
-      display: none; position: fixed; z-index: 9999;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.88);
-      align-items: center; justify-content: center;
-    }
-    #photoModal img { max-width: 90%; max-height: 90%; border-radius: 16px; box-shadow: var(--shadow); }
-
-    /* ─────────────────────────────── FOOTER */
-    footer { margin-top: 28px; text-align: center; color: var(--text-3); font-size: .75rem; padding-bottom: 16px; }
-
-    /* ─────────────────────────────── MOBILE */
-    @media (max-width: 520px) {
-      header { gap: 12px; }
-      .btn { padding: 8px 12px; font-size: .82rem; }
-      .stats-bar { gap: 8px; }
-      .stat-value { font-size: .95rem; }
-      .card { padding: 16px; }
-    }
+    /* ─────────────────────────────────────
+       SCROLLBAR
+    ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg1); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- ── HEADER ──────────────────────────────────── -->
-  <header>
-    <div class="brand">
-      <div class="logo">YC</div>
-      <div>
-        <div class="brand-name">You Credit</div>
-        <div class="brand-sub">Registro de préstamos personales</div>
-      </div>
+<!-- ══════════ MODAL EDAD ══════════ -->
+<div id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+  <div class="age-box">
+    <h2 id="ageTitle">🔞 Contenido para adultos</h2>
+    <p>Este sitio contiene material explícito para adultos. Debes ser mayor de 18 años para continuar.</p>
+    <div class="age-terms">
+      Al acceder confirmas que eres mayor de edad según las leyes de tu país. Todo el material proviene de fuentes públicas de libre acceso. No se almacena contenido privado ni protegido por derechos de autor.
     </div>
-    <div class="header-actions">
-      <button class="btn btn-primary" id="newLoanBtn">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-        Nuevo préstamo
-      </button>
-      <button class="btn btn-ghost btn-icon" id="exportBtn" title="Exportar datos">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      </button>
-      <button class="btn btn-ghost btn-icon" id="importBtn" title="Importar datos">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><line x1="12" y1="3" x2="12" y2="15"/><polyline points="7 8 12 3 17 8"/></svg>
-      </button>
-      <button class="btn btn-ghost btn-icon" id="clearBtn" title="Limpiar todo">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- ── STATS BAR ──────────────────────────────────── -->
-  <div class="stats-bar">
-    <div class="stat-card">
-      <div class="stat-label">Préstamos</div>
-      <div class="stat-value c-primary" id="statTotal">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Total prestado</div>
-      <div class="stat-value" id="statLent">DOP 0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Saldo pendiente</div>
-      <div class="stat-value c-warning" id="statBalance">DOP 0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Cobrado</div>
-      <div class="stat-value c-success" id="statCollected">DOP 0</div>
+    <div class="age-btns">
+      <button id="btnEnter">✔ Soy mayor de edad</button>
+      <button id="btnExit">✘ Salir</button>
     </div>
   </div>
-
-  <!-- ── LOAN LIST CARD ──────────────────────────────────── -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-dot"></div>
-      <div class="card-title">Préstamos activos</div>
-    </div>
-
-    <div class="toolbar">
-      <div class="search-wrap">
-        <svg class="search-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input id="searchInput" class="input with-icon" placeholder="Buscar por nombre o cédula…" />
-      </div>
-      <select id="statusFilter" class="select" style="width:150px;flex-shrink:0">
-        <option value="all">Todos</option>
-        <option value="pending">Pendiente</option>
-        <option value="partial">Parcial</option>
-        <option value="paid">Pagado</option>
-      </select>
-    </div>
-
-    <div id="loanList" class="list"></div>
-    <div id="emptyState" class="empty" style="display:none">
-      <div class="empty-icon">💳</div>
-      <div class="empty-text">Sin préstamos aún.<br>Pulsa "Nuevo préstamo" para comenzar.</div>
-    </div>
-  </div>
-
-  <footer>Fase ALPHA 1.0 · Derechos reservados en YouDevX</footer>
 </div>
 
-<!-- ── FORM MODAL ──────────────────────────────────── -->
-<div id="formModal">
-  <section class="card" id="detailCard">
+<!-- ══════════ HEADER ══════════ -->
+<header class="site-header">
+  <nav class="socials left" aria-label="Telegram">
+    <a href="https://t.me/+z--_xKuncVE1MDIx" target="_blank" rel="noopener noreferrer" aria-label="Canal de Telegram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" width="32" height="32" loading="lazy" />
+    </a>
+  </nav>
 
-    <div class="modal-head">
-      <span class="modal-title" id="detailTitle">Nuevo préstamo</span>
-      <button class="close-btn" id="closeFormBtn">×</button>
-    </div>
+  <h1 class="logo">You<b>PornX<sup>v2</sup></b></h1>
 
-    <!-- FORM -->
-    <div id="formSection">
-      <div class="section-label">Información personal</div>
-      <div class="row two" style="margin-bottom:14px">
-        <div class="field">
-          <div class="label">Nombre completo</div>
-          <input class="input" id="nameInput" placeholder="Juan Pérez" />
-          <div class="error" id="nameError" style="display:none"></div>
-        </div>
-        <div class="field">
-          <div class="label">Cédula dominicana</div>
-          <input class="input" id="cedulaInput" inputmode="numeric" placeholder="000-0000000-0" />
-          <div class="hint">Formato: ###-#######-#</div>
-          <div class="error" id="cedulaError" style="display:none"></div>
-        </div>
-      </div>
+  <nav class="socials right" aria-label="X Twitter">
+    <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Perfil en X">
+      <img src="https://raw.githubusercontent.com/YouPornX/YouPorn/main/Twitter_new_X_logo.png" alt="X / Twitter" width="32" height="32" loading="lazy" />
+    </a>
+  </nav>
+</header>
 
-      <div class="section-label">Detalles del préstamo</div>
-      <div class="row two" style="margin-bottom:14px">
-        <div class="field">
-          <div class="label">Monto prestado (DOP)</div>
-          <input class="input" id="amountInput" inputmode="decimal" placeholder="0.00" />
-          <div class="error" id="amountError" style="display:none"></div>
-        </div>
-        <div class="field">
-          <div class="label">Fecha de cobro</div>
-          <input class="input" id="dueDateInput" type="date" />
-          <div class="error" id="dueDateError" style="display:none"></div>
-        </div>
-      </div>
+<!-- ══════════ CONTENIDO PRINCIPAL ══════════ -->
+<main id="main">
 
-      <div class="row two" style="margin-bottom:14px">
-        <div class="field">
-          <div class="label">Teléfono</div>
-          <input class="input" id="phoneInput" inputmode="tel" placeholder="8091234567" />
-          <div class="hint">Al menos 10 dígitos</div>
-          <div class="error" id="phoneError" style="display:none"></div>
-        </div>
-        <div class="field">
-          <div class="label">Ubicación (opcional)</div>
-          <input class="input" id="locationInput" placeholder="Ej: Santo Domingo" />
-        </div>
-      </div>
+  <!-- Tabs -->
+  <nav class="tabs" id="tabs" aria-label="Secciones" role="tablist">
+    <button class="tab active" data-tab="videos" role="tab" aria-selected="true">▶ Videos</button>
+    <button class="tab" data-tab="anime"  role="tab" aria-selected="false">🎌 Anime</button>
+    <button class="tab" data-tab="largos" role="tab" aria-selected="false">⏱ Largos</button>
+  </nav>
 
-      <div class="row two" style="margin-bottom:4px">
-        <div class="field">
-          <div class="label">Foto (opcional)</div>
-          <input class="input" id="photoInput" type="file" accept="image/*" />
-          <div class="hint">Se guarda localmente en el dispositivo</div>
-        </div>
-        <div class="field">
-          <div class="label">Notas (opcional)</div>
-          <textarea class="input" id="notesInput" rows="3" placeholder="Observaciones…"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button class="btn btn-primary" id="saveBtn">Guardar</button>
-      <button class="btn btn-ghost"   id="cancelBtn">Cancelar</button>
-      <button class="btn btn-danger"  id="deleteBtn" style="display:none">Eliminar</button>
-      <button class="btn btn-success" id="whatsappBtn" style="display:none">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.071 1.502 5.787L0 24l6.387-1.474A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.917 0-3.71-.5-5.26-1.375L2.5 21.75l1.16-4.11A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        WhatsApp
-      </button>
-    </div>
-
-    <!-- SUMMARY / PAYMENTS -->
-    <div id="summarySection" style="display:none">
-      <div class="divider"></div>
-
-      <div class="section-label">Resumen del préstamo</div>
-      <div class="summary-grid">
-        <div class="summary-box">
-          <div class="s-label">Monto prestado</div>
-          <div class="s-value c-primary" id="sumAmount">—</div>
-        </div>
-        <div class="summary-box">
-          <div class="s-label">Saldo pendiente</div>
-          <div class="s-value c-warning" id="sumBalance">—</div>
-        </div>
-      </div>
-
-      <div class="section-label">Registrar pago</div>
-      <div class="row two" style="margin-bottom:12px">
-        <div class="field">
-          <div class="label">Monto del pago (DOP)</div>
-          <input class="input" id="paymentInput" inputmode="decimal" placeholder="0.00" />
-          <div class="error" id="paymentError" style="display:none"></div>
-        </div>
-        <div class="field">
-          <div class="label">Fecha del pago</div>
-          <input class="input" id="paymentDateInput" type="date" />
-        </div>
-      </div>
-      <button class="btn btn-success" id="addPaymentBtn">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-        Agregar pago
-      </button>
-
-      <div class="divider"></div>
-
-      <div class="section-label">Historial de pagos</div>
-      <div id="paymentsList" class="pay-list"></div>
-    </div>
+  <!-- Buscador -->
+  <section class="search" aria-label="Buscar">
+    <label for="q" class="sr-only">Buscar videos</label>
+    <input type="search" id="q" placeholder="🔍 Buscar videos..." autocomplete="off" spellcheck="false" />
   </section>
-</div>
 
-<!-- ── PHOTO MODAL ──────────────────────────────────── -->
-<div id="photoModal">
-  <img id="modalImg" src="" alt="Foto ampliada" />
-</div>
+  <!-- Categorías -->
+  <nav id="catButtons" aria-label="Filtrar por categoría"></nav>
+
+  <!-- Conteo de resultados -->
+  <p id="resultCount" aria-live="polite" aria-atomic="true"></p>
+
+  <!-- Grid -->
+  <section id="grid" aria-label="Galería de videos"></section>
+
+  <!-- Paginación -->
+  <nav id="pagination" aria-label="Páginas"></nav>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="site-footer">
+  <p>Contenido exclusivo para adultos +18 &mdash; YouDev © 2025 &mdash; Visitas: <span id="visits">…</span></p>
+</footer>
+
+<!-- Adsterra banner -->
+<script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
+<div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
 
 <script>
-  const $ = sel => document.querySelector(sel);
-  const currency = v => new Intl.NumberFormat('es-DO', { style: 'currency', currency: 'DOP' }).format(Number(v || 0));
-  const todayStr = () => new Date().toISOString().slice(0, 10);
-  let loans = []; let currentId = null;
+/* ================================================================
+   CONFIGURACIÓN
+================================================================ */
+const CFG = {
+  imgBase:   'https://i.imgur.com/',
+  vidBase:   'https://files.catbox.moe/',
+  dataUrl:   'data.json',
+  perPage:   9,
+  adEvery:   7,
+  adKey:     '0d9a0873af673bd6f59bd7407b098187',
+  adSrc:     '//sillinessshoplifting.com/0d9a0873af673bd6f59bd7407b098187/invoke.js',
+  popupUrl:  'https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2',
+  exitUrl:   'https://youezx.github.io/YouScripts/',
+  promoCard: { t:'Compra a precios bajos', d:'Ver', c:'Promo', i:'o5Kpn76', v:'https://you-eshop-4.myshopify.com/' },
+};
 
-  function load() { loans = JSON.parse(localStorage.getItem('prestadoor_loans') || '[]'); renderList(); }
-  function save() { localStorage.setItem('prestadoor_loans', JSON.stringify(loans)); renderList(); }
+/* ================================================================
+   ESTADO
+================================================================ */
+const state = {
+  allCards:   [],   // videos principales (con promos)
+  animeCards: [],
+  cur:        [],   // datos de la vista actual
+  label:      'Todos',
+  page:       1,
+};
 
-  function formatCedula(input) {
-    let d = input.replace(/\D/g, '').slice(0, 11), o = '';
-    for (let i = 0; i < d.length; i++) {
-      o += d[i];
-      if (i === 2 && d.length > 3) o += '-';
-      if (i === 9 && d.length > 10) o += '-';
-    }
-    return o;
-  }
-  function isValidCedula(f) { return f.replace(/\D/g, '').length === 11; }
+/* ================================================================
+   HELPERS
+================================================================ */
+const img  = id  => CFG.imgBase + id + '.png';
+const vid  = id  => CFG.vidBase + id + '.mp4';
+const secs = str => { const [m,s] = str.split(':').map(Number); return m*60+(s||0); };
+const toCard = ([t,d,c,i,v]) => ({t,d,c,i,v});
+const shuffle = a => a.map(x=>({x,r:Math.random()})).sort((a,b)=>a.r-b.r).map(({x})=>x);
 
-  function avClass(name) { return 'av-' + ((name || '').trim().toLowerCase().charCodeAt(0) % 6); }
-  function initials(name) {
-    const p = (name || '').trim().split(' ').filter(Boolean);
-    return p.length >= 2 ? (p[0][0] + p[1][0]).toUpperCase() : (p[0] || '?')[0].toUpperCase();
-  }
+function withPromos(arr) {
+  const out = [];
+  arr.forEach((c,i) => { out.push(c); if ((i+1)%3===0) out.push(CFG.promoCard); });
+  return out;
+}
 
-  function renderStats() {
-    const totalAmount  = loans.reduce((a, l) => a + Number(l.amount), 0);
-    const totalPaid    = loans.reduce((a, l) => a + (l.payments || []).reduce((b, p) => b + Number(p.amount), 0), 0);
-    const totalBalance = loans.reduce((a, l) => {
-      const paid = (l.payments || []).reduce((b, p) => b + Number(p.amount), 0);
-      return a + Math.max(0, Number(l.amount) - paid);
-    }, 0);
-    $('#statTotal').textContent     = loans.length;
-    $('#statLent').textContent      = currency(totalAmount);
-    $('#statBalance').textContent   = currency(totalBalance);
-    $('#statCollected').textContent = currency(totalPaid);
-  }
+/* ================================================================
+   RENDER TARJETAS
+================================================================ */
+function showCards(data, label) {
+  state.cur   = data;
+  state.label = label;
+  state.page  = 1;
+  render();
+}
 
-  function renderList() {
-    renderStats();
-    const list = $('#loanList'); list.innerHTML = '';
-    const search = ($('#searchInput').value || '').toLowerCase();
-    const filter = $('#statusFilter').value;
+function render() {
+  const grid  = document.getElementById('grid');
+  const count = document.getElementById('resultCount');
+  const pager = document.getElementById('pagination');
 
-    if (loans.length === 0) {
-      $('#emptyState').innerHTML = '<div class="empty-icon">💳</div><div class="empty-text">Sin préstamos aún.<br>Pulsa "Nuevo préstamo" para comenzar.</div>';
-      $('#emptyState').style.display = 'block'; return;
-    }
+  const total  = state.cur.length;
+  const nPages = Math.max(1, Math.ceil(total / CFG.perPage));
+  if (state.page > nPages) state.page = nPages;
 
-    const filtered = loans.filter(l => {
-      if (search && !l.name.toLowerCase().includes(search) && !l.cedula.includes(search)) return false;
-      if (filter !== 'all') {
-        const paid = (l.payments || []).reduce((a, p) => a + Number(p.amount), 0);
-        const bal  = Math.max(0, l.amount - paid);
-        const st   = bal <= 0 ? 'paid' : paid > 0 ? 'partial' : 'pending';
-        if (st !== filter) return false;
-      }
-      return true;
-    });
+  const slice = state.cur.slice((state.page-1)*CFG.perPage, state.page*CFG.perPage);
 
-    if (filtered.length === 0) {
-      $('#emptyState').innerHTML = '<div class="empty-icon">🔍</div><div class="empty-text">No hay coincidencias con ese filtro.</div>';
-      $('#emptyState').style.display = 'block'; return;
-    }
-    $('#emptyState').style.display = 'none';
+  /* conteo */
+  count.textContent = total
+    ? `${slice.length} de ${total} videos — "${state.label}"`
+    : '';
 
-    for (const l of filtered) {
-      const paid    = (l.payments || []).reduce((a, p) => a + Number(p.amount), 0);
-      const balance = Math.max(0, l.amount - paid);
-      const stat    = balance <= 0 ? 'paid' : paid > 0 ? 'partial' : 'pending';
-      const label   = stat === 'paid' ? 'Pagado' : stat === 'partial' ? 'Parcial' : 'Pendiente';
-      const pct     = l.amount > 0 ? Math.min(100, (paid / l.amount) * 100) : 0;
-      const avHtml  = l.photo ? `<img src="${l.photo}" alt="">` : initials(l.name);
-      const avCls   = l.photo ? '' : avClass(l.name);
-      const dueDate = l.dueDate ? new Date(l.dueDate + 'T00:00:00').toLocaleDateString('es-DO') : '—';
+  /* grid */
+  grid.innerHTML = '';
 
-      const item = document.createElement('div'); item.className = 'loan-item';
-      item.innerHTML = `
-        <div class="avatar ${avCls}">${avHtml}</div>
-        <div class="item-body">
-          <div class="item-name">${l.name} <span class="badge ${stat}">${label}</span></div>
-          <div class="item-meta">${l.cedula}${l.phone ? ' · ' + l.phone : ''}</div>
-          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-        </div>
-        <div class="item-right">
-          <div class="item-balance">${currency(balance)}</div>
-          <div class="item-due">Cobro: ${dueDate}</div>
-        </div>`;
-      item.addEventListener('click', () => openDetail(l.id));
-      if (l.photo) { item.querySelector('.avatar').onclick = e => { e.stopPropagation(); showPhoto(l.photo); }; }
-      list.appendChild(item);
-    }
+  if (total === 0) {
+    grid.innerHTML = '<p class="state-msg">😕 Sin resultados para esa búsqueda.</p>';
+    pager.innerHTML = '';
+    return;
   }
 
-  function newLoan() {
-    currentId = null;
-    $('#detailTitle').textContent = 'Nuevo préstamo';
-    $('#formModal').style.display = 'flex';
-    $('#deleteBtn').style.display = 'none';
-    $('#whatsappBtn').style.display = 'none';
-    $('#summarySection').style.display = 'none';
-    $('#nameInput').value = ''; $('#cedulaInput').value = ''; $('#amountInput').value = '';
-    $('#dueDateInput').value = todayStr(); $('#phoneInput').value = '';
-    $('#locationInput').value = ''; $('#notesInput').value = ''; $('#photoInput').value = '';
-  }
+  slice.forEach((c, i) => {
+    /* tarjeta */
+    const art = document.createElement('article');
+    art.className = 'card';
+    art.setAttribute('role', 'button');
+    art.setAttribute('tabindex', '0');
+    art.setAttribute('aria-label', c.t);
 
-  async function handlePhotoFile(file) {
-    if (!file) return null;
-    return new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(file); });
-  }
+    art.innerHTML = `
+      <span class="card__badge">${c.c}</span>
+      <img class="card__img" src="${img(c.i)}" alt="${c.t}" loading="lazy" width="320" height="180" />
+      <span class="card__dur">${c.d}</span>
+      <div class="card__body">
+        <p class="card__title">${c.t}</p>
+        <p class="card__cat">${c.c}</p>
+      </div>`;
 
-  async function saveLoan() {
-    const name = $('#nameInput').value.trim(), cedula = $('#cedulaInput').value.trim(),
-          amount = Number($('#amountInput').value), dueDate = $('#dueDateInput').value;
-    const phone = $('#phoneInput').value.trim(), location = $('#locationInput').value.trim(),
-          notes = $('#notesInput').value.trim();
-    const photoFile = $('#photoInput').files[0], photo = await handlePhotoFile(photoFile);
-
-    if (!name || !isValidCedula(cedula) || !(amount > 0) || !dueDate || (phone && phone.replace(/\D/g,'').length < 10)) {
-      alert('Revisa los campos obligatorios'); return;
-    }
-    if (currentId == null) {
-      loans.push({ id: Date.now().toString(), name, cedula, amount, dueDate, phone, location, notes, photo: photo || null, payments: [] });
-    } else {
-      const idx = loans.findIndex(l => l.id === currentId);
-      loans[idx] = { ...loans[idx], name, cedula, amount, dueDate, phone, location, notes, photo: photo || loans[idx].photo };
-    }
-    save(); $('#formModal').style.display = 'none';
-  }
-
-  function openDetail(id) {
-    const l = loans.find(x => x.id === id); if (!l) return;
-    currentId = id;
-    $('#detailTitle').textContent = 'Editar préstamo';
-    $('#formModal').style.display = 'flex';
-    $('#deleteBtn').style.display = 'inline-flex';
-    $('#summarySection').style.display = 'block';
-    $('#nameInput').value = l.name; $('#cedulaInput').value = l.cedula;
-    $('#amountInput').value = l.amount; $('#dueDateInput').value = l.dueDate;
-    $('#phoneInput').value = l.phone || ''; $('#locationInput').value = l.location || '';
-    $('#notesInput').value = l.notes || ''; $('#photoInput').value = '';
-
-    const paid = (l.payments || []).reduce((a, p) => a + Number(p.amount), 0);
-    const balance = Math.max(0, l.amount - paid);
-    $('#sumAmount').textContent = currency(l.amount);
-    $('#sumBalance').textContent = currency(balance);
-
-    const pmts = l.payments || [];
-    $('#paymentsList').innerHTML = pmts.length === 0
-      ? '<div class="no-payments">Sin pagos registrados aún.</div>'
-      : pmts.map(p => `<div class="pay-item"><span class="pay-date">${new Date(p.date).toLocaleDateString('es-DO')}</span><span class="pay-amount">${currency(p.amount)}</span></div>`).join('');
-
-    if (l.phone) {
-      $('#whatsappBtn').style.display = 'inline-flex';
-      $('#whatsappBtn').onclick = () => window.open(`https://wa.me/${l.phone.replace(/\D/g,'')}`, '_blank');
-    } else { $('#whatsappBtn').style.display = 'none'; }
-  }
-
-  function addPayment() {
-    const l = loans.find(x => x.id === currentId); if (!l) return;
-    const amount = Number($('#paymentInput').value);
-    const date   = $('#paymentDateInput').value || todayStr();
-    if (!(amount > 0)) { alert('Monto de pago inválido'); return; }
-    const paid = (l.payments || []).reduce((a, p) => a + Number(p.amount), 0);
-    const balance = Math.max(0, l.amount - paid);
-    if (amount > balance) { alert('El pago excede el saldo pendiente'); return; }
-    l.payments.push({ amount, date }); save();
-    $('#formModal').style.display = 'none';
-    $('#paymentInput').value = ''; $('#paymentDateInput').value = '';
-  }
-
-  function deleteLoan() {
-    if (!currentId) return;
-    const l = loans.find(x => x.id === currentId);
-    if (confirm(`¿Eliminar el préstamo de ${l.name}?`)) {
-      loans = loans.filter(x => x.id !== currentId);
-      save(); $('#formModal').style.display = 'none';
-    }
-  }
-
-  function exportData() {
-    const blob = new Blob([JSON.stringify(loans, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'prestadoor_loans.json';
-    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-  }
-
-  function importData() {
-    const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
-    input.onchange = () => {
-      const f = input.files[0]; if (!f) return;
-      const r = new FileReader();
-      r.onload = () => { try { const d = JSON.parse(r.result); if (Array.isArray(d)) { loans = d; save(); } else alert('Archivo inválido'); } catch(e) { alert('No se pudo leer el archivo'); } };
-      r.readAsText(f);
+    const open = () => {
+      if (c.c === 'Promo') { window.open(c.v, '_blank', 'noopener,noreferrer'); return; }
+      const p = new URLSearchParams({ src: vid(c.v), title: c.t, desc: c.c, duration: c.d, thumb: img(c.i) });
+      window.location.href = 'video.html?' + p;
     };
-    input.click();
-  }
+    art.addEventListener('click', open);
+    art.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') open(); });
+    grid.appendChild(art);
 
-  function clearAll() {
-    if (confirm('¿Eliminar todos los préstamos?')) { loans = []; save(); $('#formModal').style.display = 'none'; }
-  }
-
-  function showPhoto(src) { $('#modalImg').src = src; $('#photoModal').style.display = 'flex'; }
-  $('#photoModal').onclick = () => $('#photoModal').style.display = 'none';
-
-  // EVENTS
-  $('#newLoanBtn').onclick   = newLoan;
-  $('#saveBtn').onclick      = saveLoan;
-  $('#cancelBtn').onclick    = () => $('#formModal').style.display = 'none';
-  $('#closeFormBtn').onclick = () => $('#formModal').style.display = 'none';
-  $('#addPaymentBtn').onclick = addPayment;
-  $('#deleteBtn').onclick    = deleteLoan;
-  $('#exportBtn').onclick    = exportData;
-  $('#importBtn').onclick    = importData;
-  $('#clearBtn').onclick     = clearAll;
-  $('#searchInput').oninput  = renderList;
-  $('#statusFilter').onchange = renderList;
-  $('#cedulaInput').oninput  = () => $('#cedulaInput').value = formatCedula($('#cedulaInput').value);
-  $('#formModal').onclick    = e => { if (e.target.id === 'formModal') $('#formModal').style.display = 'none'; };
-
-  // Back button (Android)
-  let backPressedOnce = false;
-  window.addEventListener('popstate', () => {
-    if (backPressedOnce) { history.go(-2); }
-    else {
-      backPressedOnce = true;
-      alert('Pulsa atrás otra vez para cerrar la página');
-      setTimeout(() => { backPressedOnce = false; }, 2000);
-      history.pushState(null, null, location.href);
+    /* banner de anuncios cada N tarjetas */
+    if ((i+1) % CFG.adEvery === 0) {
+      const slot = document.createElement('div');
+      slot.className = 'ad-slot';
+      const cfg = document.createElement('script');
+      cfg.textContent = `atOptions={'key':'${CFG.adKey}','format':'iframe','height':250,'width':300,'params':{}};`;
+      const inv = document.createElement('script');
+      inv.src   = CFG.adSrc;
+      inv.async = true;
+      slot.append(cfg, inv);
+      grid.appendChild(slot);
     }
   });
-  history.pushState(null, null, location.href);
 
-  load();
+  /* paginación */
+  pager.innerHTML = '';
+  for (let p = 1; p <= nPages; p++) {
+    const btn = document.createElement('button');
+    btn.textContent = p;
+    if (p === state.page) { btn.classList.add('active'); btn.setAttribute('aria-current','page'); }
+    btn.addEventListener('click', () => {
+      state.page = p;
+      render();
+      document.getElementById('main').scrollIntoView({ behavior:'smooth' });
+    });
+    pager.appendChild(btn);
+  }
+}
+
+/* ================================================================
+   RENDER BOTONES DE CATEGORÍA
+================================================================ */
+function showCats(data) {
+  const wrap = document.getElementById('catButtons');
+  wrap.innerHTML = '';
+  const cats = [...new Set(data.map(c=>c.c).filter(c=>c!=='Promo'))];
+  cats.forEach(cat => {
+    const b = document.createElement('button');
+    b.textContent = cat;
+    b.addEventListener('click', () => showCards(data.filter(c=>c.c===cat), cat));
+    wrap.appendChild(b);
+  });
+  const all = document.createElement('button');
+  all.textContent = 'Todos';
+  all.addEventListener('click', () => showCards(data, 'Todos'));
+  wrap.appendChild(all);
+}
+
+/* ================================================================
+   ARRANQUE
+================================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ── Modal de edad ── */
+  if (localStorage.getItem('age') === '1') {
+    document.getElementById('ageGate').style.display = 'none';
+  }
+  document.getElementById('btnEnter').addEventListener('click', () => {
+    localStorage.setItem('age', '1');
+    document.getElementById('ageGate').style.display = 'none';
+  });
+  document.getElementById('btnExit').addEventListener('click', () => {
+    window.location.href = CFG.exitUrl;
+  });
+
+  /* ── Indicador de carga ── */
+  document.getElementById('grid').innerHTML =
+    '<div class="state-msg"><div class="dots"><span></span><span></span><span></span></div><p style="margin-top:.7rem">Cargando videos…</p></div>';
+
+  /* ── Carga de datos desde data.json ── */
+  try {
+    const res  = await fetch(CFG.dataUrl);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+
+    state.allCards   = withPromos(shuffle(json.v.map(toCard)));
+    state.animeCards = json.a.map(toCard);
+
+    showCards(state.allCards, 'Todos');
+    showCats(state.allCards);
+  } catch (err) {
+    document.getElementById('grid').innerHTML =
+      '<p class="state-msg">⚠️ No se pudieron cargar los videos. Recarga la página.</p>';
+    console.error('data.json error:', err);
+  }
+
+  /* ── Tabs ── */
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+
+      const tab = btn.dataset.tab;
+      if (tab === 'videos') {
+        showCards(state.allCards, 'Todos');
+        showCats(state.allCards);
+      } else if (tab === 'anime') {
+        showCards(state.animeCards, 'Anime');
+        showCats(state.animeCards);
+      } else if (tab === 'largos') {
+        const l = state.allCards.filter(c => secs(c.d) >= 180);
+        showCards(l, 'Videos largos');
+        showCats(l);
+      }
+    });
+  });
+
+  /* ── Buscador ── */
+  const suggestions = ['Sophie Rain','Jameliz','Dreamymoo','Hannaowo','RedWitch','Camila'];
+  const qEl = document.getElementById('q');
+  qEl.addEventListener('focus', () => {
+    qEl.placeholder = '🔍 Ej: ' + suggestions[Math.floor(Math.random()*suggestions.length)];
+  });
+  qEl.addEventListener('blur',  () => { qEl.placeholder = '🔍 Buscar videos...'; });
+  qEl.addEventListener('input', () => {
+    const q = qEl.value.trim().toLowerCase();
+    if (!q) { showCards(state.allCards, 'Todos'); return; }
+    const f = state.allCards.filter(c =>
+      c.t.toLowerCase().includes(q) || c.c.toLowerCase().includes(q)
+    );
+    showCards(f, '"' + qEl.value.trim() + '"');
+  });
+
+  /* ── Contador de visitas ── */
+  fetch('https://api.counterapi.dev/v1/youpornx/v1/up')
+    .then(r => r.json())
+    .then(d => { document.getElementById('visits').textContent = (d.count||0).toLocaleString('es'); })
+    .catch(() => { document.getElementById('visits').textContent = '—'; });
+
+  /* ── Pop-up Adsterra (solo tras interacción del usuario) ── */
+  if (!sessionStorage.getItem('pop')) {
+    let touched = false;
+    const mark = () => { touched = true; };
+    document.addEventListener('click',      mark, { once: true });
+    document.addEventListener('touchstart', mark, { once: true });
+    setTimeout(() => {
+      if (!touched) return;
+      const s = document.createElement('script');
+      s.src   = '//sillinessshoplifting.com/4e/10/02/4e100262715c7282134e4e2f267bce80.js';
+      s.async = true;
+      document.body.appendChild(s);
+      sessionStorage.setItem('pop', '1');
+    }, 10000);
+  }
+
+});
 </script>
 </body>
 </html>
