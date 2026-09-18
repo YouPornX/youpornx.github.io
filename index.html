@@ -140,7 +140,8 @@
       color: var(--text);
       text-shadow: 0 0 8px rgba(255,255,255,.12);
     }
-    .logo sup { font-size: .38em; vertical-align: super; font-style: normal; opacity: .75; letter-spacing: .5px; font-family: "Inter", sans-serif; }
+    .logo-heart { font-size: .55em; vertical-align: middle; font-style: normal; color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); margin-left: 2px; animation: heartbeat 1.8s ease infinite; display: inline-block; }
+    @keyframes heartbeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.25)} 30%{transform:scale(1)} 45%{transform:scale(1.15)} 60%{transform:scale(1)} }
     .logo b { color: var(--accent); text-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-glow); font-style: normal; }
 
     .socials { position: absolute; top: 50%; transform: translateY(-50%); display: flex; gap: .5rem; }
@@ -311,8 +312,9 @@
       background: var(--accent); border-color: rgba(255,255,255,.3);
       box-shadow: 0 0 10px var(--accent-glow); transform: scale(1.06);
     }
-    #pagination button:hover:not(.active) { background: #5b21b6; transform: translateY(-2px); }
+    #pagination button:hover:not(.active):not(.dots) { background: #5b21b6; transform: translateY(-2px); }
     #pagination button:active { transform: translateY(0); }
+    #pagination button.dots { background: transparent; border-color: transparent; color: var(--muted); cursor: default; pointer-events: none; min-width: 28px; }
 
     /* ─────────────────────────────────────
        ESTADO VACÍO / LOADER
@@ -425,7 +427,7 @@
     </a>
   </nav>
 
-  <h1 class="logo">You<b>PornX<sup>v2</sup></b></h1>
+  <h1 class="logo">You<b>PornX<span class="logo-heart">♥</span></b></h1>
 
   <nav class="socials right" aria-label="X Twitter">
     <a href="https://x.com/YouPornXSite?t=zTi29Q-P6HnWLfg0GUUJzQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Perfil en X">
@@ -599,19 +601,40 @@ function render() {
     }
   });
 
-  /* paginación */
+  /* paginación inteligente */
   pager.innerHTML = '';
-  for (let p = 1; p <= nPages; p++) {
+  const cur = state.page;
+
+  // Función para crear un botón de página
+  const mkBtn = (label, page, isActive = false, isDisabled = false) => {
     const btn = document.createElement('button');
-    btn.textContent = p;
-    if (p === state.page) { btn.classList.add('active'); btn.setAttribute('aria-current','page'); }
-    btn.addEventListener('click', () => {
-      state.page = p;
-      render();
-      document.getElementById('main').scrollIntoView({ behavior:'smooth' });
-    });
-    pager.appendChild(btn);
-  }
+    btn.textContent = label;
+    if (isActive)   { btn.classList.add('active'); btn.setAttribute('aria-current','page'); }
+    if (isDisabled) { btn.classList.add('dots'); btn.disabled = true; }
+    else {
+      btn.addEventListener('click', () => {
+        state.page = page;
+        render();
+        document.getElementById('main').scrollIntoView({ behavior:'smooth' });
+      });
+    }
+    return btn;
+  };
+
+  // Calcular rango visible alrededor de la página actual
+  const WING = 2; // páginas a cada lado de la actual
+  let pages = new Set();
+  pages.add(1);
+  pages.add(nPages);
+  for (let i = Math.max(1, cur - WING); i <= Math.min(nPages, cur + WING); i++) pages.add(i);
+  const sorted = [...pages].sort((a,b) => a - b);
+
+  let prev = 0;
+  sorted.forEach(p => {
+    if (p - prev > 1) pager.appendChild(mkBtn('…', null, false, true));
+    pager.appendChild(mkBtn(p, p, p === cur));
+    prev = p;
+  });
 }
 
 /* ================================================================
@@ -660,8 +683,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
 
-    state.allCards   = withPromos(shuffle(json.v.map(toCard)));
-    state.animeCards = json.a.map(toCard);
+    state.allCards   = withPromos([...json.v].reverse().map(toCard));
+    state.animeCards = [...json.a].reverse().map(toCard);
 
     showCards(state.allCards, 'Todos');
     showCats(state.allCards);
