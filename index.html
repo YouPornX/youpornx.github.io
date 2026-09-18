@@ -220,6 +220,51 @@
     /* ─────────────────────────────────────
        CONTEO
     ───────────────────────────────────── */
+    /* ─────────────────────────────────────
+       SELECTOR DE ORDEN
+    ───────────────────────────────────── */
+    .sort-bar {
+      display: flex; justify-content: center; align-items: center;
+      padding: .5rem 1rem .2rem;
+    }
+    .sort-toggle {
+      display: inline-flex;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 4px;
+      gap: 2px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+      position: relative;
+    }
+    .sort-btn {
+      position: relative; z-index: 1;
+      background: transparent; color: var(--muted);
+      border: none;
+      padding: .42rem 1.1rem;
+      border-radius: 24px;
+      font-size: .8rem; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+      transition: color var(--ease);
+      display: flex; align-items: center; gap: .35rem;
+      white-space: nowrap;
+    }
+    .sort-btn svg { width: 13px; height: 13px; flex-shrink: 0; transition: transform var(--ease); }
+    .sort-btn.active { color: #fff; }
+    .sort-btn.active svg { transform: scale(1.15); }
+    .sort-btn:hover:not(.active) { color: var(--text); }
+
+    /* píldora deslizante */
+    .sort-pill {
+      position: absolute;
+      top: 4px; bottom: 4px;
+      border-radius: 24px;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+      transition: left var(--ease), width var(--ease);
+      z-index: 0;
+    }
+
     #resultCount { text-align: center; font-size: .78rem; color: var(--muted); padding: .2rem 1rem; }
 
     /* ─────────────────────────────────────
@@ -463,6 +508,25 @@
   <!-- Categorías -->
   <nav id="catButtons" aria-label="Filtrar por categoría"></nav>
 
+  <!-- Selector de orden -->
+  <div class="sort-bar">
+    <div class="sort-toggle" id="sortToggle" role="group" aria-label="Ordenar videos">
+      <div class="sort-pill" id="sortPill"></div>
+      <button class="sort-btn active" id="sortNew" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/>
+        </svg>
+        Más reciente
+      </button>
+      <button class="sort-btn" id="sortOld" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 6 12 11 7 6"/><polyline points="17 13 12 18 7 13"/>
+        </svg>
+        Más antiguo
+      </button>
+    </div>
+  </div>
+
   <!-- Conteo de resultados -->
   <p id="resultCount" aria-live="polite" aria-atomic="true"></p>
 
@@ -504,11 +568,12 @@ const CFG = {
    ESTADO
 ================================================================ */
 const state = {
-  allCards:   [],   // videos principales (con promos)
+  allCards:   [],
   animeCards: [],
-  cur:        [],   // datos de la vista actual
+  cur:        [],
   label:      'Todos',
   page:       1,
+  order:      'new',  // 'new' | 'old'
 };
 
 /* ================================================================
@@ -529,8 +594,19 @@ function withPromos(arr) {
 /* ================================================================
    RENDER TARJETAS
 ================================================================ */
+function applyOrder(arr) {
+  // Separar promos del resto para no reordenarlas entre videos
+  const promos = arr.filter(c => c.c === 'Promo');
+  const videos = arr.filter(c => c.c !== 'Promo');
+  const ordered = state.order === 'new' ? [...videos] : [...videos].reverse();
+  return withPromos(ordered).concat(); // withPromos ya las inserta cada 3
+}
+
 function showCards(data, label) {
-  state.cur   = data;
+  // Si son los datos principales, aplicar orden; si es búsqueda/filtro, también
+  const videos = data.filter(c => c.c !== 'Promo');
+  const ordered = state.order === 'new' ? [...videos] : [...videos].reverse();
+  state.cur   = withPromos(ordered);
   state.label = label;
   state.page  = 1;
   render();
@@ -688,6 +764,42 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     showCards(state.allCards, 'Todos');
     showCats(state.allCards);
+
+    /* ── Píldora deslizante ── */
+    const pill    = document.getElementById('sortPill');
+    const btnNew  = document.getElementById('sortNew');
+    const btnOld  = document.getElementById('sortOld');
+    const toggle  = document.getElementById('sortToggle');
+
+    function movePill(activeBtn) {
+      const tRect = toggle.getBoundingClientRect();
+      const bRect = activeBtn.getBoundingClientRect();
+      pill.style.left  = (bRect.left - tRect.left) + 'px';
+      pill.style.width = bRect.width + 'px';
+    }
+
+    // Posición inicial
+    requestAnimationFrame(() => movePill(btnNew));
+
+    function setOrder(order, activeBtn, inactiveBtn) {
+      if (state.order === order) return;
+      state.order = order;
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
+      inactiveBtn.classList.remove('active');
+      inactiveBtn.setAttribute('aria-pressed', 'false');
+      movePill(activeBtn);
+      showCards(state.allCards, state.label);
+    }
+
+    btnNew.addEventListener('click', () => setOrder('new', btnNew, btnOld));
+    btnOld.addEventListener('click', () => setOrder('old', btnOld, btnNew));
+
+    // Recalcular posición de píldora si cambia el tamaño de ventana
+    window.addEventListener('resize', () => {
+      const active = state.order === 'new' ? btnNew : btnOld;
+      movePill(active);
+    });
   } catch (err) {
     document.getElementById('grid').innerHTML =
       '<p class="state-msg">⚠️ No se pudieron cargar los videos. Recarga la página.</p>';
