@@ -59,13 +59,22 @@
        RESET & BASE
     ───────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html   { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html   {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      /* Fix iOS Safari 100vh bug */
+      height: -webkit-fill-available;
+    }
     body   {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      min-height: -webkit-fill-available;
       overflow-x: hidden;
+      /* Evita rebote indeseado en iOS */
+      overscroll-behavior-y: none;
     }
     /* Fondo decorativo — no bloquea render */
     body::before {
@@ -75,10 +84,13 @@
       opacity: .06;
       z-index: -1;
       pointer-events: none;
+      /* Fix iOS: fondo fijo puede parpadear */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
     img { display: block; max-width: 100%; }
-    button { font-family: inherit; cursor: pointer; }
-    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 
     /* accesibilidad */
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
@@ -94,6 +106,9 @@
       display: flex; justify-content: center; align-items: center;
       z-index: 9999;
       padding: 1rem;
+      /* Fix iOS: evitar scroll detrás del modal */
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
     }
     .age-box {
       background: var(--bg1);
@@ -319,6 +334,8 @@
       object-fit: cover;
       background: var(--bg1);
       transition: transform var(--ease);
+      /* Fix iOS Safari: object-fit necesita height explícito */
+      display: block;
     }
     .card:hover .card__img { transform: scale(1.05); }
     @media (max-width: 560px) { .card__img { height: 130px; } }
@@ -481,8 +498,11 @@
       z-index: 9000;
       display: none; justify-content: center; align-items: center;
       padding: 1rem;
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       overflow-y: auto;
+      /* Fix iOS position:fixed con teclado abierto */
+      -webkit-overflow-scrolling: touch;
     }
     .preview-overlay.open { display: flex; }
     .preview-box {
@@ -941,8 +961,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       pill.style.width = bRect.width + 'px';
     }
 
-    // Posición inicial
-    requestAnimationFrame(() => movePill(btnNew));
+    // Posición inicial — doble rAF para que iOS calcule el layout primero
+    requestAnimationFrame(() => requestAnimationFrame(() => movePill(btnNew)));
 
     function setOrder(order, activeBtn, inactiveBtn) {
       if (state.order === order) return;
@@ -1032,10 +1052,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.openPreview = function() {
     document.getElementById('previewOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
   };
   window.closePreview = function() {
     document.getElementById('previewOverlay').classList.remove('open');
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
   };
   document.getElementById('previewOverlay').addEventListener('click', function(e) {
     if (e.target === this) window.closePreview();
