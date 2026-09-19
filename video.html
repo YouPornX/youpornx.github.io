@@ -177,6 +177,7 @@
       margin-top: 1.2rem;
       display: flex; justify-content: center;
       min-height: 60px;
+      order: 99;
     }
 
     /* ── COLUMNA DERECHA (recomendados) ── */
@@ -335,10 +336,6 @@
         Contenido exclusivo para adultos mayores de 18 años. Disfruta del mejor contenido en YouPornX.
       </div>
 
-      <div class="ad-banner">
-        <script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
-        <div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
-      </div>
     </div>
 
   </div><!-- /col-main -->
@@ -347,6 +344,12 @@
   <aside class="col-side" aria-label="Videos recomendados">
     <p class="side-title">Recomendados</p>
     <div id="recList"></div>
+
+    <!-- Anuncios debajo de recomendados -->
+    <div class="ad-banner">
+      <script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
+      <div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
+    </div>
   </aside>
 
 </div><!-- /page -->
@@ -355,8 +358,8 @@
   Contenido exclusivo para adultos +18 — YouDev © 2025
 </footer>
 
+<script src="data.js"></script>
 <script>
-const IMG = 'https://i.imgur.com/';
 const VID = 'https://files.catbox.moe/';
 
 /* ── Parámetros del video actual ── */
@@ -399,44 +402,7 @@ function shareVideo() {
   }
 }
 
-/* ── Recomendados desde data.json ── */
-fetch('data.json')
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(json => {
-    const all = [...json.v, ...json.a]
-      .map(x => ({ x, r: Math.random() }))
-      .sort((a, b) => a.r - b.r)
-      .slice(0, 20)
-      .map(({ x }) => x);
-
-    const list = document.getElementById('recList');
-    all.forEach(([t, d, c, i, v]) => {
-      const videoUrl = VID + v + '.mp4';
-      const thumbUrl = IMG + i + '.png';
-      const href = 'video.html?' + new URLSearchParams({ src: videoUrl, title: t, desc: c, duration: d, thumb: thumbUrl });
-
-      const el = document.createElement('a');
-      el.href = href;
-      el.className = 'rec';
-      el.setAttribute('aria-label', t);
-      el.innerHTML = `
-        <div class="rec__thumb-wrap">
-          <img class="rec__thumb" src="${thumbUrl}" alt="${t}" loading="lazy" width="160" height="90"/>
-          <span class="rec__dur">${d}</span>
-        </div>
-        <div class="rec__body">
-          <p class="rec__title">${t}</p>
-          <p class="rec__cat"><span>${c}</span></p>
-        </div>`;
-      list.appendChild(el);
-    });
-  })
-  .catch(() => {
-    document.getElementById('recList').innerHTML =
-      '<p style="color:#555;font-size:.8rem;padding:.5rem 0">No se pudieron cargar los recomendados.</p>';
-  });
-
-  /* ── Anuncios ── */
+/* ── Anuncios ── */
 let userClicked = false;
 document.addEventListener('click',      () => { userClicked = true; }, { once: true });
 document.addEventListener('touchstart', () => { userClicked = true; }, { once: true });
@@ -445,6 +411,40 @@ window.addEventListener('load', () => {
   setTimeout(fire, 10000);
   setInterval(fire, 120000);
 });
+
+/* ── Recomendados desde data.js ── */
+if (typeof DATA !== 'undefined') {
+  const all = [...DATA.v, ...DATA.a]
+    .map(x => ({ x, r: Math.random() }))
+    .sort((a, b) => a.r - b.r)
+    .slice(0, 20)
+    .map(({ x }) => x);
+
+  const list = document.getElementById('recList');
+  all.forEach(([t, d, c, i, v]) => {
+    const videoUrl = VID + v + '.mp4';
+    const thumbUrl = IMG + i + '.png';
+    const href = 'video.html?' + new URLSearchParams({ src: videoUrl, title: t, desc: c, duration: d, thumb: thumbUrl });
+
+    const el = document.createElement('a');
+    el.href = href;
+    el.className = 'rec';
+    el.setAttribute('aria-label', t);
+    el.innerHTML = `
+      <div class="rec__thumb-wrap">
+        <img class="rec__thumb" src="${thumbUrl}" alt="${t}" loading="lazy" width="160" height="90"/>
+        <span class="rec__dur">${d}</span>
+      </div>
+      <div class="rec__body">
+        <p class="rec__title">${t}</p>
+        <p class="rec__cat"><span>${c}</span></p>
+      </div>`;
+    list.appendChild(el);
+  });
+} else {
+  document.getElementById('recList').innerHTML =
+    '<p style="color:#555;font-size:.8rem;padding:.5rem 0">No se pudieron cargar los recomendados.</p>';
+}
 </script>
 
 </body>
