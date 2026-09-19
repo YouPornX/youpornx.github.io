@@ -399,16 +399,6 @@ function shareVideo() {
   }
 }
 
-/* ── Anuncios ── */
-let userClicked = false;
-document.addEventListener('click',      () => { userClicked = true; }, { once: true });
-document.addEventListener('touchstart', () => { userClicked = true; }, { once: true });
-window.addEventListener('load', () => {
-  const fire = () => { if (userClicked) window.open('https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2','_blank','noopener'); };
-  setTimeout(fire, 10000);
-  setInterval(fire, 120000);
-});
-
 /* ── Recomendados desde data.json ── */
 fetch('data.json')
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -445,6 +435,16 @@ fetch('data.json')
     document.getElementById('recList').innerHTML =
       '<p style="color:#555;font-size:.8rem;padding:.5rem 0">No se pudieron cargar los recomendados.</p>';
   });
+
+  /* ── Anuncios ── */
+let userClicked = false;
+document.addEventListener('click',      () => { userClicked = true; }, { once: true });
+document.addEventListener('touchstart', () => { userClicked = true; }, { once: true });
+window.addEventListener('load', () => {
+  const fire = () => { if (userClicked) window.open('https://sillinessshoplifting.com/e7dm17581?key=84e22ffd8dce36a70085061cf411bac2','_blank','noopener'); };
+  setTimeout(fire, 10000);
+  setInterval(fire, 120000);
+});
 </script>
 
 </body>
