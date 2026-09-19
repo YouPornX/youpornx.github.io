@@ -161,6 +161,12 @@
       .site-header { padding: .85rem 2.8rem; }
       .socials a img { width: 26px; height: 26px; padding: 4px; }
     }
+    /* Logo no se desborde en móviles muy pequeños */
+    @media (max-width: 360px) {
+      .site-header { padding: .75rem 2.4rem; }
+      .logo { font-size: clamp(1.3rem, 8vw, 1.8rem); }
+      .logo-heart svg { width: .85em; height: .85em; }
+    }
 
     /* ─────────────────────────────────────
        TABS
@@ -227,6 +233,7 @@
     .sort-bar {
       display: flex; justify-content: center; align-items: center;
       padding: .5rem 1rem .2rem;
+      overflow: hidden;
     }
     .sort-toggle {
       display: inline-flex;
@@ -237,6 +244,7 @@
       gap: 2px;
       box-shadow: 0 2px 10px rgba(0,0,0,.3);
       position: relative;
+      max-width: 100%;
     }
     .sort-btn {
       position: relative; z-index: 1;
@@ -249,6 +257,10 @@
       transition: color var(--ease);
       display: flex; align-items: center; gap: .35rem;
       white-space: nowrap;
+    }
+    @media (max-width: 360px) {
+      .sort-btn { font-size: .72rem; padding: .38rem .7rem; gap: .25rem; }
+      .sort-btn svg { width: 11px; height: 11px; }
     }
     .sort-btn svg { width: 13px; height: 13px; flex-shrink: 0; transition: transform var(--ease); }
     .sort-btn.active { color: #fff; }
@@ -361,6 +373,10 @@
     #pagination button:hover:not(.active):not(.dots) { background: #5b21b6; transform: translateY(-2px); }
     #pagination button:active { transform: translateY(0); }
     #pagination button.dots { background: transparent; border-color: transparent; color: var(--muted); cursor: default; pointer-events: none; min-width: 28px; }
+    @media (max-width: 400px) {
+      #pagination button { font-size: .75rem; padding: .3rem .55rem; min-width: 30px; }
+      #pagination { gap: .28rem; }
+    }
 
     /* ─────────────────────────────────────
        ESTADO VACÍO / LOADER
@@ -398,7 +414,7 @@
       background-size: 200% 100%;
       animation: gradShift 5s ease infinite;
       border-bottom: 1px solid rgba(124,58,237,.35);
-      padding: .6rem 1rem;
+      padding: .65rem 1rem;
       text-align: center;
       font-size: .82rem;
       color: #d4c5ff;
@@ -406,7 +422,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .55rem;
+      gap: .6rem;
       flex-wrap: wrap;
     }
     @keyframes gradShift {
@@ -418,9 +434,9 @@
     .next-banner .badge {
       background: var(--accent);
       color: #fff;
-      font-size: .7rem;
+      font-size: .68rem;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 9px;
       border-radius: 20px;
       letter-spacing: .5px;
       text-transform: uppercase;
@@ -439,6 +455,93 @@
       flex-shrink: 0;
     }
     @keyframes blink2 { 0%,100%{opacity:.3} 50%{opacity:1} }
+    .next-banner .sep { color: rgba(255,255,255,.2); }
+    .btn-preview {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: rgba(124,58,237,.25);
+      border: 1px solid rgba(124,58,237,.55);
+      color: #c4b5fd;
+      font-size: .72rem; font-weight: 600;
+      padding: 3px 11px; border-radius: 20px;
+      cursor: pointer; font-family: inherit;
+      transition: background var(--ease), color var(--ease), border-color var(--ease);
+      white-space: nowrap;
+    }
+    .btn-preview:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    @media (max-width: 480px) {
+      .next-banner { font-size: .76rem; gap: .4rem; padding: .55rem .8rem; }
+      .next-banner .dot { display: none; }
+      .next-banner .sep { display: none; }
+    }
+
+    /* MODAL PREVIEW */
+    .preview-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.75);
+      z-index: 9000;
+      display: none; justify-content: center; align-items: center;
+      padding: 1rem;
+      backdrop-filter: blur(4px);
+      overflow-y: auto;
+    }
+    .preview-overlay.open { display: flex; }
+    .preview-box {
+      background: #18163a;
+      border: 1px solid rgba(124,58,237,.5);
+      border-radius: 16px;
+      padding: 1.6rem 1.3rem;
+      max-width: 480px; width: 100%;
+      box-shadow: 0 0 60px rgba(124,58,237,.3);
+      position: relative;
+      animation: popIn .25s ease;
+      margin: auto;
+    }
+    @keyframes popIn { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+    .preview-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255,255,255,.08); border: none;
+      color: #aaa; width: 28px; height: 28px;
+      border-radius: 50%; cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--ease), color var(--ease);
+    }
+    .preview-close:hover { background: rgba(255,255,255,.18); color: #fff; }
+    .preview-box h3 {
+      font-size: 1.15rem; font-weight: 700; color: #fff;
+      margin-bottom: .3rem;
+    }
+    .preview-box .preview-date {
+      font-size: .78rem; color: #a78bfa;
+      margin-bottom: 1.2rem; font-weight: 600;
+      display: flex; align-items: center; gap: .35rem;
+    }
+    .preview-box .preview-date::before {
+      content: '';
+    }
+    .preview-list {
+      list-style: none; display: flex; flex-direction: column; gap: .75rem;
+    }
+    .preview-list li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .85rem; color: #ccc; line-height: 1.45;
+    }
+    .preview-list li .icon {
+      flex-shrink: 0; margin-top: .1rem;
+      color: var(--accent);
+      filter: drop-shadow(0 0 5px var(--accent-glow));
+    }
+    .preview-list li .icon svg { width: 17px; height: 17px; display: block; }
+    .preview-list li strong { color: #fff; }
+    .preview-footer {
+      margin-top: 1.4rem; text-align: center;
+      font-size: .78rem; color: #7c6fa8; font-style: italic;
+    }
+    @media (max-width: 400px) {
+      .preview-box { padding: 1.3rem 1rem; border-radius: 12px; }
+      .preview-box h3 { font-size: 1rem; padding-right: 1.8rem; }
+      .preview-list li { font-size: .8rem; gap: .55rem; }
+      .preview-list li .icon svg { width: 15px; height: 15px; }
+    }
 
     /* ─────────────────────────────────────
        SCROLLBAR
@@ -501,11 +604,51 @@
   </nav>
 </header>
 
+<!-- MODAL PREVIEW -->
+<div class="preview-overlay" id="previewOverlay" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+  <div class="preview-box">
+    <button class="preview-close" onclick="closePreview()" aria-label="Cerrar">✕</button>
+    <h3 id="previewTitle">YouPornX Halloween UPD — Lo que viene</h3>
+    <p class="preview-date">Lanzamiento oficial: 1 de octubre de 2026</p>
+    <ul class="preview-list">
+
+      <li>
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <div><strong>Catálogo completamente nuevo</strong> — Cientos de videos exclusivos nuevos. .</div>
+      </li>
+
+      <li>
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <div><strong>Optimizacion y rediseño</strong> — Nueva arquitectura diseñada para que los videos carguen al instante en cualquier dispositivo o conexión.</div>
+      </li>
+
+      <li>
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <div><strong>Chat en vivo integrado</strong> — Conversa con otros usuarios en tiempo real mientras disfrutas del contenido.</div>
+      </li>
+
+      <li>
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><strong>Comunidad</strong> — Un espacio para compartir, votar contenido y conectar con la comunidad de YouPornX de una forma votar por el siguiente contenido.</div>
+      </li>
+
+      <li>
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+        <div><strong>Proximamente</strong> — Hay más novedades que aún no podemos revelar. Solo te decimos que valdrá la pena esperar.</div>
+      </li>
+
+    </ul>
+    <p class="preview-footer">La versión más ambiciosa de YouPornX. El 1 de octubre lo cambia todo.</p>
+  </div>
+</div>
+
 <!-- ══════════ BANNER PRÓXIMA VERSIÓN ══════════ -->
 <div class="next-banner" role="banner" aria-label="Aviso de nueva versión">
   <span class="dot"></span>
   <span class="badge">Próximamente</span>
-  <span>Una <strong>nueva versión</strong> de YouPornX está en desarrollo y se lanzará muy pronto.</span>
+  <span>La nueva versión de YouPornX llega el <strong>1 de octubre de 2026</strong></span>
+  <span class="sep">·</span>
+  <button class="btn-preview" onclick="openPreview()">Ver qué incluye →</button>
   <span class="dot"></span>
 </div>
 
@@ -884,6 +1027,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       sessionStorage.setItem('pop', '1');
     }, 10000);
   }
+
+  /* ── Modal preview versión ── */
+  window.openPreview = function() {
+    document.getElementById('previewOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closePreview = function() {
+    document.getElementById('previewOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.getElementById('previewOverlay').addEventListener('click', function(e) {
+    if (e.target === this) window.closePreview();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closePreview(); });
 
 });
 </script>
