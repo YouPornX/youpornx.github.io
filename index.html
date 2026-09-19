@@ -730,6 +730,9 @@
 <script async data-cfasync="false" src="//sillinessshoplifting.com/c01ba5080815fe1b8a5a76522b469b2f/invoke.js"></script>
 <div id="container-c01ba5080815fe1b8a5a76522b469b2f"></div>
 
+<!-- Datos de videos: renombra tu archivo a data.js y súbelo junto a este index.html -->
+<script src="data.js"></script>
+
 <script>
 /* ================================================================
    CONFIGURACIÓN
@@ -936,58 +939,52 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('grid').innerHTML =
     '<div class="state-msg"><div class="dots"><span></span><span></span><span></span></div><p style="margin-top:.7rem">Cargando videos…</p></div>';
 
-  /* ── Carga de datos desde data.json ── */
-  try {
-    const res  = await fetch(CFG.dataUrl);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const json = await res.json();
-
-    state.allCards   = withPromos([...json.v].reverse().map(toCard));
-    state.animeCards = [...json.a].reverse().map(toCard);
-
-    showCards(state.allCards, 'Todos');
-    showCats(state.allCards);
-
-    /* ── Píldora deslizante ── */
-    const pill    = document.getElementById('sortPill');
-    const btnNew  = document.getElementById('sortNew');
-    const btnOld  = document.getElementById('sortOld');
-    const toggle  = document.getElementById('sortToggle');
-
-    function movePill(activeBtn) {
-      const tRect = toggle.getBoundingClientRect();
-      const bRect = activeBtn.getBoundingClientRect();
-      pill.style.left  = (bRect.left - tRect.left) + 'px';
-      pill.style.width = bRect.width + 'px';
-    }
-
-    // Posición inicial — doble rAF para que iOS calcule el layout primero
-    requestAnimationFrame(() => requestAnimationFrame(() => movePill(btnNew)));
-
-    function setOrder(order, activeBtn, inactiveBtn) {
-      if (state.order === order) return;
-      state.order = order;
-      activeBtn.classList.add('active');
-      activeBtn.setAttribute('aria-pressed', 'true');
-      inactiveBtn.classList.remove('active');
-      inactiveBtn.setAttribute('aria-pressed', 'false');
-      movePill(activeBtn);
-      showCards(state.allCards, state.label);
-    }
-
-    btnNew.addEventListener('click', () => setOrder('new', btnNew, btnOld));
-    btnOld.addEventListener('click', () => setOrder('old', btnOld, btnNew));
-
-    // Recalcular posición de píldora si cambia el tamaño de ventana
-    window.addEventListener('resize', () => {
-      const active = state.order === 'new' ? btnNew : btnOld;
-      movePill(active);
-    });
-  } catch (err) {
+  /* ── Carga de datos desde data.js ── */
+  if (typeof DATA === 'undefined') {
     document.getElementById('grid').innerHTML =
-      '<p class="state-msg">⚠️ No se pudieron cargar los videos. Recarga la página.</p>';
-    console.error('data.json error:', err);
+      '<p class="state-msg">⚠️ No se pudieron cargar los videos. Asegúrate de que data.js está subido a GitHub.</p>';
+    return;
   }
+
+  state.allCards   = withPromos([...DATA.v].reverse().map(toCard));
+  state.animeCards = [...DATA.a].reverse().map(toCard);
+
+  showCards(state.allCards, 'Todos');
+  showCats(state.allCards);
+
+  /* ── Píldora deslizante ── */
+  const pill    = document.getElementById('sortPill');
+  const btnNew  = document.getElementById('sortNew');
+  const btnOld  = document.getElementById('sortOld');
+  const toggle  = document.getElementById('sortToggle');
+
+  function movePill(activeBtn) {
+    const tRect = toggle.getBoundingClientRect();
+    const bRect = activeBtn.getBoundingClientRect();
+    pill.style.left  = (bRect.left - tRect.left) + 'px';
+    pill.style.width = bRect.width + 'px';
+  }
+
+  requestAnimationFrame(() => requestAnimationFrame(() => movePill(btnNew)));
+
+  function setOrder(order, activeBtn, inactiveBtn) {
+    if (state.order === order) return;
+    state.order = order;
+    activeBtn.classList.add('active');
+    activeBtn.setAttribute('aria-pressed', 'true');
+    inactiveBtn.classList.remove('active');
+    inactiveBtn.setAttribute('aria-pressed', 'false');
+    movePill(activeBtn);
+    showCards(state.allCards, state.label);
+  }
+
+  btnNew.addEventListener('click', () => setOrder('new', btnNew, btnOld));
+  btnOld.addEventListener('click', () => setOrder('old', btnOld, btnNew));
+
+  window.addEventListener('resize', () => {
+    const active = state.order === 'new' ? btnNew : btnOld;
+    movePill(active);
+  });
 
   /* ── Tabs ── */
   document.querySelectorAll('.tab').forEach(btn => {
