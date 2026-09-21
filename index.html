@@ -765,7 +765,7 @@ const state = {
 /* ================================================================
    HELPERS
 ================================================================ */
-const img  = id  => CFG.imgBase + id + '.png';
+const img  = id  => id.startsWith('http') ? id : CFG.imgBase + id + '.png';
 const vid  = id  => CFG.vidBase + id + '.mp4';
 const secs = str => { const [m,s] = str.split(':').map(Number); return m*60+(s||0); };
 const toCard = ([t,d,c,i,v]) => ({t,d,c,i,v});
