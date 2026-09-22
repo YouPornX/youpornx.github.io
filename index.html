@@ -300,8 +300,8 @@
     ───────────────────────────────────── */
     #grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.1rem; padding: .5rem 1rem 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem; padding: .5rem 1rem 1rem;
     }
     @media (max-width: 560px) {
       #grid { grid-template-columns: repeat(2, 1fr); gap: .65rem; padding: .4rem .65rem .8rem; }
@@ -330,15 +330,14 @@
     }
     .card:active { transform: translateY(-1px); }
     .card__img {
-      width: 100%; height: 210px;
+      width: 100%; height: 260px;
       object-fit: cover;
       background: var(--bg1);
       transition: transform var(--ease);
-      /* Fix iOS Safari: object-fit necesita height explícito */
       display: block;
     }
     .card:hover .card__img { transform: scale(1.05); }
-    @media (max-width: 560px) { .card__img { height: 130px; } }
+    @media (max-width: 560px) { .card__img { height: 150px; } }
 
     .card__badge {
       position: absolute; top: 7px; left: 7px;
