@@ -125,10 +125,36 @@
       border: 1.5px solid var(--line);
       border-radius: 8px; padding: .7rem 1rem;
       font-size: .95rem; font-family: inherit;
-      outline: none; margin-bottom: 1rem;
+      outline: none; margin-bottom: .75rem;
       transition: border-color var(--ease);
     }
     .name-input:focus { border-color: var(--accent); }
+    .pass-wrap {
+      display: none;
+      margin-bottom: 1rem;
+    }
+    .pass-label {
+      font-size: .72rem; color: var(--muted);
+      margin-bottom: .35rem; display: block;
+    }
+
+    /* ── ADMIN BADGE ── */
+    .admin-badge {
+      display: inline-flex; align-items: center; gap: .25rem;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff; font-size: .6rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 8px;
+      letter-spacing: .4px; text-transform: uppercase;
+      box-shadow: 0 0 8px var(--accent-glow);
+      vertical-align: middle;
+      margin-left: .3rem;
+    }
+    .msg.admin .msg-bubble {
+      background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(168,85,247,.15));
+      border-color: rgba(124,58,237,.5);
+      box-shadow: 0 0 12px rgba(124,58,237,.15);
+    }
+    .msg.admin .msg-name { color: #a855f7; font-weight: 700; }
     .name-btn {
       width: 100%;
       background: var(--accent); color: #fff;
@@ -304,6 +330,10 @@
     <h2>👋 ¿Cómo te llamas?</h2>
     <p>Elige un nombre o apodo para participar en la comunidad. No necesitas registrarte.</p>
     <input class="name-input" id="nameInput" type="text" placeholder="Tu nombre o apodo..." maxlength="20" autocomplete="off" />
+    <div class="pass-wrap" id="passWrap">
+      <span class="pass-label">🔒 Contraseña (solo para staff)</span>
+      <input class="name-input" id="passInput" type="password" placeholder="Contraseña..." autocomplete="off" style="margin-bottom:0" />
+    </div>
     <button class="name-btn" id="nameBtn">Entrar a la comunidad</button>
   </div>
 </div>
@@ -407,14 +437,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
+/* ── Contraseña admin (ofuscada) ── */
+const _ak = atob('NDI0Mg=='); // 4242
+
 /* ── Estado ── */
-let userName  = localStorage.getItem('ypx_name') || null;
-let userId    = localStorage.getItem('ypx_uid')  || crypto.randomUUID();
+let userName  = localStorage.getItem('ypx_name')  || null;
+let userId    = localStorage.getItem('ypx_uid')   || crypto.randomUUID();
+let isAdmin   = localStorage.getItem('ypx_admin') === '1';
 localStorage.setItem('ypx_uid', userId);
 
 /* ── Elementos DOM ── */
 const nameOverlay  = document.getElementById('nameOverlay');
 const nameInput    = document.getElementById('nameInput');
+const passInput    = document.getElementById('passInput');
+const passWrap     = document.getElementById('passWrap');
 const nameBtn      = document.getElementById('nameBtn');
 const displayName  = document.getElementById('displayName');
 const changeNameBtn= document.getElementById('changeNameBtn');
@@ -424,11 +460,16 @@ const msgInput     = document.getElementById('msgInput');
 const sendBtn      = document.getElementById('sendBtn');
 const onlineCount  = document.getElementById('onlineCount');
 
+/* ── Mostrar campo de contraseña solo si escribe "You" ── */
+nameInput.addEventListener('input', () => {
+  passWrap.style.display = nameInput.value.trim().toLowerCase() === 'you' ? 'block' : 'none';
+});
+
 /* ── Inicializar ── */
 function iniciar() {
   if (userName) {
     nameOverlay.style.display = 'none';
-    displayName.textContent   = userName;
+    displayName.textContent   = userName + (isAdmin ? ' 👑' : '');
     sendBtn.disabled          = false;
     escucharMensajes();
   } else {
@@ -442,15 +483,26 @@ function guardarNombre() {
   const n = nameInput.value.trim();
   if (!n) return;
   userName = n.substring(0, 20);
+
+  // Verificar si es admin
+  if (n.toLowerCase() === 'you' && passInput.value === _ak) {
+    isAdmin = true;
+    localStorage.setItem('ypx_admin', '1');
+  } else {
+    isAdmin = false;
+    localStorage.removeItem('ypx_admin');
+  }
+
   localStorage.setItem('ypx_name', userName);
   nameOverlay.style.display = 'none';
-  displayName.textContent   = userName;
+  displayName.textContent   = userName + (isAdmin ? ' 👑' : '');
   sendBtn.disabled          = false;
   escucharMensajes();
 }
 
 nameBtn.addEventListener('click', guardarNombre);
 nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') guardarNombre(); });
+passInput.addEventListener('keydown', e => { if (e.key === 'Enter') guardarNombre(); });
 changeNameBtn.addEventListener('click', () => {
   nameInput.value = userName || '';
   nameOverlay.style.display = 'flex';
@@ -495,15 +547,18 @@ function renderMsg(msg) {
     ? msg.createdAt.toDate().toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' })
     : '';
 
+  const esAdmin  = msg.isAdmin === true;
+  const badge    = esAdmin ? '<span class="admin-badge">👑 Admin</span>' : '';
+
   const div = document.createElement('div');
-  div.className   = 'msg' + (esPropio ? ' own' : '');
-  div.dataset.id  = msg.id;
+  div.className  = 'msg' + (esPropio ? ' own' : '') + (esAdmin ? ' admin' : '');
+  div.dataset.id = msg.id;
 
   div.innerHTML = `
-    <div class="msg-avatar">${inicial}</div>
+    <div class="msg-avatar" style="${esAdmin ? 'background:linear-gradient(135deg,#7c3aed,#a855f7);box-shadow:0 0 12px var(--accent-glow)' : ''}">${inicial}</div>
     <div class="msg-body">
       <div class="msg-meta">
-        <span class="msg-name">${escapeHtml(msg.nombre)}</span>
+        <span class="msg-name">${escapeHtml(msg.nombre)}${badge}</span>
         <span class="msg-time">${hora}</span>
       </div>
       <div class="msg-bubble">${escapeHtml(msg.texto)}</div>
@@ -526,6 +581,7 @@ async function enviarMensaje() {
       nombre:    userName,
       userId:    userId,
       texto:     texto,
+      isAdmin:   isAdmin,
       createdAt: serverTimestamp()
     });
   } catch (e) {
