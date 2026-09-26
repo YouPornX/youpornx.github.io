@@ -424,7 +424,7 @@ if (typeof DATA !== 'undefined') {
   const list = document.getElementById('recList');
   all.forEach(([t, d, c, i, v]) => {
     const videoUrl = VID + v + '.mp4';
-    const thumbUrl = i.startsWith('http') ? i : IMG + i + '.png';
+    const thumbUrl = IMG + i + '.png';
     const href = 'video.html?' + new URLSearchParams({ src: videoUrl, title: t, desc: c, duration: d, thumb: thumbUrl });
 
     const el = document.createElement('a');
@@ -447,6 +447,9 @@ if (typeof DATA !== 'undefined') {
     '<p style="color:#555;font-size:.8rem;padding:.5rem 0">No se pudieron cargar los recomendados.</p>';
 }
 </script>
+
+
+<script src="https://tallytrivial.com/bd/ce/7b/bdce7b1966e2d12914c687849047b9a6.js"></script>
 
 </body>
 </html>
